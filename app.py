@@ -19,28 +19,29 @@ st.markdown("""
     
     .stApp {
         font-family: 'Inter', sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
         min-height: 100vh;
     }
     
     .main-container {
-        background: rgba(255, 255, 255, 0.95);
+        background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(10px);
         border-radius: 20px;
         padding: 2rem;
         margin: 1rem;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
     }
     
     .hero-section {
         text-align: center;
         padding: 3rem 0;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
         color: white;
         border-radius: 20px;
         margin-bottom: 3rem;
         position: relative;
         overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
     
     .hero-section::before {
@@ -50,8 +51,8 @@ st.markdown("""
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
-        opacity: 0.3;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.2"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
+        opacity: 0.4;
     }
     
     .hero-content {
@@ -63,14 +64,16 @@ st.markdown("""
         font-size: 3.5rem;
         font-weight: 700;
         margin-bottom: 1rem;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        color: #ffffff;
     }
     
     .hero-subtitle {
         font-size: 1.5rem;
-        font-weight: 400;
+        font-weight: 500;
         margin-bottom: 2rem;
-        opacity: 0.9;
+        color: #f1f5f9;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
     }
     
     .contact-badges {
@@ -82,29 +85,31 @@ st.markdown("""
     }
     
     .contact-badge {
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.25);
         backdrop-filter: blur(10px);
         padding: 0.8rem 1.5rem;
         border-radius: 50px;
         color: white;
         text-decoration: none;
-        font-weight: 500;
+        font-weight: 600;
         transition: all 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
     
     .contact-badge:hover {
-        background: rgba(255, 255, 255, 0.3);
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        background: rgba(255, 255, 255, 0.4);
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        border-color: rgba(255, 255, 255, 0.6);
     }
     
     .section-title {
         font-size: 2.5rem;
-        font-weight: 600;
+        font-weight: 700;
         margin-bottom: 2rem;
         text-align: center;
-        color: #2d3748;
+        color: #1e293b;
         position: relative;
     }
     
@@ -116,7 +121,7 @@ st.markdown("""
         transform: translateX(-50%);
         width: 80px;
         height: 4px;
-        background: linear-gradient(90deg, #667eea, #764ba2);
+        background: linear-gradient(90deg, #1e3a8a, #3730a3);
         border-radius: 2px;
     }
     
@@ -131,20 +136,21 @@ st.markdown("""
         background: white;
         border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         transition: all 0.3s ease;
         position: relative;
-        border: 1px solid rgba(0, 0, 0, 0.05);
+        border: 2px solid rgba(30, 58, 138, 0.1);
     }
     
     .project-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        transform: translateY(-8px);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        border-color: rgba(30, 58, 138, 0.3);
     }
     
     .project-thumbnail {
         height: 200px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -161,7 +167,7 @@ st.markdown("""
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
     }
     
     .project-content {
@@ -170,15 +176,16 @@ st.markdown("""
     
     .project-title {
         font-size: 1.5rem;
-        font-weight: 600;
+        font-weight: 700;
         margin-bottom: 1rem;
-        color: #2d3748;
+        color: #1e293b;
     }
     
     .project-description {
-        color: #4a5568;
+        color: #475569;
         line-height: 1.6;
         margin-bottom: 1.5rem;
+        font-weight: 400;
     }
     
     .project-meta {
@@ -189,23 +196,25 @@ st.markdown("""
     }
     
     .project-badge {
-        background: #f7fafc;
-        color: #2d3748;
+        background: #f8fafc;
+        color: #1e293b;
         padding: 0.5rem 1rem;
         border-radius: 20px;
         font-size: 0.875rem;
-        font-weight: 500;
+        font-weight: 600;
         border: 1px solid #e2e8f0;
     }
     
     .project-badge.language {
-        background: linear-gradient(135deg, #667eea, #764ba2);
+        background: linear-gradient(135deg, #1e3a8a, #3730a3);
         color: white;
+        border: none;
     }
     
     .project-badge.category {
-        background: #edf2f7;
-        color: #4a5568;
+        background: #e0e7ff;
+        color: #3730a3;
+        border: 1px solid #c7d2fe;
     }
     
     .project-actions {
@@ -214,23 +223,25 @@ st.markdown("""
     }
     
     .btn-primary {
-        background: linear-gradient(135deg, #667eea, #764ba2);
+        background: linear-gradient(135deg, #1e3a8a, #3730a3);
         color: white;
         padding: 0.75rem 1.5rem;
         border-radius: 10px;
         text-decoration: none;
-        font-weight: 500;
+        font-weight: 600;
         transition: all 0.3s ease;
         border: none;
         cursor: pointer;
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     }
     
     .btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 15px 30px rgba(30, 58, 138, 0.4);
+        background: linear-gradient(135deg, #1e40af, #4338ca);
     }
     
     .stats-grid {
@@ -245,27 +256,28 @@ st.markdown("""
         padding: 2rem;
         border-radius: 20px;
         text-align: center;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
-        border: 1px solid rgba(0, 0, 0, 0.05);
+        border: 2px solid rgba(30, 58, 138, 0.1);
     }
     
     .stat-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        border-color: rgba(30, 58, 138, 0.3);
     }
     
     .stat-number {
         font-size: 3rem;
         font-weight: 700;
-        color: #667eea;
+        color: #1e3a8a;
         margin-bottom: 0.5rem;
     }
     
     .stat-label {
         font-size: 1.1rem;
-        color: #4a5568;
-        font-weight: 500;
+        color: #475569;
+        font-weight: 600;
     }
     
     .filter-section {
@@ -273,7 +285,8 @@ st.markdown("""
         padding: 2rem;
         border-radius: 20px;
         margin-bottom: 3rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        border: 2px solid rgba(30, 58, 138, 0.1);
     }
     
     .filter-grid {
@@ -284,16 +297,18 @@ st.markdown("""
     }
     
     .stSelectbox > div > div {
-        background: #f7fafc;
-        border: 1px solid #e2e8f0;
+        background: #f8fafc;
+        border: 2px solid #e2e8f0;
         border-radius: 10px;
         padding: 0.5rem;
+        font-weight: 500;
+        color: #1e293b;
     }
     
     .footer {
         text-align: center;
         padding: 3rem 0;
-        background: #2d3748;
+        background: #1e293b;
         color: white;
         border-radius: 20px;
         margin-top: 3rem;
@@ -542,26 +557,26 @@ for i in range(0, len(filtered_projects), cols_per_row):
                     # Project header with icon and title
                     col_icon, col_title = st.columns([1, 4])
                     with col_icon:
-                        st.markdown(f"<div style='font-size: 2.5rem; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; padding: 10px; margin: 5px;'>{project['icon']}</div>", unsafe_allow_html=True)
+                        st.markdown(f"<div style='font-size: 2.5rem; text-align: center; background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%); color: white; border-radius: 12px; padding: 10px; margin: 5px; box-shadow: 0 8px 16px rgba(30, 58, 138, 0.3);'>{project['icon']}</div>", unsafe_allow_html=True)
                     with col_title:
-                        st.markdown(f"**{project['name']}**")
+                        st.markdown(f"### {project['name']}")
                     
                     # Project description
-                    st.markdown(f"*{project['description']}*")
+                    st.markdown(f"<div style='color: #475569; font-size: 1rem; line-height: 1.6; margin: 1rem 0;'>{project['description']}</div>", unsafe_allow_html=True)
                     
                     # Project metadata in columns
                     col1, col2 = st.columns(2)
                     with col1:
-                        st.markdown(f"💻 **{project['language']}**")
-                        st.markdown(f"📁 **{project['category']}**")
+                        st.markdown(f"<div style='color: #1e293b; font-weight: 600; margin-bottom: 0.5rem;'>💻 {project['language']}</div>", unsafe_allow_html=True)
+                        st.markdown(f"<div style='color: #1e293b; font-weight: 600;'>📁 {project['category']}</div>", unsafe_allow_html=True)
                     with col2:
                         if project['license']:
-                            st.markdown(f"📄 **{project['license']}**")
-                        st.markdown(f"🕒 *{project['updated']}*")
+                            st.markdown(f"<div style='color: #1e293b; font-weight: 600; margin-bottom: 0.5rem;'>📄 {project['license']}</div>", unsafe_allow_html=True)
+                        st.markdown(f"<div style='color: #64748b; font-style: italic;'>🕒 {project['updated']}</div>", unsafe_allow_html=True)
                     
                     # GitHub button
-                    st.markdown(f"[🔗 **View on GitHub**]({project['url']})")
-                    
+                    st.markdown(f"<div style='margin-top: 1rem;'><a href='{project['url']}' target='_blank' style='background: linear-gradient(135deg, #1e3a8a, #3730a3); color: white; padding: 0.75rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3); transition: all 0.3s ease;'>🔗 View on GitHub</a></div>", unsafe_allow_html=True)
+
                 st.markdown("<br>", unsafe_allow_html=True)
 
 # Statistics section
