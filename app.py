@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 import base64
+import html
 
 # Page configuration
 st.set_page_config(
@@ -529,39 +530,124 @@ if selected_category != "All":
 # Main content
 st.markdown('<h2 class="section-title">🚀 Featured Projects</h2>', unsafe_allow_html=True)
 
-# Project grid
-st.markdown('<div class="project-grid">', unsafe_allow_html=True)
-
-for project in filtered_projects:
-    # Build license badge if exists
-    license_badge = f'<span class="project-badge">📄 {project["license"]}</span>' if project['license'] else ''
-    
-    st.markdown(f"""
-    <div class="project-card">
-        <div class="project-thumbnail">
-            <div style="position: relative; z-index: 1;">
-                {project['icon']}
-            </div>
-        </div>
-        <div class="project-content">
-            <h3 class="project-title">{project['name']}</h3>
-            <p class="project-description">{project['description']}</p>
-            <div class="project-meta">
-                <span class="project-badge language">{project['language']}</span>
-                <span class="project-badge category">{project['category']}</span>
-                {license_badge}
-                <span class="project-badge">🕒 {project['updated']}</span>
-            </div>
-            <div class="project-actions">
-                <a href="{project['url']}" target="_blank" class="btn-primary">
-                    🔗 View on GitHub
-                </a>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-st.markdown('</div>', unsafe_allow_html=True)
+# Create a responsive grid layout
+cols_per_row = 2
+for i in range(0, len(filtered_projects), cols_per_row):
+    cols = st.columns(cols_per_row)
+    for j, col in enumerate(cols):
+        if i + j < len(filtered_projects):
+            project = filtered_projects[i + j]
+            with col:
+                # Professional project card
+                license_info = f'<div class="license-badge">📄 {project["license"]}</div>' if project["license"] else ''
+                
+                card_html = f"""
+                <div class="project-card" style="
+                    background: white;
+                    border-radius: 16px;
+                    padding: 1.5rem;
+                    margin-bottom: 1.5rem;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                    border: 1px solid #e5e7eb;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    transition: transform 0.2s ease, box-shadow 0.2s ease;
+                ">
+                    <div class="project-header" style="
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 1rem;
+                    ">
+                        <div class="project-icon" style="
+                            font-size: 2.5rem;
+                            margin-right: 1rem;
+                            width: 60px;
+                            height: 60px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                            border-radius: 12px;
+                            color: white;
+                        ">
+                            {project['icon']}
+                        </div>
+                        <div class="project-title-section" style="flex: 1;">
+                            <h3 style="
+                                margin: 0;
+                                font-size: 1.25rem;
+                                font-weight: 600;
+                                color: #1f2937;
+                                line-height: 1.3;
+                            ">{project['name']}</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="project-description" style="
+                        color: #6b7280;
+                        font-size: 0.95rem;
+                        line-height: 1.6;
+                        margin-bottom: 1.5rem;
+                        flex-grow: 1;
+                    ">
+                        {project['description']}
+                    </div>
+                    
+                    <div class="project-meta" style="
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 0.5rem;
+                        margin-bottom: 1rem;
+                    ">
+                        <span style="
+                            background: #f3f4f6;
+                            color: #374151;
+                            padding: 0.25rem 0.75rem;
+                            border-radius: 20px;
+                            font-size: 0.8rem;
+                            font-weight: 500;
+                        ">💻 {project['language']}</span>
+                        <span style="
+                            background: #e0e7ff;
+                            color: #3730a3;
+                            padding: 0.25rem 0.75rem;
+                            border-radius: 20px;
+                            font-size: 0.8rem;
+                            font-weight: 500;
+                        ">📁 {project['category']}</span>
+                        {f'<span style="background: #dcfce7; color: #166534; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500;">📄 {project["license"]}</span>' if project["license"] else ''}
+                    </div>
+                    
+                    <div class="project-footer" style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-top: auto;
+                    ">
+                        <span style="
+                            color: #9ca3af;
+                            font-size: 0.85rem;
+                        ">🕒 {project['updated']}</span>
+                        <a href="{project['url']}" target="_blank" style="
+                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                            color: white;
+                            padding: 0.5rem 1rem;
+                            border-radius: 8px;
+                            text-decoration: none;
+                            font-weight: 500;
+                            font-size: 0.9rem;
+                            transition: transform 0.2s ease;
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                        ">
+                            🔗 GitHub
+                        </a>
+                    </div>
+                </div>
+                """
+                st.markdown(card_html, unsafe_allow_html=True)
 
 # Statistics section
 st.markdown('<h2 class="section-title">📊 Project Statistics</h2>', unsafe_allow_html=True)
