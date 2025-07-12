@@ -553,11 +553,7 @@ for i in range(0, len(filtered_projects), cols_per_row):
         if i + j < len(filtered_projects):
             project = filtered_projects[i + j]
             with col:
-                # Create a complete HTML card without Streamlit container
-                license_html = f"""
-                <div style='color: #1e293b; font-weight: 700; margin-bottom: 0.5rem; background: #ecfdf5; padding: 0.5rem; border-radius: 6px;'>📄 {project['license']}</div>
-                """ if project['license'] else ""
-                
+                # Create a clean HTML card
                 card_html = f"""
                 <div style='
                     background: white;
@@ -567,10 +563,7 @@ for i in range(0, len(filtered_projects), cols_per_row):
                     border: 2px solid #e5e7eb;
                     margin-bottom: 2rem;
                     min-height: 400px;
-                    display: flex;
-                    flex-direction: column;
                 '>
-                    <!-- Header -->
                     <div style='display: flex; align-items: center; margin-bottom: 1rem;'>
                         <div style='
                             font-size: 2.5rem; 
@@ -585,12 +578,10 @@ for i in range(0, len(filtered_projects), cols_per_row):
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
                         '>{project['icon']}</div>
-                        <h3 style='color: #1e293b; font-weight: 700; margin: 0; font-size: 1.3rem; flex: 1;'>{project['name']}</h3>
+                        <h3 style='color: #1e293b; font-weight: 700; margin: 0; font-size: 1.3rem;'>{html.escape(project['name'])}</h3>
                     </div>
                     
-                    <!-- Description -->
                     <div style='
                         color: #374151; 
                         font-size: 1rem; 
@@ -600,31 +591,24 @@ for i in range(0, len(filtered_projects), cols_per_row):
                         padding: 1rem; 
                         border-radius: 8px; 
                         border-left: 4px solid #1e3a8a;
-                        flex-grow: 1;
-                    '>{project['description']}</div>
+                    '>{html.escape(project['description'])}</div>
                     
-                    <!-- Metadata -->
-                    <div style='display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;'>
-                        <div style='color: #1e293b; font-weight: 700; background: #f1f5f9; padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.9rem;'>💻 {project['language']}</div>
-                        <div style='color: #1e293b; font-weight: 700; background: #f1f5f9; padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.9rem;'>📁 {project['category']}</div>
-                        {license_html.replace('<div style=', '<div style=').replace('margin-bottom: 0.5rem;', 'margin-bottom: 0;').replace('</div>', '</div>').strip() if project['license'] else ''}
-                        <div style='color: #6b7280; font-weight: 600; background: #f9fafb; padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.9rem;'>🕒 {project['updated']}</div>
+                    <div style='margin-bottom: 1rem;'>
+                        <div style='color: #1e293b; font-weight: 700; background: #f1f5f9; padding: 0.5rem; border-radius: 6px; margin-bottom: 0.5rem;'>💻 {html.escape(project['language'])}</div>
+                        <div style='color: #1e293b; font-weight: 700; background: #f1f5f9; padding: 0.5rem; border-radius: 6px; margin-bottom: 0.5rem;'>📁 {html.escape(project['category'])}</div>
+                        {f"<div style='color: #1e293b; font-weight: 700; background: #ecfdf5; padding: 0.5rem; border-radius: 6px; margin-bottom: 0.5rem;'>📄 {html.escape(project['license'])}</div>" if project['license'] else ""}
+                        <div style='color: #6b7280; font-weight: 600; background: #f9fafb; padding: 0.5rem; border-radius: 6px;'>🕒 {html.escape(project['updated'])}</div>
                     </div>
                     
-                    <!-- GitHub Button -->
-                    <div style='text-align: center; margin-top: auto;'>
-                        <a href='{project['url']}' target='_blank' style='
+                    <div style='text-align: center;'>
+                        <a href='{html.escape(project['url'])}' target='_blank' style='
                             background: linear-gradient(135deg, #1e3a8a, #3730a3); 
                             color: white; 
                             padding: 0.75rem 2rem; 
                             border-radius: 10px; 
                             text-decoration: none; 
                             font-weight: 700; 
-                            display: inline-flex; 
-                            align-items: center; 
-                            gap: 0.5rem; 
-                            box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4); 
-                            transition: all 0.3s ease; 
+                            display: inline-block;
                             font-size: 1rem;
                         '>🔗 View on GitHub</a>
                     </div>
