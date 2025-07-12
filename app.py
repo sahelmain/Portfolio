@@ -305,6 +305,15 @@ st.markdown("""
     footer {visibility: hidden;}
     header {visibility: hidden;}
     
+    /* Fix any HTML rendering issues */
+    .project-card * {
+        box-sizing: border-box;
+    }
+    
+    .project-meta {
+        flex-wrap: wrap;
+    }
+    
     /* Custom scrollbar */
     ::-webkit-scrollbar {
         width: 8px;
@@ -524,6 +533,9 @@ st.markdown('<h2 class="section-title">🚀 Featured Projects</h2>', unsafe_allo
 st.markdown('<div class="project-grid">', unsafe_allow_html=True)
 
 for project in filtered_projects:
+    # Build license badge if exists
+    license_badge = f'<span class="project-badge">📄 {project["license"]}</span>' if project['license'] else ''
+    
     st.markdown(f"""
     <div class="project-card">
         <div class="project-thumbnail">
@@ -537,7 +549,7 @@ for project in filtered_projects:
             <div class="project-meta">
                 <span class="project-badge language">{project['language']}</span>
                 <span class="project-badge category">{project['category']}</span>
-                {f'<span class="project-badge">📄 {project["license"]}</span>' if project['license'] else ''}
+                {license_badge}
                 <span class="project-badge">🕒 {project['updated']}</span>
             </div>
             <div class="project-actions">
