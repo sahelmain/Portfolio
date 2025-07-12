@@ -19,17 +19,17 @@ st.markdown("""
     
     .stApp {
         font-family: 'Inter', sans-serif;
-        background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         min-height: 100vh;
     }
     
     .main-container {
-        background: rgba(255, 255, 255, 0.98);
+        background: rgba(255, 255, 255, 1);
         backdrop-filter: blur(10px);
         border-radius: 20px;
         padding: 2rem;
         margin: 1rem;
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
     }
     
     .hero-section {
@@ -554,29 +554,42 @@ for i in range(0, len(filtered_projects), cols_per_row):
             project = filtered_projects[i + j]
             with col:
                 with st.container(border=True):
+                    st.markdown("""
+                    <div style='
+                        background: white;
+                        padding: 1.5rem;
+                        border-radius: 16px;
+                        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+                        border: 2px solid rgba(255, 255, 255, 0.9);
+                        margin-bottom: 1rem;
+                    '>
+                    """, unsafe_allow_html=True)
+                    
                     # Project header with icon and title
                     col_icon, col_title = st.columns([1, 4])
                     with col_icon:
                         st.markdown(f"<div style='font-size: 2.5rem; text-align: center; background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%); color: white; border-radius: 12px; padding: 10px; margin: 5px; box-shadow: 0 8px 16px rgba(30, 58, 138, 0.3);'>{project['icon']}</div>", unsafe_allow_html=True)
                     with col_title:
-                        st.markdown(f"### {project['name']}")
+                        st.markdown(f"<h3 style='color: #1e293b; font-weight: 700; margin: 0; font-size: 1.4rem;'>{project['name']}</h3>", unsafe_allow_html=True)
                     
                     # Project description
-                    st.markdown(f"<div style='color: #475569; font-size: 1rem; line-height: 1.6; margin: 1rem 0;'>{project['description']}</div>", unsafe_allow_html=True)
+                    st.markdown(f"<div style='color: #374151; font-size: 1rem; line-height: 1.6; margin: 1rem 0; background: #f8fafc; padding: 1rem; border-radius: 8px; border-left: 4px solid #1e3a8a;'>{project['description']}</div>", unsafe_allow_html=True)
                     
                     # Project metadata in columns
                     col1, col2 = st.columns(2)
                     with col1:
-                        st.markdown(f"<div style='color: #1e293b; font-weight: 600; margin-bottom: 0.5rem;'>💻 {project['language']}</div>", unsafe_allow_html=True)
-                        st.markdown(f"<div style='color: #1e293b; font-weight: 600;'>📁 {project['category']}</div>", unsafe_allow_html=True)
+                        st.markdown(f"<div style='color: #1e293b; font-weight: 700; margin-bottom: 0.5rem; background: #f1f5f9; padding: 0.5rem; border-radius: 6px;'>💻 {project['language']}</div>", unsafe_allow_html=True)
+                        st.markdown(f"<div style='color: #1e293b; font-weight: 700; background: #f1f5f9; padding: 0.5rem; border-radius: 6px;'>📁 {project['category']}</div>", unsafe_allow_html=True)
                     with col2:
                         if project['license']:
-                            st.markdown(f"<div style='color: #1e293b; font-weight: 600; margin-bottom: 0.5rem;'>📄 {project['license']}</div>", unsafe_allow_html=True)
-                        st.markdown(f"<div style='color: #64748b; font-style: italic;'>🕒 {project['updated']}</div>", unsafe_allow_html=True)
+                            st.markdown(f"<div style='color: #1e293b; font-weight: 700; margin-bottom: 0.5rem; background: #ecfdf5; padding: 0.5rem; border-radius: 6px;'>📄 {project['license']}</div>", unsafe_allow_html=True)
+                        st.markdown(f"<div style='color: #6b7280; font-weight: 600; background: #f9fafb; padding: 0.5rem; border-radius: 6px;'>🕒 {project['updated']}</div>", unsafe_allow_html=True)
                     
                     # GitHub button
-                    st.markdown(f"<div style='margin-top: 1rem;'><a href='{project['url']}' target='_blank' style='background: linear-gradient(135deg, #1e3a8a, #3730a3); color: white; padding: 0.75rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3); transition: all 0.3s ease;'>🔗 View on GitHub</a></div>", unsafe_allow_html=True)
-
+                    st.markdown(f"<div style='margin-top: 1.5rem; text-align: center;'><a href='{project['url']}' target='_blank' style='background: linear-gradient(135deg, #1e3a8a, #3730a3); color: white; padding: 0.75rem 2rem; border-radius: 10px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4); transition: all 0.3s ease; font-size: 1rem;'>🔗 View on GitHub</a></div>", unsafe_allow_html=True)
+                    
+                    st.markdown("</div>", unsafe_allow_html=True)
+                    
                 st.markdown("<br>", unsafe_allow_html=True)
 
 # Statistics section
