@@ -558,6 +558,14 @@ for i in range(0, len(filtered_projects), cols_per_row):
                     # Add custom CSS for this specific container
                     st.markdown("""
                     <style>
+                    .stContainer > div {
+                        background: white !important;
+                        border: 2px solid #d1d5db !important;
+                        border-radius: 16px !important;
+                        padding: 1.5rem !important;
+                        margin-bottom: 2rem !important;
+                        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) !important;
+                    }
                     .project-card {
                         background: white !important;
                         border: 2px solid #e5e7eb !important;
@@ -570,6 +578,9 @@ for i in range(0, len(filtered_projects), cols_per_row):
                         display: flex !important;
                         align-items: center !important;
                         margin-bottom: 1rem !important;
+                        background: white !important;
+                        padding: 0.5rem !important;
+                        border-radius: 8px !important;
                     }
                     .project-icon {
                         font-size: 2.5rem !important;
@@ -583,12 +594,18 @@ for i in range(0, len(filtered_projects), cols_per_row):
                         display: flex !important;
                         align-items: center !important;
                         justify-content: center !important;
+                        box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3) !important;
                     }
                     .project-title {
-                        color: #1e293b !important;
-                        font-weight: 700 !important;
-                        font-size: 1.3rem !important;
+                        color: #111827 !important;
+                        font-weight: 800 !important;
+                        font-size: 1.5rem !important;
                         margin: 0 !important;
+                        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+                        background: linear-gradient(135deg, #f8fafc, #ffffff) !important;
+                        padding: 0.5rem !important;
+                        border-radius: 8px !important;
+                        border: 1px solid #e5e7eb !important;
                     }
                     .project-description {
                         color: #374151 !important;
@@ -597,6 +614,7 @@ for i in range(0, len(filtered_projects), cols_per_row):
                         border-radius: 8px !important;
                         border-left: 4px solid #1e3a8a !important;
                         margin-bottom: 1rem !important;
+                        font-weight: 500 !important;
                     }
                     .project-badge {
                         background: #f1f5f9 !important;
@@ -605,6 +623,7 @@ for i in range(0, len(filtered_projects), cols_per_row):
                         border-radius: 6px !important;
                         margin-bottom: 0.5rem !important;
                         font-weight: 700 !important;
+                        border: 1px solid #e2e8f0 !important;
                     }
                     .project-badge-license {
                         background: #ecfdf5 !important;
@@ -613,6 +632,7 @@ for i in range(0, len(filtered_projects), cols_per_row):
                         border-radius: 6px !important;
                         margin-bottom: 0.5rem !important;
                         font-weight: 700 !important;
+                        border: 1px solid #d1fae5 !important;
                     }
                     .project-badge-time {
                         background: #f9fafb !important;
@@ -620,6 +640,7 @@ for i in range(0, len(filtered_projects), cols_per_row):
                         padding: 0.5rem !important;
                         border-radius: 6px !important;
                         font-weight: 600 !important;
+                        border: 1px solid #e5e7eb !important;
                     }
                     </style>
                     """, unsafe_allow_html=True)
