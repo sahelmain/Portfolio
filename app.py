@@ -553,69 +553,99 @@ for i in range(0, len(filtered_projects), cols_per_row):
         if i + j < len(filtered_projects):
             project = filtered_projects[i + j]
             with col:
-                # Create a clean HTML card
-                card_html = f"""
-                <div style='
-                    background: white;
-                    padding: 1.5rem;
-                    border-radius: 16px;
-                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-                    border: 2px solid #e5e7eb;
-                    margin-bottom: 2rem;
-                    min-height: 400px;
-                '>
-                    <div style='display: flex; align-items: center; margin-bottom: 1rem;'>
-                        <div style='
-                            font-size: 2.5rem; 
-                            text-align: center; 
-                            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%); 
-                            color: white; 
-                            border-radius: 12px; 
-                            padding: 10px; 
-                            margin-right: 1rem;
-                            width: 60px;
-                            height: 60px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                        '>{project['icon']}</div>
-                        <h3 style='color: #1e293b; font-weight: 700; margin: 0; font-size: 1.3rem;'>{html.escape(project['name'])}</h3>
-                    </div>
+                # Use Streamlit's native container with custom CSS
+                with st.container():
+                    # Add custom CSS for this specific container
+                    st.markdown("""
+                    <style>
+                    .project-card {
+                        background: white !important;
+                        border: 2px solid #e5e7eb !important;
+                        border-radius: 16px !important;
+                        padding: 1.5rem !important;
+                        margin-bottom: 1rem !important;
+                        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+                    }
+                    .project-header {
+                        display: flex !important;
+                        align-items: center !important;
+                        margin-bottom: 1rem !important;
+                    }
+                    .project-icon {
+                        font-size: 2.5rem !important;
+                        background: linear-gradient(135deg, #1e3a8a, #3730a3) !important;
+                        color: white !important;
+                        border-radius: 12px !important;
+                        padding: 10px !important;
+                        margin-right: 1rem !important;
+                        width: 60px !important;
+                        height: 60px !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                    }
+                    .project-title {
+                        color: #1e293b !important;
+                        font-weight: 700 !important;
+                        font-size: 1.3rem !important;
+                        margin: 0 !important;
+                    }
+                    .project-description {
+                        color: #374151 !important;
+                        background: #f8fafc !important;
+                        padding: 1rem !important;
+                        border-radius: 8px !important;
+                        border-left: 4px solid #1e3a8a !important;
+                        margin-bottom: 1rem !important;
+                    }
+                    .project-badge {
+                        background: #f1f5f9 !important;
+                        color: #1e293b !important;
+                        padding: 0.5rem !important;
+                        border-radius: 6px !important;
+                        margin-bottom: 0.5rem !important;
+                        font-weight: 700 !important;
+                    }
+                    .project-badge-license {
+                        background: #ecfdf5 !important;
+                        color: #1e293b !important;
+                        padding: 0.5rem !important;
+                        border-radius: 6px !important;
+                        margin-bottom: 0.5rem !important;
+                        font-weight: 700 !important;
+                    }
+                    .project-badge-time {
+                        background: #f9fafb !important;
+                        color: #6b7280 !important;
+                        padding: 0.5rem !important;
+                        border-radius: 6px !important;
+                        font-weight: 600 !important;
+                    }
+                    </style>
+                    """, unsafe_allow_html=True)
                     
-                    <div style='
-                        color: #374151; 
-                        font-size: 1rem; 
-                        line-height: 1.6; 
-                        margin-bottom: 1.5rem; 
-                        background: #f8fafc; 
-                        padding: 1rem; 
-                        border-radius: 8px; 
-                        border-left: 4px solid #1e3a8a;
-                    '>{html.escape(project['description'])}</div>
+                    # Project header
+                    col_icon, col_title = st.columns([1, 4])
+                    with col_icon:
+                        st.markdown(f'<div class="project-icon">{project["icon"]}</div>', unsafe_allow_html=True)
+                    with col_title:
+                        st.markdown(f'<h3 class="project-title">{project["name"]}</h3>', unsafe_allow_html=True)
                     
-                    <div style='margin-bottom: 1rem;'>
-                        <div style='color: #1e293b; font-weight: 700; background: #f1f5f9; padding: 0.5rem; border-radius: 6px; margin-bottom: 0.5rem;'>💻 {html.escape(project['language'])}</div>
-                        <div style='color: #1e293b; font-weight: 700; background: #f1f5f9; padding: 0.5rem; border-radius: 6px; margin-bottom: 0.5rem;'>📁 {html.escape(project['category'])}</div>
-                        {f"<div style='color: #1e293b; font-weight: 700; background: #ecfdf5; padding: 0.5rem; border-radius: 6px; margin-bottom: 0.5rem;'>📄 {html.escape(project['license'])}</div>" if project['license'] else ""}
-                        <div style='color: #6b7280; font-weight: 600; background: #f9fafb; padding: 0.5rem; border-radius: 6px;'>🕒 {html.escape(project['updated'])}</div>
-                    </div>
+                    # Project description
+                    st.markdown(f'<div class="project-description">{project["description"]}</div>', unsafe_allow_html=True)
                     
-                    <div style='text-align: center;'>
-                        <a href='{html.escape(project['url'])}' target='_blank' style='
-                            background: linear-gradient(135deg, #1e3a8a, #3730a3); 
-                            color: white; 
-                            padding: 0.75rem 2rem; 
-                            border-radius: 10px; 
-                            text-decoration: none; 
-                            font-weight: 700; 
-                            display: inline-block;
-                            font-size: 1rem;
-                        '>🔗 View on GitHub</a>
-                    </div>
-                </div>
-                """
-                
-                st.markdown(card_html, unsafe_allow_html=True)
+                    # Project metadata
+                    st.markdown(f'<div class="project-badge">💻 {project["language"]}</div>', unsafe_allow_html=True)
+                    st.markdown(f'<div class="project-badge">📁 {project["category"]}</div>', unsafe_allow_html=True)
+                    if project["license"]:
+                        st.markdown(f'<div class="project-badge-license">📄 {project["license"]}</div>', unsafe_allow_html=True)
+                    st.markdown(f'<div class="project-badge-time">🕒 {project["updated"]}</div>', unsafe_allow_html=True)
+                    
+                    # GitHub link
+                    if st.button(f"🔗 View on GitHub", key=f"btn_{project['name']}", use_container_width=True):
+                        st.markdown(f'<script>window.open("{project["url"]}", "_blank");</script>', unsafe_allow_html=True)
+                    
+                    st.markdown("---")
 
 # Statistics section
 st.markdown('<h2 class="section-title">📊 Project Statistics</h2>', unsafe_allow_html=True)
