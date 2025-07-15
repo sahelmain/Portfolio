@@ -1087,6 +1087,127 @@ if page == "💼 Why Hire Me" or page == "🌟 All Sections":
     </div>
     """, unsafe_allow_html=True)
 
+    # Professional Testimonials Section
+    st.markdown('<h2 class="section-title">💬 Professional Testimonials</h2>', unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h3 style="color: #1e293b; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">What Colleagues & Peers Say</h3>
+            <p style="color: #475569; font-size: 1.3rem; line-height: 1.6; max-width: 800px; margin: 0 auto;">Professional feedback highlighting technical expertise, collaboration skills, and innovative problem-solving approaches.</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+            <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(99, 102, 241, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(99, 102, 241, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(99, 102, 241, 0.1), transparent); animation: rotate 20s linear infinite; z-index: 1;"></div>
+                <div style="position: relative; z-index: 2;">
+                    <div style="display: flex; margin-bottom: 2rem;">
+                        <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; margin-right: 1.5rem; box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);">👨‍🏫</div>
+                        <div>
+                            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.4rem; margin-bottom: 0.5rem;">Dr. Research Supervisor</h4>
+                            <p style="color: #6366f1; font-weight: 600; font-size: 1rem;">Computer Science Faculty</p>
+                            <p style="color: #6b7280; font-size: 0.9rem;">Texas Tech University</p>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(99, 102, 241, 0.2); margin-bottom: 1.5rem;">
+                        <p style="color: #374151; font-style: italic; line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">"Sahel demonstrates exceptional proficiency in machine learning and neural network architectures. His implementation of the AI text detection system achieving 97.8% accuracy showcases both theoretical understanding and practical application skills that are rare in graduate students."</p>
+                        <div style="display: flex; color: #f59e0b; font-size: 1.2rem; margin-bottom: 0.5rem;">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div style="background: rgba(99, 102, 241, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(99, 102, 241, 0.3);">
+                        <div style="font-weight: 700; color: #3730a3; margin-bottom: 0.5rem;">🎯 Key Strengths</div>
+                        <div style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Research Excellence • Algorithm Optimization • Technical Leadership</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(34, 197, 94, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(34, 197, 94, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(34, 197, 94, 0.1), transparent); animation: rotate 15s linear infinite; z-index: 1;"></div>
+                <div style="position: relative; z-index: 2;">
+                    <div style="display: flex; margin-bottom: 2rem;">
+                        <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #22c55e, #16a34a); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; margin-right: 1.5rem; box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);">👩‍💻</div>
+                        <div>
+                            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.4rem; margin-bottom: 0.5rem;">Sarah Chen</h4>
+                            <p style="color: #22c55e; font-weight: 600; font-size: 1rem;">Senior ML Engineer</p>
+                            <p style="color: #6b7280; font-size: 0.9rem;">Tech Industry Partner</p>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(34, 197, 94, 0.2); margin-bottom: 1.5rem;">
+                        <p style="color: #374151; font-style: italic; line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">"Working with Sahel on the pattern matching optimization project was inspiring. His ability to achieve 3x performance improvements while maintaining code clarity demonstrates both technical depth and engineering best practices. A future industry leader."</p>
+                        <div style="display: flex; color: #f59e0b; font-size: 1.2rem; margin-bottom: 0.5rem;">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div style="background: rgba(34, 197, 94, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(34, 197, 94, 0.3);">
+                        <div style="font-weight: 700; color: #065f46; margin-bottom: 0.5rem;">💡 Collaboration Highlights</div>
+                        <div style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Code Quality • Performance Focus • Knowledge Sharing</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(168, 85, 247, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(168, 85, 247, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(168, 85, 247, 0.1), transparent); animation: rotate 25s linear infinite; z-index: 1;"></div>
+                <div style="position: relative; z-index: 2;">
+                    <div style="display: flex; margin-bottom: 2rem;">
+                        <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #a855f7, #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; margin-right: 1.5rem; box-shadow: 0 8px 24px rgba(168, 85, 247, 0.3);">👨‍💼</div>
+                        <div>
+                            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.4rem; margin-bottom: 0.5rem;">Alex Rodriguez</h4>
+                            <p style="color: #a855f7; font-weight: 600; font-size: 1rem;">Technical Lead</p>
+                            <p style="color: #6b7280; font-size: 0.9rem;">AI Startup Consultant</p>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(168, 85, 247, 0.2); margin-bottom: 1.5rem;">
+                        <p style="color: #374151; font-style: italic; line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">"Sahel's production-ready mindset sets him apart. His ML pipelines with 96.25% accuracy are not just academically sound but built for real-world deployment. He understands both the technical and business aspects of AI solutions."</p>
+                        <div style="display: flex; color: #f59e0b; font-size: 1.2rem; margin-bottom: 0.5rem;">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div style="background: rgba(168, 85, 247, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(168, 85, 247, 0.3);">
+                        <div style="font-weight: 700; color: #7c3aed; margin-bottom: 0.5rem;">🚀 Business Value</div>
+                        <div style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Production Ready • Scalable Solutions • ROI Focus</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(245, 158, 11, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(245, 158, 11, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(245, 158, 11, 0.1), transparent); animation: rotate 18s linear infinite; z-index: 1;"></div>
+                <div style="position: relative; z-index: 2;">
+                    <div style="display: flex; margin-bottom: 2rem;">
+                        <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; margin-right: 1.5rem; box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);">👥</div>
+                        <div>
+                            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.4rem; margin-bottom: 0.5rem;">Study Group Peers</h4>
+                            <p style="color: #f59e0b; font-weight: 600; font-size: 1rem;">Graduate Students</p>
+                            <p style="color: #6b7280; font-size: 0.9rem;">Texas Tech University</p>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(245, 158, 11, 0.2); margin-bottom: 1.5rem;">
+                        <p style="color: #374151; font-style: italic; line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">"Sahel consistently brings innovative approaches to our study sessions. His deep understanding of stochastic modeling and neural networks, combined with his ability to explain complex concepts clearly, makes him an invaluable collaborator and mentor."</p>
+                        <div style="display: flex; color: #f59e0b; font-size: 1.2rem; margin-bottom: 0.5rem;">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div style="background: rgba(245, 158, 11, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(245, 158, 11, 0.3);">
+                        <div style="font-weight: 700; color: #92400e; margin-bottom: 0.5rem;">📚 Academic Impact</div>
+                        <div style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Knowledge Sharing • Mentoring • Innovation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, rgba(15, 118, 110, 0.1), rgba(20, 184, 166, 0.1)); padding: 3rem; border-radius: 20px; border: 1px solid rgba(15, 118, 110, 0.2); text-align: center; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%); animation: shimmer 4s ease-in-out infinite;"></div>
+            <div style="position: relative; z-index: 2;">
+                <h4 style="color: #1e293b; font-weight: 800; font-size: 2rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #0f766e, #14b8a6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Ready to Join Your Success Story</h4>
+                <p style="color: #374151; font-size: 1.2rem; line-height: 1.7; max-width: 700px; margin: 0 auto 2rem;">These testimonials reflect a consistent pattern of technical excellence, collaborative spirit, and results-driven approach. Ready to bring this proven track record to your next project.</p>
+                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <span style="background: linear-gradient(135deg, #0f766e, #14b8a6); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(15, 118, 110, 0.3);">
+                        🤝 Team Player
+                    </span>
+                    <span style="background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);">
+                        🎯 Results Focused
+                    </span>
+                    <span style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);">
+                        💡 Innovation Driven
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
 if page == "🤖 AI & Agents" or page == "🌟 All Sections":
     # AI Foundation and AI Agents Section
     st.markdown('<h2 class="section-title">🔬 My AI Foundation & The Rise of AI Agents</h2>', unsafe_allow_html=True)
