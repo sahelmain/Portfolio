@@ -1142,6 +1142,170 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# AI Foundation and AI Agents Section
+st.markdown('<h2 class="section-title">🔬 My AI Foundation & The Rise of AI Agents</h2>', unsafe_allow_html=True)
+
+st.markdown("""
+<div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);">
+    <div style="text-align: center; margin-bottom: 3rem;">
+        <h3 style="color: #1e293b; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #10b981, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Deep AI Expertise Meets Autonomous Intelligence</h3>
+        <p style="color: #475569; font-size: 1.3rem; line-height: 1.6; max-width: 800px; margin: 0 auto;">Built on a rock-solid foundation of AI theory and practice, specialized in the cutting-edge field of autonomous AI agents that are revolutionizing industries.</p>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+        <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(16, 185, 129, 0.2); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(16, 185, 129, 0.1), transparent); animation: rotate 20s linear infinite; z-index: 1;"></div>
+            <div style="position: relative; z-index: 2;">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🧠</div>
+                    <h4 style="color: #1e293b; font-weight: 800; font-size: 2rem; background: linear-gradient(135deg, #10b981, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Solid AI Foundation</h4>
+                </div>
+                
+                <div style="margin-bottom: 2rem;">
+                    <h5 style="color: #374151; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🎓</span>Academic Excellence</h5>
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; border: 1px solid rgba(16, 185, 129, 0.2);">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <div>
+                                <span style="background: rgba(59, 130, 246, 0.2); color: #1e40af; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem; display: inline-block; margin-bottom: 0.5rem;">Deep Learning</span>
+                                <div style="color: #374151; font-size: 0.95rem;">CNNs, RNNs, LSTMs, Transformers</div>
+                            </div>
+                            <div>
+                                <span style="background: rgba(168, 85, 247, 0.2); color: #7c2d12; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem; display: inline-block; margin-bottom: 0.5rem;">Machine Learning</span>
+                                <div style="color: #374151; font-size: 0.95rem;">Supervised, Unsupervised, Reinforcement</div>
+                            </div>
+                            <div>
+                                <span style="background: rgba(239, 68, 68, 0.2); color: #7f1d1d; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem; display: inline-block; margin-bottom: 0.5rem;">Neural Networks</span>
+                                <div style="color: #374151; font-size: 0.95rem;">Architecture Design & Optimization</div>
+                            </div>
+                            <div>
+                                <span style="background: rgba(245, 158, 11, 0.2); color: #92400e; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem; display: inline-block; margin-bottom: 0.5rem;">Stochastic Modeling</span>
+                                <div style="color: #374151; font-size: 0.95rem;">Probabilistic Systems & Analysis</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 2rem;">
+                    <h5 style="color: #374151; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🛠️</span>Practical Implementation</h5>
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.2);">
+                        <div style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <div style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 0.75rem;"></div>
+                            <span style="color: #374151; font-weight: 600;">97.8% accuracy in AI vs Human text detection</span>
+                        </div>
+                        <div style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; margin-right: 0.75rem;"></div>
+                            <span style="color: #374151; font-weight: 600;">Production-ready ML pipelines with 96.25% accuracy</span>
+                        </div>
+                        <div style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <div style="width: 8px; height: 8px; background: #a855f7; border-radius: 50%; margin-right: 0.75rem;"></div>
+                            <span style="color: #374151; font-weight: 600;">Real-time pattern matching optimization (3x faster)</span>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <div style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; margin-right: 0.75rem;"></div>
+                            <span style="color: #374151; font-weight: 600;">End-to-end deployment with modern frameworks</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(16, 185, 129, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(16, 185, 129, 0.3);">
+                    <div style="font-weight: 700; color: #065f46; margin-bottom: 0.5rem;">🎯 Research Focus</div>
+                    <div style="color: #374151; line-height: 1.6;">Advanced pattern recognition, neural network optimization, and autonomous system development at Texas Tech University</div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(59, 130, 246, 0.2); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(59, 130, 246, 0.1), transparent); animation: rotate 25s linear infinite; z-index: 1;"></div>
+            <div style="position: relative; z-index: 2;">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🤖</div>
+                    <h4 style="color: #1e293b; font-weight: 800; font-size: 2rem; background: linear-gradient(135deg, #3b82f6, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Why AI Agents Dominate</h4>
+                </div>
+                
+                <div style="margin-bottom: 2rem;">
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid rgba(59, 130, 246, 0.2);">
+                        <h5 style="color: #1e40af; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">⚡</span>Autonomous Decision Making</h5>
+                        <p style="color: #374151; line-height: 1.6; margin-bottom: 1rem;">AI agents can process information, make decisions, and take actions without human intervention. This enables 24/7 operations, instant responses, and scalable automation across industries.</p>
+                        <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                            <div style="color: #1e40af; font-weight: 600; font-size: 0.9rem;">Real Impact: Customer service agents handle 80% of inquiries autonomously</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid rgba(59, 130, 246, 0.2);">
+                        <h5 style="color: #1e40af; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🔄</span>Continuous Learning</h5>
+                        <p style="color: #374151; line-height: 1.6; margin-bottom: 1rem;">Unlike traditional software, AI agents improve over time through experience. They adapt to new patterns, learn from mistakes, and optimize their performance automatically.</p>
+                        <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #22c55e;">
+                            <div style="color: #059669; font-weight: 600; font-size: 0.9rem;">Example: Trading bots that adapt to market conditions in real-time</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid rgba(59, 130, 246, 0.2);">
+                        <h5 style="color: #1e40af; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">💰</span>Cost Efficiency</h5>
+                        <p style="color: #374151; line-height: 1.6; margin-bottom: 1rem;">AI agents can perform tasks that would require teams of humans, operating 24/7 without breaks, benefits, or training costs. This represents massive ROI for businesses.</p>
+                        <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #a855f7;">
+                            <div style="color: #7c3aed; font-weight: 600; font-size: 0.9rem;">Savings: Up to 70% reduction in operational costs</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(59, 130, 246, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(59, 130, 246, 0.3);">
+                    <div style="font-weight: 700; color: #1e40af; margin-bottom: 0.5rem;">🚀 Current Market</div>
+                    <div style="color: #374151; line-height: 1.6;">AI agent market projected to reach $28.5B by 2028, with 300% growth in enterprise adoption</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1)); padding: 3rem; border-radius: 20px; border: 1px solid rgba(168, 85, 247, 0.2); margin-bottom: 2rem; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%); animation: shimmer 4s ease-in-out infinite;"></div>
+        <div style="position: relative; z-index: 2;">
+            <h4 style="color: #1e293b; font-weight: 800; font-size: 2rem; margin-bottom: 2rem; text-align: center; background: linear-gradient(135deg, #a855f7, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🎯 AI Agent Applications I'm Building</h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(168, 85, 247, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+                    <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🔍</span>Intelligent Text Analysis</h5>
+                    <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">AI agents that can distinguish between human and AI-generated content with 97.8% accuracy, combating misinformation and ensuring content authenticity.</p>
+                    <div style="font-size: 0.9rem; color: #6b7280; font-style: italic;">Technology: Deep Learning, NLP, Pattern Recognition</div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(168, 85, 247, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+                    <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">⚡</span>Real-time Optimization</h5>
+                    <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">Autonomous agents for pattern matching and streaming algorithm optimization, achieving 3x performance improvements in network anomaly detection.</p>
+                    <div style="font-size: 0.9rem; color: #6b7280; font-style: italic;">Technology: Streaming Algorithms, Performance Optimization</div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(168, 85, 247, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+                    <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🏥</span>Healthcare Automation</h5>
+                    <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">Medical information processing agents that can analyze patient data, assist in diagnosis, and streamline healthcare workflows for better patient outcomes.</p>
+                    <div style="font-size: 0.9rem; color: #6b7280; font-style: italic;">Technology: Medical AI, Data Analysis, Decision Support</div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(168, 85, 247, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+                    <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🎯</span>Predictive Analytics</h5>
+                    <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">Intelligent agents that learn from historical data to predict future trends, optimize resource allocation, and make proactive business decisions.</p>
+                    <div style="font-size: 0.9rem; color: #6b7280; font-style: italic;">Technology: Machine Learning, Statistical Modeling, Forecasting</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.2); text-align: center; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(34, 197, 94, 0.1), transparent); animation: rotate 30s linear infinite; z-index: 1;"></div>
+        <div style="position: relative; z-index: 2;">
+            <h4 style="color: #1e293b; font-weight: 800; font-size: 1.8rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #22c55e, #16a34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">The Future is Autonomous</h4>
+            <p style="color: #374151; font-size: 1.2rem; line-height: 1.7; max-width: 700px; margin: 0 auto 2rem;">With my deep AI foundation and hands-on experience building intelligent agents, I'm positioned at the forefront of the autonomous revolution. Ready to develop the next generation of AI systems that will transform how businesses operate.</p>
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <span style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);">
+                    🧠 Deep AI Knowledge
+                </span>
+                <span style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);">
+                    🤖 Agent Specialist
+                </span>
+                <span style="background: linear-gradient(135deg, #a855f7, #8b5cf6); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(168, 85, 247, 0.3);">
+                    🚀 Production Ready
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
 # Language distribution chart
 st.markdown('<h2 class="section-title">📈 Technology Stack</h2>', unsafe_allow_html=True)
 
