@@ -868,6 +868,100 @@ st.bar_chart(language_counts.set_index("Language"), height=400)
 
 st.markdown('</div>', unsafe_allow_html=True)
 
+# Contact Section
+st.markdown('<h2 class="section-title">📞 Contact Me</h2>', unsafe_allow_html=True)
+
+st.markdown("""
+<div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);">
+    <div style="text-align: center; margin-bottom: 3rem;">
+        <h3 style="color: #1e293b; font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">Let's Connect & Collaborate</h3>
+        <p style="color: #475569; font-size: 1.2rem; margin-bottom: 2rem;">Ready to work on exciting ML/DL projects? Reach out!</p>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+        <div style="background: rgba(102, 126, 234, 0.1); padding: 2rem; border-radius: 20px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(102, 126, 234, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">📧</div>
+            <h4 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">Email</h4>
+            <p style="color: #475569; margin-bottom: 1rem;">saazzam@ttu.edu</p>
+            <a href="mailto:saazzam@ttu.edu" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 0.75rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 20px rgba(102, 126, 234, 0.3)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">Send Email</a>
+        </div>
+        
+        <div style="background: rgba(0, 119, 181, 0.1); padding: 2rem; border-radius: 20px; text-align: center; border: 1px solid rgba(0, 119, 181, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0, 119, 181, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">💼</div>
+            <h4 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">LinkedIn</h4>
+            <p style="color: #475569; margin-bottom: 1rem;">Professional Network</p>
+            <a href="https://www.linkedin.com/in/sahel-azzam-0a0670223" target="_blank" style="background: linear-gradient(135deg, #0077b5, #00a0dc); color: white; padding: 0.75rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 20px rgba(0, 119, 181, 0.3)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">Connect</a>
+        </div>
+        
+        <div style="background: rgba(36, 41, 47, 0.1); padding: 2rem; border-radius: 20px; text-align: center; border: 1px solid rgba(36, 41, 47, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(36, 41, 47, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🐙</div>
+            <h4 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">GitHub</h4>
+            <p style="color: #475569; margin-bottom: 1rem;">View My Code</p>
+            <a href="https://github.com/sahelmain" target="_blank" style="background: linear-gradient(135deg, #24292f, #57606a); color: white; padding: 0.75rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 20px rgba(36, 41, 47, 0.3)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">Follow</a>
+        </div>
+        
+        <div style="background: rgba(34, 197, 94, 0.1); padding: 2rem; border-radius: 20px; text-align: center; border: 1px solid rgba(34, 197, 94, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(34, 197, 94, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">📍</div>
+            <h4 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">Location</h4>
+            <p style="color: #475569; margin-bottom: 1rem;">Lubbock, Texas</p>
+            <span style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white; padding: 0.75rem 1.5rem; border-radius: 10px; font-weight: 600; display: inline-block;">Available</span>
+        </div>
+    </div>
+    
+    <div style="background: rgba(248, 250, 252, 0.8); padding: 2rem; border-radius: 20px; border: 1px solid rgba(102, 126, 234, 0.2);">
+        <h4 style="color: #1e293b; font-weight: 700; margin-bottom: 1.5rem; text-align: center;">💬 Quick Message</h4>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+            <div>
+                <label style="color: #374151; font-weight: 600; margin-bottom: 0.5rem; display: block;">Name</label>
+                <div style="background: white; border: 2px solid #e5e7eb; border-radius: 10px; padding: 0.75rem; width: 100%;">
+                    <input type="text" placeholder="Your Name" style="border: none; outline: none; width: 100%; font-size: 1rem;">
+                </div>
+            </div>
+            <div>
+                <label style="color: #374151; font-weight: 600; margin-bottom: 0.5rem; display: block;">Email</label>
+                <div style="background: white; border: 2px solid #e5e7eb; border-radius: 10px; padding: 0.75rem; width: 100%;">
+                    <input type="email" placeholder="your.email@example.com" style="border: none; outline: none; width: 100%; font-size: 1rem;">
+                </div>
+            </div>
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+            <label style="color: #374151; font-weight: 600; margin-bottom: 0.5rem; display: block;">Message</label>
+            <div style="background: white; border: 2px solid #e5e7eb; border-radius: 10px; padding: 0.75rem; width: 100%;">
+                <textarea placeholder="Tell me about your project or collaboration idea..." rows="4" style="border: none; outline: none; width: 100%; font-size: 1rem; resize: vertical;"></textarea>
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <button onclick="sendMessage()" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 1rem 2rem; border: none; border-radius: 10px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 15px 30px rgba(102, 126, 234, 0.4)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+                🚀 Send Message
+            </button>
+        </div>
+        <p style="text-align: center; color: #6b7280; font-size: 0.9rem; margin-top: 1rem;">
+            <em>Note: This will open your default email client with the message details</em>
+        </p>
+    </div>
+</div>
+
+<script>
+function sendMessage() {
+    const name = document.querySelector('input[placeholder="Your Name"]').value;
+    const email = document.querySelector('input[placeholder="your.email@example.com"]').value;
+    const message = document.querySelector('textarea').value;
+    
+    const subject = encodeURIComponent(`Portfolio Contact from ${name || 'Visitor'}`);
+    const body = encodeURIComponent(`Name: ${name || 'Not provided'}
+Email: ${email || 'Not provided'}
+
+Message:
+${message || 'No message provided'}
+
+---
+Sent from Sahel Azzam's Portfolio Website`);
+    
+    window.location.href = `mailto:saazzam@ttu.edu?subject=${subject}&body=${body}`;
+}
+</script>
+""", unsafe_allow_html=True)
+
 # Footer
 st.markdown("""
 <div class="footer">
