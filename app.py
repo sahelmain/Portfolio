@@ -548,6 +548,152 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# Why Hire Me Section
+st.markdown('<h2 class="section-title">💼 Why Hire Me</h2>', unsafe_allow_html=True)
+
+st.markdown("""
+<div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);">
+    <div style="text-align: center; margin-bottom: 3rem;">
+        <h3 style="color: #1e293b; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #059669, #0d9488); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Your Next AI Engineer</h3>
+        <p style="color: #475569; font-size: 1.3rem; line-height: 1.6; max-width: 800px; margin: 0 auto;">Proven track record of delivering production-ready AI solutions that drive business value and solve real-world problems.</p>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; margin-bottom: 3rem;">
+        <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(34, 197, 94, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+            <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(34, 197, 94, 0.1), transparent); animation: rotate 15s linear infinite; z-index: 1;"></div>
+            <div style="position: relative; z-index: 2;">
+                <div style="font-size: 3.5rem; margin-bottom: 1.5rem; text-align: center;">🎯</div>
+                <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Proven Results</h4>
+                <div style="margin-bottom: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <span style="color: #374151; font-weight: 600;">AI Text Detection</span>
+                        <span style="background: #dcfce7; color: #15803d; padding: 0.25rem 0.75rem; border-radius: 12px; font-weight: 700;">97.8%</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <span style="color: #374151; font-weight: 600;">ML Pipeline Accuracy</span>
+                        <span style="background: #dcfce7; color: #15803d; padding: 0.25rem 0.75rem; border-radius: 12px; font-weight: 700;">96.25%</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <span style="color: #374151; font-weight: 600;">Pattern Matching Optimization</span>
+                        <span style="background: #dbeafe; color: #1d4ed8; padding: 0.25rem 0.75rem; border-radius: 12px; font-weight: 700;">3x Faster</span>
+                    </div>
+                </div>
+                <p style="color: #374151; line-height: 1.7; font-size: 1rem;">Delivered production-ready solutions with measurable business impact. My models consistently achieve industry-leading accuracy rates while maintaining optimal performance.</p>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(59, 130, 246, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(59, 130, 246, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+            <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(59, 130, 246, 0.1), transparent); animation: rotate 20s linear infinite; z-index: 1;"></div>
+            <div style="position: relative; z-index: 2;">
+                <div style="font-size: 3.5rem; margin-bottom: 1.5rem; text-align: center;">⚡</div>
+                <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Rapid Deployment</h4>
+                <div style="margin-bottom: 1.5rem;">
+                    <span style="background: rgba(59, 130, 246, 0.2); color: #1e40af; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block; font-size: 0.9rem;">Streamlit</span>
+                    <span style="background: rgba(168, 85, 247, 0.2); color: #7c2d12; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block; font-size: 0.9rem;">Docker</span>
+                    <span style="background: rgba(34, 197, 94, 0.2); color: #14532d; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block; font-size: 0.9rem;">CI/CD</span>
+                    <span style="background: rgba(245, 158, 11, 0.2); color: #92400e; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block; font-size: 0.9rem;">Cloud Platforms</span>
+                </div>
+                <p style="color: #374151; line-height: 1.7; font-size: 1rem;">Expert in modern deployment pipelines and DevOps practices. I build scalable applications that go from prototype to production quickly, ensuring your AI solutions reach users fast.</p>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(168, 85, 247, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(168, 85, 247, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+            <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(168, 85, 247, 0.1), transparent); animation: rotate 12s linear infinite; z-index: 1;"></div>
+            <div style="position: relative; z-index: 2;">
+                <div style="font-size: 3.5rem; margin-bottom: 1.5rem; text-align: center;">🧠</div>
+                <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Full-Stack AI</h4>
+                <div style="margin-bottom: 1.5rem;">
+                    <div style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                        <div style="width: 8px; height: 8px; background: #a855f7; border-radius: 50%; margin-right: 0.75rem;"></div>
+                        <span style="color: #374151; font-weight: 600;">Deep Learning (CNN, LSTM, RNN)</span>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                        <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; margin-right: 0.75rem;"></div>
+                        <span style="color: #374151; font-weight: 600;">ML Pipelines & AutoML</span>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                        <div style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 0.75rem;"></div>
+                        <span style="color: #374151; font-weight: 600;">Web Applications & APIs</span>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                        <div style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; margin-right: 0.75rem;"></div>
+                        <span style="color: #374151; font-weight: 600;">Data Visualization & Analytics</span>
+                    </div>
+                </div>
+                <p style="color: #374151; line-height: 1.7; font-size: 1rem;">Complete AI solution development from data preprocessing to user interfaces. I handle the entire pipeline, ensuring seamless integration across all components.</p>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 127, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(239, 68, 68, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(239, 68, 68, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+            <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(239, 68, 68, 0.1), transparent); animation: rotate 18s linear infinite; z-index: 1;"></div>
+            <div style="position: relative; z-index: 2;">
+                <div style="font-size: 3.5rem; margin-bottom: 1.5rem; text-align: center;">🌍</div>
+                <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Global Perspective</h4>
+                <div style="margin-bottom: 1.5rem;">
+                    <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: 12px; border: 1px solid rgba(34, 197, 94, 0.2); margin-bottom: 1rem;">
+                        <div style="font-weight: 700; color: #065f46; margin-bottom: 0.5rem;">🇯🇴 Jordanian Heritage</div>
+                        <div style="color: #374151; font-size: 0.95rem;">Cross-cultural communication and international market understanding</div>
+                    </div>
+                    <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 12px; border: 1px solid rgba(59, 130, 246, 0.2);">
+                        <div style="font-weight: 700; color: #1e40af; margin-bottom: 0.5rem;">🇺🇸 US Education</div>
+                        <div style="color: #374151; font-size: 0.95rem;">Advanced technical training and research methodology</div>
+                    </div>
+                </div>
+                <p style="color: #374151; line-height: 1.7; font-size: 1rem;">Unique blend of international experience and American technical excellence. I bring diverse perspectives to problem-solving and can work effectively with global teams.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)); padding: 3rem; border-radius: 20px; border: 1px solid rgba(102, 126, 234, 0.2); margin-bottom: 2rem; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%); animation: shimmer 4s ease-in-out infinite;"></div>
+        <div style="position: relative; z-index: 2;">
+            <h4 style="color: #1e293b; font-weight: 800; font-size: 2rem; margin-bottom: 2rem; text-align: center; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🚀 What I Bring to Your Team</h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px);">
+                    <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">💡</span>Innovation Mindset</h5>
+                    <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">Constantly exploring cutting-edge AI techniques and implementing novel solutions. I stay ahead of industry trends and bring fresh perspectives to challenging problems.</p>
+                    <div style="font-size: 0.9rem; color: #6b7280; font-style: italic;">Recent: Achieved 97.8% accuracy in AI vs Human text detection</div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px);">
+                    <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">⚡</span>Rapid Prototyping</h5>
+                    <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">From concept to working prototype in days, not weeks. I excel at quickly validating ideas and building MVPs that demonstrate business value immediately.</p>
+                    <div style="font-size: 0.9rem; color: #6b7280; font-style: italic;">Recent: Built AI detection app with Streamlit interface in under a week</div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px);">
+                    <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🔧</span>Production Focus</h5>
+                    <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">Building robust, scalable solutions ready for production deployment. Experience with model optimization, monitoring, and maintenance in live environments.</p>
+                    <div style="font-size: 0.9rem; color: #6b7280; font-style: italic;">Expertise: GridSearchCV, ensemble methods, statistical validation</div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px);">
+                    <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">📈</span>Business Impact</h5>
+                    <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">Understanding that great AI serves business goals. I translate technical capabilities into measurable business outcomes and ROI.</p>
+                    <div style="font-size: 0.9rem; color: #6b7280; font-style: italic;">Focus: Real-world applications with clear value propositions</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(245, 158, 11, 0.2); text-align: center; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(245, 158, 11, 0.1), transparent); animation: rotate 25s linear infinite; z-index: 1;"></div>
+        <div style="position: relative; z-index: 2;">
+            <h4 style="color: #1e293b; font-weight: 800; font-size: 1.8rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #f59e0b, #d97706); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Ready to Start Contributing</h4>
+            <p style="color: #374151; font-size: 1.2rem; line-height: 1.7; max-width: 700px; margin: 0 auto 2rem;">Available for full-time opportunities, internships, or contract work. Passionate about joining teams that are building the future with AI technology.</p>
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <span style="background: linear-gradient(135deg, #059669, #047857); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(5, 150, 105, 0.3);">
+                    ✅ Available Now
+                </span>
+                <span style="background: linear-gradient(135deg, #dc2626, #b91c1c); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(220, 38, 38, 0.3);">
+                    🔥 Immediate Impact
+                </span>
+                <span style="background: linear-gradient(135deg, #7c3aed, #6d28d9); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);">
+                    🎯 Results Driven
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
 # Filter Section
 st.markdown("""
 <div class="filter-section">
