@@ -852,6 +852,69 @@ for stat in stats:
 
 st.markdown('</div>', unsafe_allow_html=True)
 
+# Why AI Matters Section
+st.markdown('<h2 class="section-title">🤖 Why AI Matters</h2>', unsafe_allow_html=True)
+
+st.markdown("""
+<div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);">
+    <div style="text-align: center; margin-bottom: 3rem;">
+        <h3 style="color: #1e293b; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Transforming Our World</h3>
+        <p style="color: #475569; font-size: 1.3rem; line-height: 1.6; max-width: 800px; margin: 0 auto;">AI isn't just technology—it's the catalyst for humanity's next evolutionary leap, reshaping how we solve problems, make decisions, and understand our world.</p>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; margin-bottom: 3rem;">
+        <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(59, 130, 246, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(59, 130, 246, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+            <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(59, 130, 246, 0.1), transparent); animation: rotate 15s linear infinite; z-index: 1;"></div>
+            <div style="position: relative; z-index: 2;">
+                <div style="font-size: 3.5rem; margin-bottom: 1.5rem; text-align: center;">🧠</div>
+                <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Augmenting Human Intelligence</h4>
+                <p style="color: #374151; line-height: 1.7; font-size: 1.1rem;">AI doesn't replace human creativity—it amplifies it. From diagnosing diseases faster than any human doctor to discovering new materials for sustainable energy, AI empowers us to tackle challenges that seemed impossible just decades ago.</p>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(34, 197, 94, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+            <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(34, 197, 94, 0.1), transparent); animation: rotate 20s linear infinite; z-index: 1;"></div>
+            <div style="position: relative; z-index: 2;">
+                <div style="font-size: 3.5rem; margin-bottom: 1.5rem; text-align: center;">🌍</div>
+                <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Solving Global Challenges</h4>
+                <p style="color: #374151; line-height: 1.7; font-size: 1.1rem;">Climate change, poverty, disease—AI is our most powerful tool for addressing humanity's greatest challenges. Machine learning models predict weather patterns, optimize resource distribution, and accelerate drug discovery to save millions of lives.</p>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 127, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(239, 68, 68, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(239, 68, 68, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+            <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(239, 68, 68, 0.1), transparent); animation: rotate 12s linear infinite; z-index: 1;"></div>
+            <div style="position: relative; z-index: 2;">
+                <div style="font-size: 3.5rem; margin-bottom: 1.5rem; text-align: center;">🚀</div>
+                <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Democratizing Innovation</h4>
+                <p style="color: #374151; line-height: 1.7; font-size: 1.1rem;">AI is breaking down barriers to innovation. A student with a laptop can now build applications that compete with multinational corporations. This democratization of powerful tools is creating unprecedented opportunities for breakthrough discoveries.</p>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(168, 85, 247, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(168, 85, 247, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+            <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(168, 85, 247, 0.1), transparent); animation: rotate 18s linear infinite; z-index: 1;"></div>
+            <div style="position: relative; z-index: 2;">
+                <div style="font-size: 3.5rem; margin-bottom: 1.5rem; text-align: center;">⚡</div>
+                <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Accelerating Discovery</h4>
+                <p style="color: #374151; line-height: 1.7; font-size: 1.1rem;">What once took years of research can now be accomplished in months or weeks. AI is compressing the innovation cycle, from protein folding predictions to autonomous vehicle development, pushing the boundaries of what's possible.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(102, 126, 234, 0.2); text-align: center; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%); animation: shimmer 4s ease-in-out infinite;"></div>
+        <div style="position: relative; z-index: 2;">
+            <h4 style="color: #1e293b; font-weight: 800; font-size: 1.8rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">My Mission in AI</h4>
+            <p style="color: #374151; font-size: 1.2rem; line-height: 1.7; max-width: 700px; margin: 0 auto;">As a Master's CS student specializing in Machine Learning and Deep Learning, I'm passionate about developing AI solutions that make a real difference. From text classification systems that combat misinformation to neural networks that enhance human decision-making, I believe AI should serve humanity's greatest aspirations.</p>
+            <div style="margin-top: 2rem;">
+                <span style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1.1rem; display: inline-block; box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);">
+                    🎯 Building AI for Good
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
 # Language distribution chart
 st.markdown('<h2 class="section-title">📈 Technology Stack</h2>', unsafe_allow_html=True)
 
