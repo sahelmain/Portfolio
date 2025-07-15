@@ -12,27 +12,112 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for modern, professional styling
-st.markdown("""
+# Dark mode toggle state
+if 'dark_mode' not in st.session_state:
+    st.session_state.dark_mode = False
+
+# Custom CSS for modern, professional styling with dark mode support
+def get_css_theme():
+    if st.session_state.dark_mode:
+        return """
+        .stApp {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #e94560 100%);
+            color: #ffffff;
+        }
+        
+        .main-container {
+            background: rgba(30, 30, 30, 0.95);
+            color: #ffffff;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, 
+                rgba(26, 26, 46, 0.9) 0%, 
+                rgba(22, 33, 62, 0.9) 25%, 
+                rgba(15, 52, 96, 0.9) 50%,
+                rgba(83, 52, 131, 0.9) 75%,
+                rgba(233, 69, 96, 0.9) 100%);
+            color: white;
+        }
+        
+        .project-card {
+            background: rgba(30, 30, 30, 0.95);
+            color: #ffffff;
+        }
+        
+        .section-title {
+            color: #ffffff;
+        }
+        """
+    else:
+        return """
+        .stApp {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+        }
+        
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, 
+                rgba(102, 126, 234, 0.9) 0%, 
+                rgba(118, 75, 162, 0.9) 25%, 
+                rgba(240, 147, 251, 0.9) 50%,
+                rgba(245, 87, 108, 0.9) 75%,
+                rgba(79, 172, 254, 0.9) 100%);
+            color: white;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.95);
+        }
+        """
+
+theme_css = get_css_theme()
+
+st.markdown(f"""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
     
-    .stApp {
+    {theme_css}
+    
+    .stApp {{
         font-family: 'Inter', sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
         background-size: 400% 400%;
         animation: gradientShift 15s ease infinite;
         min-height: 100vh;
         position: relative;
-    }
+    }}
     
-    @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
+    @keyframes gradientShift {{
+        0% {{ background-position: 0% 50%; }}
+        50% {{ background-position: 100% 50%; }}
+        100% {{ background-position: 0% 50%; }}
+    }}
     
-    .stApp::before {
+    .dark-mode-toggle {{
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+    }}
+    
+    .dark-mode-toggle:hover {{
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 12px 32px rgba(102, 126, 234, 0.4);
+    }}
+    
+    .stApp::before {{
         content: '';
         position: fixed;
         top: 0;
@@ -45,16 +130,15 @@ st.markdown("""
             radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
         z-index: -1;
         animation: floatingOrbs 20s ease-in-out infinite;
-    }
+    }}
     
-    @keyframes floatingOrbs {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        33% { transform: translateY(-20px) rotate(120deg); }
-        66% { transform: translateY(10px) rotate(240deg); }
-    }
+    @keyframes floatingOrbs {{
+        0%, 100% {{ transform: translateY(0px) rotate(0deg); }}
+        33% {{ transform: translateY(-20px) rotate(120deg); }}
+        66% {{ transform: translateY(10px) rotate(240deg); }}
+    }}
     
-    .main-container {
-        background: rgba(255, 255, 255, 0.95);
+    .main-container {{
         backdrop-filter: blur(25px);
         border-radius: 32px;
         padding: 2rem;
@@ -64,20 +148,13 @@ st.markdown("""
             0 0 0 1px rgba(255, 255, 255, 0.1),
             inset 0 1px 0 rgba(255, 255, 255, 0.4);
         border: 1px solid rgba(255, 255, 255, 0.18);
-    }
+    }}
     
-    .hero-section {
+    .hero-section {{
         text-align: center;
         padding: 5rem 2rem;
-        background: linear-gradient(135deg, 
-            rgba(102, 126, 234, 0.9) 0%, 
-            rgba(118, 75, 162, 0.9) 25%, 
-            rgba(240, 147, 251, 0.9) 50%,
-            rgba(245, 87, 108, 0.9) 75%,
-            rgba(79, 172, 254, 0.9) 100%);
         background-size: 400% 400%;
         animation: gradientShift 12s ease infinite;
-        color: white;
         border-radius: 32px;
         margin-bottom: 3rem;
         position: relative;
@@ -87,9 +164,9 @@ st.markdown("""
         box-shadow: 
             0 25px 50px rgba(0, 0, 0, 0.3),
             inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    }
+    }}
     
-    .hero-section::before {
+    .hero-section::before {{
         content: '';
         position: absolute;
         top: -50%;
@@ -105,9 +182,9 @@ st.markdown("""
             transparent
         );
         animation: rotate 25s linear infinite;
-    }
+    }}
     
-    .hero-section::after {
+    .hero-section::after {{
         content: '';
         position: absolute;
         top: 0;
@@ -116,24 +193,24 @@ st.markdown("""
         height: 100%;
         background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
         animation: shimmer 3s ease-in-out infinite;
-    }
+    }}
     
-    @keyframes rotate {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
+    @keyframes rotate {{
+        from {{ transform: rotate(0deg); }}
+        to {{ transform: rotate(360deg); }}
+    }}
     
-    @keyframes shimmer {
-        0%, 100% { transform: translateX(-100%); }
-        50% { transform: translateX(100%); }
-    }
+    @keyframes shimmer {{
+        0%, 100% {{ transform: translateX(-100%); }}
+        50% {{ transform: translateX(100%); }}
+    }}
     
-    .hero-content {
+    .hero-content {{
         position: relative;
         z-index: 2;
-    }
+    }}
     
-    .hero-title {
+    .hero-title {{
         font-size: 4.5rem;
         font-weight: 900;
         margin-bottom: 1.5rem;
@@ -151,9 +228,9 @@ st.markdown("""
         text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         letter-spacing: -0.02em;
         filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.5));
-    }
+    }}
     
-    .hero-subtitle {
+    .hero-subtitle {{
         font-size: 1.8rem;
         font-weight: 600;
         margin-bottom: 1rem;
@@ -163,17 +240,17 @@ st.markdown("""
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-    }
+    }}
     
-    .contact-badges {
+    .contact-badges {{
         display: flex;
         justify-content: center;
         gap: 2rem;
         flex-wrap: wrap;
         margin-top: 3rem;
-    }
+    }}
     
-    .contact-badge {
+    .contact-badge {{
         background: linear-gradient(135deg, 
             rgba(255, 255, 255, 0.25), 
             rgba(255, 255, 255, 0.15));
@@ -193,9 +270,9 @@ st.markdown("""
         box-shadow: 
             0 15px 35px rgba(0, 0, 0, 0.2),
             inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    }
+    }}
     
-    .contact-badge::before {
+    .contact-badge::before {{
         content: '';
         position: absolute;
         top: 0;
@@ -207,13 +284,13 @@ st.markdown("""
             rgba(255, 255, 255, 0.3), 
             transparent);
         transition: left 0.6s ease;
-    }
+    }}
     
-    .contact-badge:hover::before {
+    .contact-badge:hover::before {{
         left: 100%;
-    }
+    }}
     
-    .contact-badge:hover {
+    .contact-badge:hover {{
         background: linear-gradient(135deg, 
             rgba(255, 255, 255, 0.35), 
             rgba(255, 255, 255, 0.25));
@@ -223,9 +300,9 @@ st.markdown("""
             0 0 50px rgba(255, 255, 255, 0.3),
             inset 0 1px 0 rgba(255, 255, 255, 0.5);
         border-color: rgba(255, 255, 255, 0.6);
-    }
+    }}
     
-    .section-title {
+    .section-title {{
         font-size: 3.5rem;
         font-weight: 900;
         margin-bottom: 3rem;
@@ -245,9 +322,9 @@ st.markdown("""
         position: relative;
         letter-spacing: -0.02em;
         filter: drop-shadow(0 4px 12px rgba(102, 126, 234, 0.4));
-    }
+    }}
     
-    .section-title::after {
+    .section-title::after {{
         content: '';
         position: absolute;
         bottom: -20px;
@@ -267,19 +344,16 @@ st.markdown("""
         box-shadow: 
             0 4px 15px rgba(102, 126, 234, 0.6),
             0 0 30px rgba(240, 147, 251, 0.4);
-    }
+    }}
     
-    .project-grid {
+    .project-grid {{
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
         gap: 2.5rem;
         margin-top: 2rem;
-    }
+    }}
     
-    .project-card {
-        background: linear-gradient(135deg, 
-            rgba(255, 255, 255, 0.95), 
-            rgba(255, 255, 255, 0.85));
+    .project-card {{
         backdrop-filter: blur(20px);
         border-radius: 24px;
         overflow: hidden;
@@ -291,9 +365,9 @@ st.markdown("""
         position: relative;
         border: 1px solid rgba(102, 126, 234, 0.2);
         transform-style: preserve-3d;
-    }
+    }}
     
-    .project-card::before {
+    .project-card::before {{
         content: '';
         position: absolute;
         top: 0;
@@ -307,22 +381,22 @@ st.markdown("""
         opacity: 0;
         transition: opacity 0.4s ease;
         z-index: 1;
-    }
+    }}
     
-    .project-card:hover::before {
+    .project-card:hover::before {{
         opacity: 1;
-    }
+    }}
     
-    .project-card:hover {
+    .project-card:hover {{
         transform: translateY(-12px) rotateX(5deg) rotateY(2deg);
         box-shadow: 
             0 35px 70px rgba(0, 0, 0, 0.25),
             0 0 50px rgba(102, 126, 234, 0.3),
             inset 0 1px 0 rgba(255, 255, 255, 0.4);
         border-color: rgba(102, 126, 234, 0.4);
-    }
+    }}
     
-    .project-thumbnail {
+    .project-thumbnail {{
         height: 220px;
         background: linear-gradient(135deg, 
             #1e3a8a 0%, 
@@ -340,9 +414,9 @@ st.markdown("""
         position: relative;
         overflow: hidden;
         filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
-    }
+    }}
     
-    .project-thumbnail::before {
+    .project-thumbnail::before {{
         content: '';
         position: absolute;
         top: 0;
@@ -351,20 +425,20 @@ st.markdown("""
         bottom: 0;
         background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
         animation: float 6s ease-in-out infinite;
-    }
+    }}
     
-    @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-    }
+    @keyframes float {{
+        0%, 100% {{ transform: translateY(0px); }}
+        50% {{ transform: translateY(-10px); }}
+    }}
     
-    .project-content {
+    .project-content {{
         padding: 2.5rem;
         position: relative;
         z-index: 2;
-    }
+    }}
     
-    .project-title {
+    .project-title {{
         font-size: 1.7rem;
         font-weight: 800;
         margin-bottom: 1rem;
@@ -376,24 +450,24 @@ st.markdown("""
         -webkit-text-fill-color: transparent;
         background-clip: text;
         letter-spacing: -0.01em;
-    }
+    }}
     
-    .project-description {
+    .project-description {{
         color: #475569;
         line-height: 1.7;
         margin-bottom: 1.5rem;
         font-weight: 500;
         font-size: 1.05rem;
-    }
+    }}
     
-    .project-meta {
+    .project-meta {{
         display: flex;
         gap: 1rem;
         margin-bottom: 1.5rem;
         flex-wrap: wrap;
-    }
+    }}
     
-    .project-badge {
+    .project-badge {{
         background: linear-gradient(135deg, 
             rgba(248, 250, 252, 0.9), 
             rgba(241, 245, 249, 0.9));
@@ -406,14 +480,14 @@ st.markdown("""
         backdrop-filter: blur(10px);
         transition: all 0.3s ease;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
+    }}
     
-    .project-badge:hover {
+    .project-badge:hover {{
         transform: translateY(-2px);
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
+    }}
     
-    .project-badge.language {
+    .project-badge.language {{
         background: linear-gradient(135deg, 
             #1e3a8a, 
             #3730a3, 
@@ -421,23 +495,23 @@ st.markdown("""
         color: white;
         border: none;
         box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
-    }
+    }}
     
-    .project-badge.category {
+    .project-badge.category {{
         background: linear-gradient(135deg, 
             #e0e7ff, 
             #c7d2fe, 
             #ddd6fe);
         color: #3730a3;
         border: 1px solid rgba(199, 210, 254, 0.6);
-    }
+    }}
     
-    .project-actions {
+    .project-actions {{
         display: flex;
         gap: 1rem;
-    }
+    }}
     
-    .btn-primary {
+    .btn-primary {{
         background: linear-gradient(135deg, 
             #1e3a8a, 
             #3730a3, 
@@ -462,9 +536,9 @@ st.markdown("""
             inset 0 1px 0 rgba(255, 255, 255, 0.2);
         position: relative;
         overflow: hidden;
-    }
+    }}
     
-    .btn-primary::before {
+    .btn-primary::before {{
         content: '';
         position: absolute;
         top: 0;
@@ -473,28 +547,28 @@ st.markdown("""
         height: 100%;
         background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
         transition: left 0.5s;
-    }
+    }}
     
-    .btn-primary:hover::before {
+    .btn-primary:hover::before {{
         left: 100%;
-    }
+    }}
     
-    .btn-primary:hover {
+    .btn-primary:hover {{
         transform: translateY(-4px) scale(1.02);
         box-shadow: 
             0 20px 40px rgba(30, 58, 138, 0.4),
             0 0 30px rgba(124, 58, 237, 0.3),
             inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    }
+    }}
     
-    .stats-grid {
+    .stats-grid {{
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 2.5rem;
         margin: 3rem 0;
-    }
+    }}
     
-    .stat-card {
+    .stat-card {{
         background: linear-gradient(135deg, 
             rgba(255, 255, 255, 0.95), 
             rgba(255, 255, 255, 0.85));
@@ -511,9 +585,9 @@ st.markdown("""
         position: relative;
         overflow: hidden;
         transform-style: preserve-3d;
-    }
+    }}
     
-    .stat-card::before {
+    .stat-card::before {{
         content: '';
         position: absolute;
         top: 0;
@@ -526,22 +600,22 @@ st.markdown("""
             rgba(245, 87, 108, 0.08));
         opacity: 0;
         transition: opacity 0.4s;
-    }
+    }}
     
-    .stat-card:hover::before {
+    .stat-card:hover::before {{
         opacity: 1;
-    }
+    }}
     
-    .stat-card:hover {
+    .stat-card:hover {{
         transform: translateY(-10px) rotateX(5deg) scale(1.02);
         box-shadow: 
             0 40px 80px rgba(0, 0, 0, 0.2),
             0 0 50px rgba(102, 126, 234, 0.3),
             inset 0 1px 0 rgba(255, 255, 255, 0.5);
         border-color: rgba(102, 126, 234, 0.4);
-    }
+    }}
     
-    .stat-number {
+    .stat-number {{
         font-size: 4rem;
         font-weight: 900;
         background: linear-gradient(135deg, 
@@ -557,9 +631,9 @@ st.markdown("""
         margin-bottom: 0.5rem;
         letter-spacing: -0.02em;
         filter: drop-shadow(0 4px 12px rgba(102, 126, 234, 0.3));
-    }
+    }}
     
-    .stat-label {
+    .stat-label {{
         font-size: 1.3rem;
         color: #475569;
         font-weight: 700;
@@ -568,9 +642,9 @@ st.markdown("""
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-    }
+    }}
     
-    .filter-section {
+    .filter-section {{
         background: linear-gradient(135deg, 
             rgba(255, 255, 255, 0.95), 
             rgba(255, 255, 255, 0.85));
@@ -583,16 +657,16 @@ st.markdown("""
             0 0 0 1px rgba(255, 255, 255, 0.2),
             inset 0 1px 0 rgba(255, 255, 255, 0.4);
         border: 1px solid rgba(255, 255, 255, 0.3);
-    }
+    }}
     
-    .filter-grid {
+    .filter-grid {{
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 2rem;
         align-items: center;
-    }
+    }}
     
-    .stSelectbox > div > div {
+    .stSelectbox > div > div {{
         background: linear-gradient(135deg, 
             rgba(248, 250, 252, 0.9), 
             rgba(241, 245, 249, 0.9));
@@ -604,14 +678,14 @@ st.markdown("""
         backdrop-filter: blur(10px);
         transition: all 0.3s ease;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
+    }}
     
-    .stSelectbox > div > div:hover {
+    .stSelectbox > div > div:hover {{
         border-color: rgba(102, 126, 234, 0.5);
         box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
-    }
+    }}
     
-    .footer {
+    .footer {{
         text-align: center;
         padding: 5rem 2rem;
         background: linear-gradient(135deg, 
@@ -628,9 +702,9 @@ st.markdown("""
         box-shadow: 
             0 25px 50px rgba(0, 0, 0, 0.3),
             inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    }
+    }}
     
-    .footer::before {
+    .footer::before {{
         content: '';
         position: absolute;
         top: 0;
@@ -644,66 +718,72 @@ st.markdown("""
             rgba(245, 87, 108, 0.1) 60%, 
             transparent 70%);
         animation: shimmer 4s ease-in-out infinite;
-    }
+    }}
     
     /* Hide Streamlit elements */
-    .stDeployButton {display: none;}
-    .stDecoration {display: none;}
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
+    .stDeployButton {{display: none;}}
+    .stDecoration {{display: none;}}
+    #MainMenu {{visibility: hidden;}}
+    footer {{visibility: hidden;}}
+    header {{visibility: hidden;}}
     
     /* Enhanced scrollbar */
-    ::-webkit-scrollbar {
+    ::-webkit-scrollbar {{
         width: 12px;
-    }
+    }}
     
-    ::-webkit-scrollbar-track {
+    ::-webkit-scrollbar-track {{
         background: linear-gradient(135deg, #f1f1f1, #e2e8f0);
         border-radius: 10px;
-    }
+    }}
     
-    ::-webkit-scrollbar-thumb {
+    ::-webkit-scrollbar-thumb {{
         background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
         border-radius: 10px;
         border: 2px solid #f1f1f1;
-    }
+    }}
     
-    ::-webkit-scrollbar-thumb:hover {
+    ::-webkit-scrollbar-thumb:hover {{
         background: linear-gradient(135deg, #5a6fd8, #6b4f9b, #e088f0);
-    }
+    }}
     
     /* Rainbow loading animation */
-    @keyframes rainbow {
-        0% { filter: hue-rotate(0deg); }
-        100% { filter: hue-rotate(360deg); }
-    }
+    @keyframes rainbow {{
+        0% {{ filter: hue-rotate(0deg); }}
+        100% {{ filter: hue-rotate(360deg); }}
+    }}
     
-    .rainbow-element {
+    .rainbow-element {{
         animation: rainbow 3s linear infinite;
-    }
+    }}
     
     /* Enhanced glassmorphism effects */
-    .glass-effect {
+    .glass-effect {{
         background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(15px);
         border: 1px solid rgba(255, 255, 255, 0.2);
         box-shadow: 
             0 8px 32px rgba(0, 0, 0, 0.1),
             inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    }
+    }}
     
     /* Floating animation for interactive elements */
-    @keyframes floating {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-    }
+    @keyframes floating {{
+        0%, 100% {{ transform: translateY(0px); }}
+        50% {{ transform: translateY(-10px); }}
+    }}
     
-    .floating {
+    .floating {{
         animation: floating 3s ease-in-out infinite;
-    }
+    }}
 </style>
 """, unsafe_allow_html=True)
+
+# Dark mode toggle in sidebar
+st.sidebar.markdown("---")
+if st.sidebar.button("🌙 Toggle Dark Mode" if not st.session_state.dark_mode else "☀️ Toggle Light Mode", use_container_width=True):
+    st.session_state.dark_mode = not st.session_state.dark_mode
+    st.rerun()
 
 # Sidebar Navigation
 st.sidebar.markdown("""
