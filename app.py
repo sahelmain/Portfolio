@@ -796,7 +796,7 @@ st.sidebar.markdown("""
 # Navigation menu
 page = st.sidebar.selectbox(
     "📌 Choose Section",
-    ["🏠 Home", "👨‍💻 About Me", "💼 Why Hire Me", "🤖 AI & Agents", "🚀 Projects", "�� Skills & Stats", "📝 AI Insights", "📞 Contact", "🌟 All Sections"],
+    ["🏠 Home", "👨‍💻 About Me", "💼 Why Hire Me", "🤖 AI & Agents", "🚀 Projects", "📊 Skills & Stats", "📝 AI Insights", "📞 Contact", "🌟 All Sections"],
     index=0
 )
 
@@ -1776,130 +1776,249 @@ if page == "📊 Skills & Stats" or page == "🌟 All Sections":
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # Performance Metrics Section
-    st.markdown('<h2 class="section-title">⚡ Performance Metrics</h2>', unsafe_allow_html=True)
+    # Interactive Skill Assessment Section
+    st.markdown('<h2 class="section-title">🎯 Interactive Skill Assessment</h2>', unsafe_allow_html=True)
     
     st.markdown("""
     <div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);">
         <div style="text-align: center; margin-bottom: 3rem;">
-            <h3 style="color: #1e293b; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #059669, #0d9488); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Technical Performance Benchmarks</h3>
-            <p style="color: #475569; font-size: 1.3rem; line-height: 1.6; max-width: 800px; margin: 0 auto;">Real-world performance metrics demonstrating optimization expertise and production-ready solutions.</p>
+            <h3 style="color: #1e293b; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #8b5cf6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Test Your AI Knowledge</h3>
+            <p style="color: #475569; font-size: 1.3rem; line-height: 1.6; max-width: 800px; margin: 0 auto;">Interactive demonstrations of AI concepts and real-world problem-solving scenarios. Explore the same challenges Sahel has mastered in his projects.</p>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Create interactive quiz/assessment components
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(139, 92, 246, 0.2); margin-bottom: 2rem;">
+            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center;">
+                🧠 <span style="margin-left: 0.5rem;">Neural Network Fundamentals</span>
+            </h4>
+            <p style="color: #475569; line-height: 1.6; margin-bottom: 1.5rem;">Test your understanding of the core concepts behind modern AI systems.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Neural Network Quiz
+        st.subheader("🔬 Quick Neural Network Assessment")
+        
+        q1 = st.radio(
+            "What is the primary function of an activation function in neural networks?",
+            ["To increase model size", "To introduce non-linearity", "To reduce training time", "To store weights"],
+            key="nn_q1"
+        )
+        
+        q2 = st.radio(
+            "Which optimization algorithm is most commonly used for training deep networks?",
+            ["Linear regression", "Adam optimizer", "Random search", "Grid search"],
+            key="nn_q2"
+        )
+        
+        q3 = st.radio(
+            "What does '97.8% accuracy' in AI text detection indicate?",
+            ["98% of texts are AI-generated", "Model correctly classifies 97.8% of samples", "Training took 97.8 hours", "Model uses 97.8% of data"],
+            key="nn_q3"
+        )
+        
+        if st.button("Check Neural Network Answers", key="check_nn"):
+            correct_answers = ["To introduce non-linearity", "Adam optimizer", "Model correctly classifies 97.8% of samples"]
+            user_answers = [q1, q2, q3]
+            score = sum(1 for i, ans in enumerate(user_answers) if ans == correct_answers[i])
+            
+            st.markdown(f"""
+            <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 2rem; border-radius: 16px; border: 1px solid rgba(34, 197, 94, 0.2); margin-top: 1rem;">
+                <h5 style="color: #059669; font-weight: 700; margin-bottom: 1rem;">📊 Your Neural Network Score: {score}/3</h5>
+                <p style="color: #374151; line-height: 1.6;">
+                    {"🎉 Excellent! You have a strong foundation in neural networks." if score == 3 else
+                     "👍 Good job! You understand the basics." if score == 2 else
+                     "📚 Keep learning! Consider reviewing neural network fundamentals."}
+                </p>
+                <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.5); border-radius: 8px;">
+                    <strong style="color: #1e293b;">Sahel's Expertise:</strong> Achieved 97.8% accuracy in AI text detection using advanced neural architectures and optimization techniques.
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(245, 158, 11, 0.2); margin-bottom: 2rem;">
+            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center;">
+                🚀 <span style="margin-left: 0.5rem;">Machine Learning Pipeline</span>
+            </h4>
+            <p style="color: #475569; line-height: 1.6; margin-bottom: 1.5rem;">Evaluate your knowledge of production ML systems and optimization.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # ML Pipeline Quiz  
+        st.subheader("⚙️ ML Pipeline Assessment")
+        
+        q4 = st.radio(
+            "What is the most important step before training an ML model?",
+            ["Choosing the algorithm", "Data preprocessing and cleaning", "Setting hyperparameters", "Selecting hardware"],
+            key="ml_q1"
+        )
+        
+        q5 = st.radio(
+            "How can you achieve 3x performance improvement in pattern matching?",
+            ["Use more data", "Algorithm optimization and efficient data structures", "Increase model size", "Add more features"],
+            key="ml_q2"
+        )
+        
+        q6 = st.radio(
+            "What does GridSearchCV help accomplish?",
+            ["Data visualization", "Hyperparameter optimization", "Model deployment", "Data collection"],
+            key="ml_q3"
+        )
+        
+        if st.button("Check ML Pipeline Answers", key="check_ml"):
+            correct_answers = ["Data preprocessing and cleaning", "Algorithm optimization and efficient data structures", "Hyperparameter optimization"]
+            user_answers = [q4, q5, q6]
+            score = sum(1 for i, ans in enumerate(user_answers) if ans == correct_answers[i])
+            
+            st.markdown(f"""
+            <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1)); padding: 2rem; border-radius: 16px; border: 1px solid rgba(245, 158, 11, 0.2); margin-top: 1rem;">
+                <h5 style="color: #d97706; font-weight: 700; margin-bottom: 1rem;">⚡ Your ML Pipeline Score: {score}/3</h5>
+                <p style="color: #374151; line-height: 1.6;">
+                    {"🏆 Outstanding! You understand production ML systems." if score == 3 else
+                     "✅ Well done! You grasp the key concepts." if score == 2 else
+                     "💡 Great start! Explore more about ML pipelines and optimization."}
+                </p>
+                <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.5); border-radius: 8px;">
+                    <strong style="color: #1e293b;">Sahel's Achievement:</strong> Delivered 96.25% accuracy ML pipelines with 3x performance optimization using advanced techniques.
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+
+    # Interactive Code Challenge
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1)); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; border: 1px solid rgba(168, 85, 247, 0.2);">
+        <h4 style="color: #1e293b; font-weight: 700; font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">
+            💻 Interactive Coding Challenge
+        </h4>
+        <p style="color: #475569; line-height: 1.6; text-align: center; margin-bottom: 2rem; font-size: 1.1rem;">
+            Try implementing a simple neural network concept. This mirrors the type of problem-solving Sahel excels at.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Code challenge
+    st.subheader("🔧 Implement a Simple Activation Function")
+    st.write("Complete the ReLU activation function (Rectified Linear Unit):")
+    
+    code_challenge = st.text_area(
+        "Your Python Code:",
+        placeholder="def relu(x):\n    # Your implementation here\n    pass",
+        height=150,
+        key="code_challenge"
+    )
+    
+    if st.button("Check Code Solution", key="check_code"):
+        # Simple code validation
+        if "max(0" in code_challenge or "if x > 0" in code_challenge or "where" in code_challenge:
+            st.markdown("""
+            <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 2rem; border-radius: 16px; border: 1px solid rgba(34, 197, 94, 0.2); margin-top: 1rem;">
+                <h5 style="color: #059669; font-weight: 700; margin-bottom: 1rem;">✅ Great Implementation!</h5>
+                <p style="color: #374151; line-height: 1.6;">Your ReLU function looks correct! The key insight is that ReLU returns the input if positive, otherwise zero.</p>
+                <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.5); border-radius: 8px;">
+                    <strong style="color: #1e293b;">Optimal Solution:</strong><br>
+                    <code>def relu(x): return max(0, x)</code><br>
+                    <small style="color: #6b7280;">This is the type of optimization thinking Sahel applies to achieve breakthrough performance.</small>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+        else:
+            st.markdown("""
+            <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 127, 0.1)); padding: 2rem; border-radius: 16px; border: 1px solid rgba(239, 68, 68, 0.2); margin-top: 1rem;">
+                <h5 style="color: #dc2626; font-weight: 700; margin-bottom: 1rem;">💡 Keep Trying!</h5>
+                <p style="color: #374151; line-height: 1.6;">Hint: ReLU returns the maximum of 0 and the input value. Think about how to handle negative inputs.</p>
+                <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.5); border-radius: 8px;">
+                    <strong style="color: #1e293b;">Sahel's Approach:</strong> Systematic problem-solving with attention to edge cases and optimization opportunities.
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+
+    # Performance Metrics Section
+    st.markdown('<h2 class="section-title">⚡ Performance Benchmarks</h2>', unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h3 style="color: #1e293b; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #ef4444, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Real-World Performance Metrics</h3>
+            <p style="color: #475569; font-size: 1.3rem; line-height: 1.6; max-width: 800px; margin: 0 auto;">Demonstrating technical excellence through measurable results and production-ready implementations.</p>
         </div>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; margin-bottom: 3rem;">
-            <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(34, 197, 94, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem;">
+            <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.2); text-align: center; position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(34, 197, 94, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
                 <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(34, 197, 94, 0.1), transparent); animation: rotate 15s linear infinite; z-index: 1;"></div>
                 <div style="position: relative; z-index: 2;">
-                    <div style="font-size: 3.5rem; margin-bottom: 1.5rem; text-align: center;">🚀</div>
-                    <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Algorithm Speed</h4>
-                    <div style="margin-bottom: 1.5rem; text-align: center;">
-                        <div style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #22c55e, #16a34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem;">3x</div>
-                        <div style="color: #374151; font-weight: 600; margin-bottom: 1rem;">Faster Pattern Matching</div>
-                        <div style="background: rgba(255, 255, 255, 0.6); padding: 1rem; border-radius: 12px; border: 1px solid rgba(34, 197, 94, 0.2);">
-                            <div style="color: #065f46; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">🔍 Streaming Algorithm Optimization</div>
-                            <div style="color: #374151; font-size: 0.85rem; line-height: 1.5;">Naive vs KMP pattern matching with real-time network anomaly detection achieving 3x performance improvement over baseline implementations.</div>
-                        </div>
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🎯</div>
+                    <h4 style="color: #1e293b; font-weight: 800; font-size: 2.5rem; margin-bottom: 0.5rem;">97.8%</h4>
+                    <p style="color: #059669; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;">AI Detection Accuracy</p>
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 1rem; border-radius: 12px;">
+                        <p style="color: #374151; line-height: 1.6; font-size: 0.95rem;">State-of-the-art performance in distinguishing AI-generated from human text using advanced neural networks.</p>
                     </div>
                 </div>
             </div>
             
-            <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(59, 130, 246, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(59, 130, 246, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+            <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(59, 130, 246, 0.2); text-align: center; position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(59, 130, 246, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
                 <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(59, 130, 246, 0.1), transparent); animation: rotate 20s linear infinite; z-index: 1;"></div>
                 <div style="position: relative; z-index: 2;">
-                    <div style="font-size: 3.5rem; margin-bottom: 1.5rem; text-align: center;">🎯</div>
-                    <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Model Accuracy</h4>
-                    <div style="margin-bottom: 1.5rem; text-align: center;">
-                        <div style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #3b82f6, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem;">97.8%</div>
-                        <div style="color: #374151; font-weight: 600; margin-bottom: 1rem;">AI Detection Accuracy</div>
-                        <div style="background: rgba(255, 255, 255, 0.6); padding: 1rem; border-radius: 12px; border: 1px solid rgba(59, 130, 246, 0.2);">
-                            <div style="color: #1e40af; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">🧠 Deep Learning Models</div>
-                            <div style="color: #374151; font-size: 0.85rem; line-height: 1.5;">CNN, LSTM, and RNN architectures for human vs AI text classification with comprehensive evaluation and statistical validation.</div>
-                        </div>
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">⚡</div>
+                    <h4 style="color: #1e293b; font-weight: 800; font-size: 2.5rem; margin-bottom: 0.5rem;">3x</h4>
+                    <p style="color: #2563eb; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;">Performance Improvement</p>
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 1rem; border-radius: 12px;">
+                        <p style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Optimized pattern matching algorithms achieving 3x faster execution through algorithmic innovation.</p>
                     </div>
                 </div>
             </div>
             
-            <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(168, 85, 247, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(168, 85, 247, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+            <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(168, 85, 247, 0.2); text-align: center; position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(168, 85, 247, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
                 <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(168, 85, 247, 0.1), transparent); animation: rotate 12s linear infinite; z-index: 1;"></div>
                 <div style="position: relative; z-index: 2;">
-                    <div style="font-size: 3.5rem; margin-bottom: 1.5rem; text-align: center;">⚡</div>
-                    <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Training Speed</h4>
-                    <div style="margin-bottom: 1.5rem; text-align: center;">
-                        <div style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #a855f7, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem;"><2min</div>
-                        <div style="color: #374151; font-weight: 600; margin-bottom: 1rem;">Model Training Time</div>
-                        <div style="background: rgba(255, 255, 255, 0.6); padding: 1rem; border-radius: 12px; border: 1px solid rgba(168, 85, 247, 0.2);">
-                            <div style="color: #7c3aed; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">🏃‍♂️ Optimized Pipelines</div>
-                            <div style="color: #374151; font-size: 0.85rem; line-height: 1.5;">Production-ready ML pipelines with GridSearchCV and ensemble methods achieving rapid training cycles for iterative development.</div>
-                        </div>
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🚀</div>
+                    <h4 style="color: #1e293b; font-weight: 800; font-size: 2.5rem; margin-bottom: 0.5rem;">96.25%</h4>
+                    <p style="color: #8b5cf6; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;">ML Pipeline Accuracy</p>
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 1rem; border-radius: 12px;">
+                        <p style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Production-ready machine learning pipelines with exceptional accuracy and robust validation frameworks.</p>
                     </div>
                 </div>
             </div>
             
-            <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 127, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(239, 68, 68, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(239, 68, 68, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(239, 68, 68, 0.1), transparent); animation: rotate 18s linear infinite; z-index: 1;"></div>
+            <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(245, 158, 11, 0.2); text-align: center; position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(245, 158, 11, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(245, 158, 11, 0.1), transparent); animation: rotate 18s linear infinite; z-index: 1;"></div>
                 <div style="position: relative; z-index: 2;">
-                    <div style="font-size: 3.5rem; margin-bottom: 1.5rem; text-align: center;">💾</div>
-                    <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Memory Usage</h4>
-                    <div style="margin-bottom: 1.5rem; text-align: center;">
-                        <div style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #ef4444, #dc2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem;">85%</div>
-                        <div style="color: #374151; font-weight: 600; margin-bottom: 1rem;">Memory Efficiency</div>
-                        <div style="background: rgba(255, 255, 255, 0.6); padding: 1rem; border-radius: 12px; border: 1px solid rgba(239, 68, 68, 0.2);">
-                            <div style="color: #dc2626; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">🔧 Resource Optimization</div>
-                            <div style="color: #374151; font-size: 0.85rem; line-height: 1.5;">Efficient memory management with streaming algorithms and optimized data structures for large-scale processing.</div>
-                        </div>
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">⏱️</div>
+                    <h4 style="color: #1e293b; font-weight: 800; font-size: 2.5rem; margin-bottom: 0.5rem;">&lt;50ms</h4>
+                    <p style="color: #d97706; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;">API Response Time</p>
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 1rem; border-radius: 12px;">
+                        <p style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Optimized AI models delivering real-time predictions with sub-50ms latency for production applications.</p>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1)); padding: 3rem; border-radius: 20px; border: 1px solid rgba(245, 158, 11, 0.2); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%); animation: shimmer 4s ease-in-out infinite;"></div>
-            <div style="position: relative; z-index: 2;">
-                <h4 style="color: #1e293b; font-weight: 800; font-size: 2rem; margin-bottom: 2rem; text-align: center; background: linear-gradient(135deg, #f59e0b, #d97706); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🎯 Production Benchmarks</h4>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); text-align: center;">
-                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">📊</div>
-                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">Data Processing</h5>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: #f59e0b; margin-bottom: 0.5rem;">10K+</div>
-                        <div style="color: #6b7280; font-size: 0.9rem;">Records/second</div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); text-align: center;">
-                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🌐</div>
-                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">API Response</h5>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: #22c55e; margin-bottom: 0.5rem;"><100ms</div>
-                        <div style="color: #6b7280; font-size: 0.9rem;">Average latency</div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); text-align: center;">
-                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔄</div>
-                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">Uptime</h5>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: #3b82f6; margin-bottom: 0.5rem;">99.9%</div>
-                        <div style="color: #6b7280; font-size: 0.9rem;">Service availability</div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); text-align: center;">
-                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚡</div>
-                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">Load Time</h5>
-                        <div style="font-size: 1.8rem; font-weight: 800; color: #8b5cf6; margin-bottom: 0.5rem;"><2s</div>
-                        <div style="color: #6b7280; font-size: 0.9rem;">Page load time</div>
+            
+            <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 127, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(239, 68, 68, 0.2); text-align: center; position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(239, 68, 68, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(239, 68, 68, 0.1), transparent); animation: rotate 25s linear infinite; z-index: 1;"></div>
+                <div style="position: relative; z-index: 2;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">💾</div>
+                    <h4 style="color: #1e293b; font-weight: 800; font-size: 2.5rem; margin-bottom: 0.5rem;">99.9%</h4>
+                    <p style="color: #dc2626; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;">System Uptime</p>
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 1rem; border-radius: 12px;">
+                        <p style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Enterprise-grade reliability with comprehensive monitoring, alerting, and automated recovery systems.</p>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(102, 126, 234, 0.2); text-align: center; position: relative; overflow: hidden;">
-            <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(102, 126, 234, 0.1), transparent); animation: rotate 25s linear infinite; z-index: 1;"></div>
-            <div style="position: relative; z-index: 2;">
-                <h4 style="color: #1e293b; font-weight: 800; font-size: 1.8rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Performance-Driven Development</h4>
-                <p style="color: #374151; font-size: 1.2rem; line-height: 1.7; max-width: 700px; margin: 0 auto 2rem;">Every optimization tells a story of technical expertise and attention to detail. These metrics represent real-world performance achievements in production environments.</p>
-                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                    <span style="background: linear-gradient(135deg, #059669, #047857); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(5, 150, 105, 0.3);">
-                        ⚡ Optimized Code
-                    </span>
-                    <span style="background: linear-gradient(135deg, #dc2626, #b91c1c); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(220, 38, 38, 0.3);">
-                        🎯 Measured Results
-                    </span>
-                    <span style="background: linear-gradient(135deg, #7c3aed, #6d28d9); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);">
-                        🚀 Production Ready
-                    </span>
+            
+            <div style="background: linear-gradient(135deg, rgba(20, 184, 166, 0.1), rgba(13, 148, 136, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(20, 184, 166, 0.2); text-align: center; position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(20, 184, 166, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(20, 184, 166, 0.1), transparent); animation: rotate 22s linear infinite; z-index: 1;"></div>
+                <div style="position: relative; z-index: 2;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">📊</div>
+                    <h4 style="color: #1e293b; font-weight: 800; font-size: 2.5rem; margin-bottom: 0.5rem;">10K+</h4>
+                    <p style="color: #0d9488; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;">Data Points Processed</p>
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 1rem; border-radius: 12px;">
+                        <p style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Scalable data processing pipelines handling large-scale datasets with efficient memory management.</p>
+                    </div>
                 </div>
             </div>
         </div>
