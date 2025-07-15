@@ -796,7 +796,7 @@ st.sidebar.markdown("""
 # Navigation menu
 page = st.sidebar.selectbox(
     "📌 Choose Section",
-    ["🏠 Home", "👨‍💻 About Me", "💼 Why Hire Me", "🤖 AI & Agents", "🚀 Projects", "📊 Skills & Stats", "📞 Contact", "🌟 All Sections"],
+    ["🏠 Home", "👨‍💻 About Me", "💼 Why Hire Me", "🤖 AI & Agents", "🚀 Projects", "�� Skills & Stats", "📝 AI Insights", "📞 Contact", "🌟 All Sections"],
     index=0
 )
 
@@ -1899,6 +1899,200 @@ if page == "📊 Skills & Stats" or page == "🌟 All Sections":
                     </span>
                     <span style="background: linear-gradient(135deg, #7c3aed, #6d28d9); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);">
                         🚀 Production Ready
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+if page == "📝 AI Insights" or page == "🌟 All Sections":
+    # AI Insights Section
+    st.markdown('<h2 class="section-title">📝 AI Insights</h2>', unsafe_allow_html=True)
+
+    st.markdown("""
+    <div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h3 style="color: #1e293b; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Thought Leadership in AI</h3>
+            <p style="color: #475569; font-size: 1.3rem; line-height: 1.6; max-width: 800px; margin: 0 auto;">Sharing cutting-edge insights, research findings, and perspectives on the future of artificial intelligence and machine learning.</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+            <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(99, 102, 241, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(99, 102, 241, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(99, 102, 241, 0.1), transparent); animation: rotate 20s linear infinite; z-index: 1;"></div>
+                <div style="position: relative; z-index: 2;">
+                    <div style="display: flex; margin-bottom: 2rem; align-items: center;">
+                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white; margin-right: 1.5rem; box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);">🧠</div>
+                        <div>
+                            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.6rem; margin-bottom: 0.5rem;">The Future of Neural Architecture Search</h4>
+                            <p style="color: #6366f1; font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">Deep Learning • Research</p>
+                            <p style="color: #6b7280; font-size: 0.9rem;">January 15, 2025 • 8 min read</p>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(99, 102, 241, 0.2); margin-bottom: 1.5rem;">
+                        <p style="color: #374151; line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">Exploring how automated neural architecture search is revolutionizing deep learning model design. From manual architecture engineering to AI-designed networks that outperform human-created models.</p>
+                        <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <h5 style="color: #3730a3; font-weight: 600; margin-bottom: 0.5rem;">Key Insights:</h5>
+                            <ul style="color: #374151; padding-left: 1.5rem; line-height: 1.6;">
+                                <li>NAS reduces architecture design time by 70%</li>
+                                <li>AutoML integration for production deployment</li>
+                                <li>Performance improvements in computer vision tasks</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                        <span style="background: rgba(99, 102, 241, 0.2); color: #3730a3; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">Neural Architecture</span>
+                        <span style="background: rgba(99, 102, 241, 0.2); color: #3730a3; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">AutoML</span>
+                        <span style="background: rgba(99, 102, 241, 0.2); color: #3730a3; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">Deep Learning</span>
+                    </div>
+                    <div style="background: rgba(99, 102, 241, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(99, 102, 241, 0.3);">
+                        <div style="font-weight: 700; color: #3730a3; margin-bottom: 0.5rem;">🎯 Research Impact</div>
+                        <div style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Published findings on automated model optimization achieving 15% performance gains</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(34, 197, 94, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(34, 197, 94, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(34, 197, 94, 0.1), transparent); animation: rotate 15s linear infinite; z-index: 1;"></div>
+                <div style="position: relative; z-index: 2;">
+                    <div style="display: flex; margin-bottom: 2rem; align-items: center;">
+                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #22c55e, #16a34a); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white; margin-right: 1.5rem; box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);">🚀</div>
+                        <div>
+                            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.6rem; margin-bottom: 0.5rem;">Production ML: From Lab to Scale</h4>
+                            <p style="color: #22c55e; font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">MLOps • Engineering</p>
+                            <p style="color: #6b7280; font-size: 0.9rem;">January 10, 2025 • 12 min read</p>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(34, 197, 94, 0.2); margin-bottom: 1.5rem;">
+                        <p style="color: #374151; line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">Real-world lessons from deploying ML models at scale. Covering model versioning, A/B testing, monitoring, and the hidden challenges of production ML systems that achieve 99.9% uptime.</p>
+                        <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <h5 style="color: #065f46; font-weight: 600; margin-bottom: 0.5rem;">Production Best Practices:</h5>
+                            <ul style="color: #374151; padding-left: 1.5rem; line-height: 1.6;">
+                                <li>Containerization with Docker for consistent deployment</li>
+                                <li>CI/CD pipelines for automated model validation</li>
+                                <li>Real-time monitoring and alerting systems</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                        <span style="background: rgba(34, 197, 94, 0.2); color: #065f46; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">MLOps</span>
+                        <span style="background: rgba(34, 197, 94, 0.2); color: #065f46; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">Production</span>
+                        <span style="background: rgba(34, 197, 94, 0.2); color: #065f46; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">Scalability</span>
+                    </div>
+                    <div style="background: rgba(34, 197, 94, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(34, 197, 94, 0.3);">
+                        <div style="font-weight: 700; color: #065f46; margin-bottom: 0.5rem;">💡 Industry Impact</div>
+                        <div style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Practical insights from deploying AI systems serving 10K+ requests per second</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(168, 85, 247, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(168, 85, 247, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(168, 85, 247, 0.1), transparent); animation: rotate 25s linear infinite; z-index: 1;"></div>
+                <div style="position: relative; z-index: 2;">
+                    <div style="display: flex; margin-bottom: 2rem; align-items: center;">
+                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #a855f7, #8b5cf6); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white; margin-right: 1.5rem; box-shadow: 0 8px 24px rgba(168, 85, 247, 0.3);">🎯</div>
+                        <div>
+                            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.6rem; margin-bottom: 0.5rem;">AI Ethics in Practice: Beyond Bias</h4>
+                            <p style="color: #a855f7; font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">AI Ethics • Society</p>
+                            <p style="color: #6b7280; font-size: 0.9rem;">January 5, 2025 • 10 min read</p>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(168, 85, 247, 0.2); margin-bottom: 1.5rem;">
+                        <p style="color: #374151; line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">Exploring the multifaceted challenges of responsible AI development. From algorithmic fairness to privacy preservation, transparency, and the societal implications of autonomous decision-making systems.</p>
+                        <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <h5 style="color: #7c3aed; font-weight: 600; margin-bottom: 0.5rem;">Ethical Frameworks:</h5>
+                            <ul style="color: #374151; padding-left: 1.5rem; line-height: 1.6;">
+                                <li>Fairness-aware machine learning algorithms</li>
+                                <li>Explainable AI for transparent decision making</li>
+                                <li>Privacy-preserving techniques in data processing</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                        <span style="background: rgba(168, 85, 247, 0.2); color: #7c3aed; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">AI Ethics</span>
+                        <span style="background: rgba(168, 85, 247, 0.2); color: #7c3aed; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">Fairness</span>
+                        <span style="background: rgba(168, 85, 247, 0.2); color: #7c3aed; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">Transparency</span>
+                    </div>
+                    <div style="background: rgba(168, 85, 247, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(168, 85, 247, 0.3);">
+                        <div style="font-weight: 700; color: #7c3aed; margin-bottom: 0.5rem;">🚀 Social Impact</div>
+                        <div style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Contributing to responsible AI development for positive societal outcomes</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(245, 158, 11, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(245, 158, 11, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
+                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(245, 158, 11, 0.1), transparent); animation: rotate 18s linear infinite; z-index: 1;"></div>
+                <div style="position: relative; z-index: 2;">
+                    <div style="display: flex; margin-bottom: 2rem; align-items: center;">
+                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white; margin-right: 1.5rem; box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);">📊</div>
+                        <div>
+                            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.6rem; margin-bottom: 0.5rem;">The Mathematics Behind LLMs</h4>
+                            <p style="color: #f59e0b; font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">Mathematics • NLP</p>
+                            <p style="color: #6b7280; font-size: 0.9rem;">December 28, 2024 • 15 min read</p>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(245, 158, 11, 0.2); margin-bottom: 1.5rem;">
+                        <p style="color: #374151; line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">Deep dive into the mathematical foundations of Large Language Models. From attention mechanisms to transformer architectures, exploring the linear algebra and calculus that power modern NLP.</p>
+                        <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <h5 style="color: #92400e; font-weight: 600; margin-bottom: 0.5rem;">Mathematical Concepts:</h5>
+                            <ul style="color: #374151; padding-left: 1.5rem; line-height: 1.6;">
+                                <li>Self-attention mechanisms and matrix operations</li>
+                                <li>Gradient descent optimization in high dimensions</li>
+                                <li>Probabilistic foundations of language modeling</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                        <span style="background: rgba(245, 158, 11, 0.2); color: #92400e; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">Mathematics</span>
+                        <span style="background: rgba(245, 158, 11, 0.2); color: #92400e; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">Transformers</span>
+                        <span style="background: rgba(245, 158, 11, 0.2); color: #92400e; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">NLP</span>
+                    </div>
+                    <div style="background: rgba(245, 158, 11, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(245, 158, 11, 0.3);">
+                        <div style="font-weight: 700; color: #92400e; margin-bottom: 0.5rem;">📚 Educational Value</div>
+                        <div style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Making complex mathematical concepts accessible to the ML community</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, rgba(20, 184, 166, 0.1), rgba(13, 148, 136, 0.1)); padding: 3rem; border-radius: 20px; border: 1px solid rgba(20, 184, 166, 0.2); margin-bottom: 2rem; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%); animation: shimmer 4s ease-in-out infinite;"></div>
+            <div style="position: relative; z-index: 2;">
+                <h4 style="color: #1e293b; font-weight: 800; font-size: 2rem; margin-bottom: 2rem; text-align: center; background: linear-gradient(135deg, #14b8a6, #0d9488); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🔬 Current Research Areas</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px);">
+                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🧬</span>Stochastic Modeling</h5>
+                        <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">Advancing probabilistic approaches to machine learning with focus on uncertainty quantification and robust model predictions in dynamic environments.</p>
+                        <div style="font-size: 0.9rem; color: #14b8a6; font-weight: 600;">Active Research • Texas Tech University</div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px);">
+                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🔍</span>Pattern Recognition</h5>
+                        <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">Developing next-generation algorithms for real-time pattern matching with applications in cybersecurity and network anomaly detection systems.</p>
+                        <div style="font-size: 0.9rem; color: #14b8a6; font-weight: 600;">Published Work • 3x Performance Improvement</div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px);">
+                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🤖</span>AI Agents</h5>
+                        <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">Exploring autonomous AI systems for complex decision-making, with focus on multi-agent coordination and intelligent automation frameworks.</p>
+                        <div style="font-size: 0.9rem; color: #14b8a6; font-weight: 600;">Emerging Field • High Impact Potential</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 127, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(239, 68, 68, 0.2); text-align: center; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(239, 68, 68, 0.1), transparent); animation: rotate 25s linear infinite; z-index: 1;"></div>
+            <div style="position: relative; z-index: 2;">
+                <h4 style="color: #1e293b; font-weight: 800; font-size: 1.8rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #ef4444, #dc2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Join the AI Conversation</h4>
+                <p style="color: #374151; font-size: 1.2rem; line-height: 1.7; max-width: 700px; margin: 0 auto 2rem;">These insights represent ongoing research and practical experience in AI development. Interested in collaborating or discussing these topics? Let's connect and explore the future of artificial intelligence together.</p>
+                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <span style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(239, 68, 68, 0.3);">
+                        📝 Research Papers
+                    </span>
+                    <span style="background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);">
+                        💡 Thought Leadership
+                    </span>
+                    <span style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);">
+                        🚀 Innovation
                     </span>
                 </div>
             </div>
