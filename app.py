@@ -467,6 +467,87 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# About Me Section
+st.markdown('<h2 class="section-title">👨‍💻 About Me</h2>', unsafe_allow_html=True)
+
+st.markdown("""
+<div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 3rem; align-items: start;">
+        <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(102, 126, 234, 0.2); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(102, 126, 234, 0.1), transparent); animation: rotate 20s linear infinite; z-index: 1;"></div>
+            <div style="position: relative; z-index: 2;">
+                <h3 style="color: #1e293b; font-weight: 800; font-size: 1.8rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🎓 Academic Journey</h3>
+                <div style="margin-bottom: 1.5rem;">
+                    <h4 style="color: #374151; font-weight: 700; margin-bottom: 0.5rem;">Master's in Computer Science</h4>
+                    <p style="color: #6b7280; margin-bottom: 0.5rem;">Texas Tech University | Lubbock, Texas</p>
+                    <p style="color: #475569; line-height: 1.6;">Specializing in Machine Learning, Deep Learning, Neural Networks, and Stochastic Modeling. Currently advancing the frontiers of AI through research in pattern matching optimization, text classification, and neural network architectures.</p>
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <h4 style="color: #374151; font-weight: 700; margin-bottom: 0.5rem;">Jordanian Heritage</h4>
+                    <p style="color: #475569; line-height: 1.6;">Originally from Jordan, bringing a global perspective to computational research and cross-cultural collaboration in the tech industry. Fluent in multiple languages and experienced in international academic environments.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.2); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(34, 197, 94, 0.1), transparent); animation: rotate 25s linear infinite; z-index: 1;"></div>
+            <div style="position: relative; z-index: 2;">
+                <h3 style="color: #1e293b; font-weight: 800; font-size: 1.8rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #22c55e, #16a34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🔬 Research Expertise</h3>
+                <div style="margin-bottom: 1rem;">
+                    <span style="background: rgba(34, 197, 94, 0.2); color: #065f46; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block;">Machine Learning</span>
+                    <span style="background: rgba(59, 130, 246, 0.2); color: #1e3a8a; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block;">Deep Learning</span>
+                    <span style="background: rgba(168, 85, 247, 0.2); color: #581c87; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block;">Neural Networks</span>
+                    <span style="background: rgba(239, 68, 68, 0.2); color: #7f1d1d; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block;">Stochastic Modeling</span>
+                    <span style="background: rgba(245, 158, 11, 0.2); color: #92400e; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block;">Algorithm Optimization</span>
+                    <span style="background: rgba(20, 184, 166, 0.2); color: #134e4a; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block;">Text Classification</span>
+                </div>
+                <p style="color: #475569; line-height: 1.7; margin-top: 1.5rem;">Focused on developing production-ready AI solutions that bridge theoretical research with real-world applications. Experienced in advanced statistical methods, probabilistic models, and cutting-edge deep learning architectures.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 127, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(239, 68, 68, 0.2); margin-top: 3rem; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(239, 68, 68, 0.1), transparent); animation: rotate 15s linear infinite; z-index: 1;"></div>
+        <div style="position: relative; z-index: 2;">
+            <h3 style="color: #1e293b; font-weight: 800; font-size: 1.8rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #ef4444, #dc2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🚀 Professional Vision</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div>
+                    <h4 style="color: #374151; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🎯</span> Current Focus</h4>
+                    <p style="color: #475569; line-height: 1.6;">Advancing AI research through innovative approaches to pattern matching, neural network optimization, and human-AI text classification. Committed to developing ethical AI solutions that enhance human capabilities.</p>
+                </div>
+                <div>
+                    <h4 style="color: #374151; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">💡</span> Innovation Drive</h4>
+                    <p style="color: #475569; line-height: 1.6;">Passionate about creating AI systems that solve real-world problems. From achieving 97.8% accuracy in text classification to optimizing streaming algorithms, I focus on practical impact and measurable results.</p>
+                </div>
+                <div>
+                    <h4 style="color: #374151; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🌍</span> Global Impact</h4>
+                    <p style="color: #475569; line-height: 1.6;">Leveraging diverse cultural perspectives and international experience to build inclusive AI solutions. Committed to democratizing AI technology and making it accessible across different communities and industries.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(168, 85, 247, 0.2); margin-top: 3rem; text-align: center; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%); animation: shimmer 4s ease-in-out infinite;"></div>
+        <div style="position: relative; z-index: 2;">
+            <h3 style="color: #1e293b; font-weight: 800; font-size: 2rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #a855f7, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🤝 Let's Collaborate</h3>
+            <p style="color: #475569; font-size: 1.2rem; line-height: 1.7; max-width: 700px; margin: 0 auto 2rem;">Always eager to connect with fellow researchers, industry professionals, and innovators. Whether it's discussing the latest in AI research, exploring collaboration opportunities, or sharing insights on machine learning applications, I'm excited to engage with the global tech community.</p>
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <span style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);">
+                    🔬 Research Collaboration
+                </span>
+                <span style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);">
+                    💼 Industry Projects
+                </span>
+                <span style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);">
+                    🎓 Academic Exchange
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
 # Filter Section
 st.markdown("""
 <div class="filter-section">
