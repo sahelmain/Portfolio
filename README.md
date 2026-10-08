@@ -1,158 +1,87 @@
-# 🎓 Sahel Azzam - Portfolio Website
+# Sahel Azzam — Software, AI & Automation Portfolio
 
-> A modern, interactive portfolio showcasing machine learning projects and professional experience with cutting-edge glassmorphism design.
+**IT & Automation Engineer based in Amman, Jordan.** I have completed my **M.S. in Computer Science at Texas Tech University**, following a **B.S. in Computer Science from Texas Tech University**.
 
-![Portfolio Preview](https://img.shields.io/badge/Built_with-Streamlit-red?style=for-the-badge&logo=streamlit)
-![Design](https://img.shields.io/badge/Design-Glassmorphism-purple?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Live-green?style=for-the-badge)
+My professional experience includes industrial automation, PLC/SCADA integration, plant data visibility, and frontend development. My public projects cover web applications, LLM evaluation, machine learning, algorithms, and systems.
 
-## ✨ Features
+## Engineering experience
 
-### 🎨 **Modern Design**
-- **Glassmorphism Effects**: Semi-transparent elements with backdrop blur
-- **Animated Gradients**: Dynamic color transitions and rotating backgrounds
-- **Smooth Animations**: Cubic-bezier transitions and hover effects
-- **Responsive Layout**: Works seamlessly on desktop and mobile devices
+### IT & Automation Engineer — Amman, Jordan
 
-### 🚀 **Interactive Elements**
-- **Project Filtering**: Filter by programming language and category
-- **Dynamic Statistics**: Real-time project metrics and visualizations
-- **Hover Animations**: Cards lift and scale with smooth transitions
-- **Gradient Text**: Beautiful gradient effects on titles and headings
+- Work on plant digitalization through Ignition SCADA and PLC integration.
+- Experience with Siemens S7-1200 and S7-200 SMART PLCs, tag mapping, Modbus communication, and monitoring/control workflows.
+- Troubleshoot PLC/SCADA communication and OT network issues; support plant data visibility and operating workflows.
 
-### 📊 **Content Showcase**
-- **13 Featured Projects**: Machine Learning, Deep Learning, and Web Development
-- **Technology Stack Visualization**: Interactive charts showing language distribution
-- **Project Categories**: Algorithm Optimization, Data Analysis, Web Development
-- **Professional Links**: Direct access to GitHub repositories
+### Frontend Internship — June–August 2024
 
-## 🛠️ Technology Stack
+- Worked on a React frontend redesign.
+- Used Axios to connect frontend components to REST APIs.
 
-- **Frontend**: Streamlit with custom CSS/HTML
-- **Styling**: Modern CSS with glassmorphism effects
-- **Data Visualization**: Pandas for charts and statistics
-- **Deployment Ready**: Optimized for cloud platforms
+## Completed qualifications
 
-## 🎯 Project Categories
+- **M.S. in Computer Science — Texas Tech University, completed**
+- **B.S. in Computer Science — Texas Tech University, completed**
 
-- **🤖 Machine Learning**: 5 projects featuring SVM, Decision Trees, Neural Networks
-- **🧠 Deep Learning**: Advanced AI models with CNN, LSTM, and RNN
-- **⚙️ Algorithm Optimization**: Pattern matching and performance analysis
-- **🌐 Web Development**: TypeScript, HTML, and JavaScript applications
-- **📊 Data Analysis**: Statistical analysis and visualization projects
+## Selected technical projects
 
-## 🚀 Quick Start
+| Project | Implementation and technical focus |
+|---|---|
+| [DriftWatch](https://github.com/sahelmain/DriftWatch) | LLM evaluation and drift-monitoring project with a FastAPI backend, React/TypeScript dashboard, persisted evaluation runs, provider integrations, background-job configuration, tests, and a CI workflow. |
+| [TruthfulQA LLM Evaluation Study](https://github.com/sahelmain/llm-hallucination-phoenix) | Co-authored study comparing local LLMs, prompt templates, and category-level results. Includes experiment scripts, deterministic reference scoring, saved analysis artifacts, and a report. |
+| [AI vs Human Text Detection — Deep Learning](https://github.com/sahelmain/AI-Human-Text-Detection-Deep-Learning) | PyTorch CNN/LSTM/RNN models, token-sequence preprocessing, saved training outputs, model artifacts, and a Streamlit interface. |
+| [Text Classification ML Pipelines](https://github.com/sahelmain/Advanced-Text-Classification-ML-Pipelines) | Notebook-based preprocessing and TF-IDF pipelines, SVM/decision-tree models, GridSearchCV, custom transformers, voting/stacking experiments, and prediction exports. |
+| [Streaming Pattern Matching](https://github.com/sahelmain/streaming-pattern-matching-optimization) | Naive and KMP implementations on simulated character streams and network-flow-derived sequences, with comparison counters, timing experiments, CSV results, and visualization scripts. |
+| [Heartbeat Protocol Simulation](https://github.com/sahelmain/csim-heartbeat-protocol) | C/CSIM discrete-event simulation of Hello/Hello_Ack messages, timeouts, retries, and packet loss. Includes local mock code, build targets, test scripts, and visualizations. |
 
-### Prerequisites
-- Python 3.7+
-- pip package manager
+Related work: [Streamlit ML text-detection app](https://github.com/sahelmain/AI-Human-Text-Detection-App) and [baseline text-classification notebook](https://github.com/sahelmain/Text-Classification-Human-vs-AI-).
 
-### Installation
+The text-classification, streaming-algorithm, and heartbeat projects are academic work. DriftWatch is an engineering project, and the TruthfulQA study is collaborative research. Classification scores depend on the dataset and validation procedure; the TruthfulQA results use a deterministic word-overlap scoring heuristic. See the source and experiment context when interpreting results.
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/sahelmain/Portfolio.git
-   cd Portfolio
-   ```
+The application links directly to implementation evidence at the repository commits reviewed on **8 October 2026**. Its source dates identify those snapshots; they are not live activity statistics.
 
-2. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Technical skills
 
-3. **Run the application**
-   ```bash
-   streamlit run app.py
-   ```
+| Area | Tools and experience |
+|---|---|
+| Backend and web applications | Python, FastAPI, React, TypeScript, REST APIs, PostgreSQL |
+| AI and machine learning | PyTorch, scikit-learn, pandas, NLTK, Streamlit, Ollama |
+| Industrial automation | Ignition, Siemens S7-1200 / S7-200 SMART, Modbus, PLC tag mapping, communication troubleshooting |
+| Systems and engineering tooling | C, CSIM, Git, Docker, CI workflows, Python test suites |
 
-4. **Open your browser**
-   - Navigate to `http://localhost:8501`
-   - Enjoy the interactive portfolio experience!
+## Run the portfolio locally
 
-## 🌟 Key Highlights
+Use **Python 3.12**, the version used to check this update.
 
-### **Academic Background**
-- **Master's CS Student** @ Texas Tech University
-- **Research Focus**: ML, Deep Learning, Neural Networks, Stochastic Modeling
-- **Location**: Lubbock, Texas
+```bash
+git clone https://github.com/sahelmain/Portfolio.git
+cd Portfolio
+python -m venv .venv
+```
 
-### **Featured Projects**
-- **AI-Human Text Detection**: 97.8% accuracy with deep learning models
-- **Advanced ML Pipelines**: Production-ready classification with 96.25% accuracy
-- **Pattern Matching Optimization**: Real-time network anomaly detection
-- **Medical Information Systems**: Healthcare data analysis and management
+Activate the virtual environment:
 
-### **Technical Expertise**
-- **Languages**: Python, TypeScript, JavaScript, HTML
-- **Frameworks**: Streamlit, TensorFlow, scikit-learn
-- **Specializations**: Machine Learning, Data Analysis, Web Development
+```bash
+# macOS / Linux
+source .venv/bin/activate
 
-## 📱 Design Philosophy
+# Windows PowerShell
+.venv\Scripts\Activate.ps1
+```
 
-This portfolio embraces **modern web design principles**:
+Install the existing dependencies and start the application:
 
-- **Glassmorphism**: Frosted glass effects with transparency
-- **Gradient Aesthetics**: Beautiful color transitions and animations
-- **Micro-interactions**: Subtle animations that enhance user experience
-- **Visual Hierarchy**: Clear information architecture and typography
-- **Accessibility**: High contrast ratios and readable fonts
+```bash
+python -m pip install -r requirements.txt
+streamlit run app.py
+```
 
-## 🎨 Visual Features
+Open `http://localhost:8501`. The app includes section navigation, project filters, a theme toggle, and source links. Its project information is curated locally; it does not query GitHub for live statistics.
 
-- **Animated Hero Section**: Rotating gradient background with floating orbs
-- **Interactive Project Cards**: Hover effects with depth and shadows
-- **Gradient Icons**: Rotating animations with glassmorphism effects
-- **Dynamic Statistics**: Colorful metrics with smooth animations
-- **Modern Typography**: Gradient text effects and optimized spacing
+## Connect
 
-## 📈 Performance
+- **LinkedIn:** [Sahel Azzam](https://www.linkedin.com/in/sahel-azzam-0a0670223)
+- **GitHub:** [sahelmain](https://github.com/sahelmain)
+- **Email:** [saazzam@ttu.edu](mailto:saazzam@ttu.edu)
+- **Location:** Amman, Jordan
 
-- **Optimized Animations**: Smooth 60fps transitions
-- **Responsive Design**: Mobile-first approach
-- **Fast Loading**: Efficient CSS and minimal dependencies
-- **SEO Friendly**: Proper meta tags and structure
-
-## 🚀 Deployment Options
-
-This portfolio can be deployed to:
-
-- **Streamlit Cloud** (Recommended) - Free and easy deployment
-- **Heroku** - Cloud platform with custom domains
-- **AWS/GCP/Azure** - Enterprise-grade cloud hosting
-- **Vercel/Netlify** - Static site hosting with CI/CD
-
-### Streamlit Cloud Deployment
-1. Push your code to GitHub
-2. Connect your repository to [Streamlit Cloud](https://streamlit.io/cloud)
-3. Deploy with one click!
-
-## 🤝 Connect
-
-- 📧 **Email**: [saazzam@ttu.edu](mailto:saazzam@ttu.edu)
-- 💼 **LinkedIn**: [Sahel Azzam](https://www.linkedin.com/in/sahel-azzam-0a0670223)
-- 🐙 **GitHub**: [@sahelmain](https://github.com/sahelmain)
-- 📍 **Location**: Lubbock, Texas
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🔄 Updates
-
-- **v2.0** (Latest): Glassmorphism design overhaul with modern animations
-- **v1.5**: Enhanced project filtering and statistics
-- **v1.0**: Initial portfolio with basic project showcase
-
----
-
-<div align="center">
-
-**Built with ❤️ using Streamlit**
-
-*Master's CS Student @ Texas Tech University*
-
-[![Streamlit](https://img.shields.io/badge/Built_with-Streamlit-red?style=flat&logo=streamlit)](https://streamlit.io/)
-[![Python](https://img.shields.io/badge/Made_with-Python-blue?style=flat&logo=python)](https://python.org/)
-[![MIT License](https://img.shields.io/badge/License-MIT-green?style=flat)](LICENSE)
-
-</div> 
+Interested in software engineering, AI engineering, and industrial automation opportunities.

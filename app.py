@@ -1,13 +1,12 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-import base64
 import html
 
 # Page configuration
 st.set_page_config(
     page_title="Sahel Azzam - Portfolio",
-    page_icon="🎓",
+    page_icon="💻",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -779,1570 +778,377 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
-# Dark mode toggle in sidebar
+PROFILE = {
+    "name": "Sahel Azzam",
+    "role": "IT & Automation Engineer",
+    "qualification": "M.S. in Computer Science, Texas Tech University — completed",
+    "location": "Amman, Jordan",
+    "email": "saazzam@ttu.edu",
+    "linkedin": "https://www.linkedin.com/in/sahel-azzam-0a0670223",
+    "github": "https://github.com/sahelmain",
+}
+
+# Curated source snapshots, reviewed on 2026-10-08. These are not live metrics.
+PROJECTS = [
+    {
+        "name": "DriftWatch",
+        "repo": "DriftWatch",
+        "category": "Full-Stack Engineering",
+        "languages": ["Python", "TypeScript"],
+        "stack": "FastAPI · React · PostgreSQL · Celery · Redis · Docker",
+        "description": (
+            "LLM evaluation and drift-monitoring project with a FastAPI backend, "
+            "React/TypeScript dashboard, persisted evaluation runs, and provider integrations."
+        ),
+        "implementation": (
+            "The repository includes an evaluation engine, statistical drift comparisons, "
+            "background-job configuration, API/SDK tests, and a CI workflow."
+        ),
+        "scope": "Engineering project; deployment configuration and tests are available in the repository.",
+        "commit": "c714f205a62bbe03d06c60c076f6b87ef106b680",
+        "date": "2026-04-25",
+        "evidence": [
+            ("API application", "backend/app/main.py"),
+            ("Evaluation engine", "driftwatch/eval/engine.py"),
+            ("Dashboard routes", "frontend/src/App.tsx"),
+            ("CI workflow", ".github/workflows/ci.yml"),
+        ],
+    },
+    {
+        "name": "TruthfulQA LLM Evaluation Study",
+        "repo": "llm-hallucination-phoenix",
+        "category": "LLM Evaluation",
+        "languages": ["Python"],
+        "stack": "Python · Ollama · TruthfulQA · pandas · Phoenix",
+        "description": (
+            "Co-authored study of category-level hallucination patterns in local "
+            "open-source LLMs, comparing models, prompt templates, and prompt clarity."
+        ),
+        "implementation": (
+            "Experiment scripts, deterministic reference-scoring code, category-level "
+            "analysis, a run manifest, saved results, and a report are checked in."
+        ),
+        "scope": (
+            "Collaborative research project. Reported scores use a word-overlap reference "
+            "heuristic; interpret them within that scoring method."
+        ),
+        "commit": "e820cd473d9afc74ca50d44205f717e44c71d37d",
+        "date": "2026-04-24",
+        "evidence": [
+            ("Experiment configuration", "config/experiment.yaml"),
+            ("Experiment runner", "src/run_experiment.py"),
+            ("Scoring and metrics", "src/evaluate_metrics.py"),
+            ("Run manifest", "data/run_manifest_worddet_latest_19608.json"),
+        ],
+    },
+    {
+        "name": "AI vs Human Text Detection — Deep Learning",
+        "repo": "AI-Human-Text-Detection-Deep-Learning",
+        "category": "Deep Learning",
+        "languages": ["Python"],
+        "stack": "PyTorch · CNN/LSTM/RNN · NLTK · Streamlit",
+        "description": (
+            "Text-classification project comparing CNN, LSTM, and RNN models, "
+            "with token-sequence preprocessing and a Streamlit interface."
+        ),
+        "implementation": (
+            "Includes model definitions, training/evaluation code, saved notebook outputs, "
+            "model artifacts, and application code for model comparison and document input."
+        ),
+        "scope": "Academic project; accuracy depends on the dataset and evaluation procedure.",
+        "commit": "7d2638fe854a1e47e5e2b7b12f3d306b86237032",
+        "date": "2025-07-12",
+        "evidence": [
+            ("Training notebook", "Project2_Deep_Learning_Models.ipynb"),
+            ("Model and inference helpers", "utils.py"),
+            ("Streamlit application", "streamlit_app.py"),
+        ],
+    },
+    {
+        "name": "Text Classification ML Pipelines",
+        "repo": "Advanced-Text-Classification-ML-Pipelines",
+        "category": "Machine Learning",
+        "languages": ["Python"],
+        "stack": "scikit-learn · TF-IDF · SVM · GridSearchCV · pandas",
+        "description": (
+            "Notebook-based text-classification experiments with preprocessing pipelines, "
+            "TF-IDF features, SVM and decision-tree models, and hyperparameter search."
+        ),
+        "implementation": (
+            "Includes custom transformers, cross-validation, voting/stacking experiments, "
+            "statistical comparisons, and prediction exports."
+        ),
+        "scope": "Academic project; saved scores describe individual notebook experiments.",
+        "commit": "f02c8f60c6f429eb8b0e071ac9120204350a70ab",
+        "date": "2025-06-21",
+        "evidence": [
+            ("Pipeline notebook", "advanced_text_classification_ml_pipelines.ipynb"),
+            ("Prediction export", "data/predictions/Sahel_Azzam_assignment2_predictions.csv"),
+        ],
+    },
+    {
+        "name": "Streaming Pattern Matching",
+        "repo": "streaming-pattern-matching-optimization",
+        "category": "Algorithms",
+        "languages": ["Python"],
+        "stack": "Python · Naive/KMP algorithms · pandas · matplotlib",
+        "description": (
+            "Implementation and comparison of Naive and KMP pattern matching on "
+            "simulated character streams and sequences derived from network-flow data."
+        ),
+        "implementation": (
+            "Includes comparison counters, timing experiments, CSV results, and "
+            "visualization scripts for investigating algorithm behavior."
+        ),
+        "scope": "Academic algorithm study; measured speedups vary by workload and implementation.",
+        "commit": "ba62257f551e6e893c6249995e47b80591347c2b",
+        "date": "2025-07-12",
+        "evidence": [
+            ("Streaming algorithms", "functions.py"),
+            ("Experiment driver", "main.py"),
+            ("Performance summary", "analysis/algorithm_performance_summary.csv"),
+        ],
+    },
+    {
+        "name": "Heartbeat Protocol Simulation",
+        "repo": "csim-heartbeat-protocol",
+        "category": "Systems",
+        "languages": ["C", "Python"],
+        "stack": "C · CSIM · Hello/Hello_Ack · Python visualization",
+        "description": (
+            "Discrete-event simulation of node communication using Hello/Hello_Ack "
+            "messages, acknowledgement handling, timeouts, retries, and packet loss."
+        ),
+        "implementation": (
+            "Includes a CSIM implementation, local mock implementation, Makefile, "
+            "test scripts, and performance-visualization code."
+        ),
+        "scope": "Academic systems project; simulated behavior rather than a deployed network service.",
+        "commit": "7a46c2a6faa7467bbb905a6c45fa4195ca030dc8",
+        "date": "2025-07-24",
+        "evidence": [
+            ("CSIM implementation", "proj2_azzam_sahel.c"),
+            ("Local mock implementation", "local.c"),
+            ("Build targets", "Makefile"),
+        ],
+    },
+]
+
+
+def repository_url(project):
+    return f"{PROFILE['github']}/{project['repo']}"
+
+
+def evidence_links(project):
+    base = f"{repository_url(project)}/blob/{project['commit']}"
+    return " · ".join(
+        f"[{label}]({base}/{path})" for label, path in project["evidence"]
+    )
+
+
+def show_section(section):
+    return page in (section, "🌟 All Sections")
+
+
+# Keep the existing theme toggle and visual design.
 st.sidebar.markdown("---")
-if st.sidebar.button("🌙 Toggle Dark Mode" if not st.session_state.dark_mode else "☀️ Toggle Light Mode", use_container_width=True):
+if st.sidebar.button(
+    "🌙 Toggle Dark Mode" if not st.session_state.dark_mode else "☀️ Toggle Light Mode",
+    use_container_width=True,
+):
     st.session_state.dark_mode = not st.session_state.dark_mode
     st.rerun()
 
-# Sidebar Navigation
-st.sidebar.markdown("""
-<div style="text-align: center; padding: 2rem 1rem; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(240, 147, 251, 0.1)); border-radius: 20px; margin-bottom: 2rem; border: 1px solid rgba(102, 126, 234, 0.2);">
-    <h2 style="color: #1e293b; margin-bottom: 1rem; background: linear-gradient(135deg, #667eea, #f093fb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 800;">🎓 Portfolio Navigation</h2>
-    <p style="color: #6b7280; font-size: 0.9rem;">Explore my journey in AI & ML</p>
-</div>
-""", unsafe_allow_html=True)
-
-# Navigation menu
+st.sidebar.title(PROFILE["name"])
+st.sidebar.write(PROFILE["role"])
+st.sidebar.caption(PROFILE["qualification"])
+st.sidebar.caption(PROFILE["location"])
 page = st.sidebar.selectbox(
     "📌 Choose Section",
-    ["🏠 Home", "👨‍💻 About Me", "💼 Why Hire Me", "🤖 AI & Agents", "🚀 Projects", "📊 Skills & Stats", "📝 AI Insights", "📞 Contact", "🌟 All Sections"],
-    index=0
+    [
+        "🏠 Home", "👨‍💻 About Me", "💼 Experience", "🤖 AI & Automation",
+        "🚀 Projects", "📊 Technical Skills", "📝 Engineering Notes",
+        "📞 Contact", "🌟 All Sections",
+    ],
+    index=0,
 )
+st.sidebar.markdown(f"**{len(PROJECTS)} selected public projects**")
+st.sidebar.markdown(f"[GitHub]({PROFILE['github']}) · [LinkedIn]({PROFILE['linkedin']})")
 
-# Add some sidebar styling and info
-st.sidebar.markdown("---")
-st.sidebar.markdown("""
-<div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 1.5rem; border-radius: 15px; text-align: center; border: 1px solid rgba(34, 197, 94, 0.2);">
-    <h4 style="color: #065f46; margin-bottom: 1rem; font-weight: 700;">🎯 Quick Stats</h4>
-    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-        <div style="background: rgba(255, 255, 255, 0.8); padding: 0.5rem; border-radius: 8px;">
-            <strong style="color: #1e293b;">13</strong> <span style="color: #6b7280; font-size: 0.85rem;">Projects</span>
-        </div>
-        <div style="background: rgba(255, 255, 255, 0.8); padding: 0.5rem; border-radius: 8px;">
-            <strong style="color: #1e293b;">97.8%</strong> <span style="color: #6b7280; font-size: 0.85rem;">AI Accuracy</span>
-        </div>
-        <div style="background: rgba(255, 255, 255, 0.8); padding: 0.5rem; border-radius: 8px;">
-            <strong style="color: #1e293b;">M.S.</strong> <span style="color: #6b7280; font-size: 0.85rem;">CS Student</span>
-        </div>
-    </div>
-</div>
-""", unsafe_allow_html=True)
-
-st.sidebar.markdown("---")
-st.sidebar.markdown("""
-<div style="text-align: center; padding: 1rem;">
-    <p style="color: #6b7280; font-size: 0.8rem; margin-bottom: 1rem;">Connect with me:</p>
-    <div style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
-        <a href="mailto:saazzam@ttu.edu" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; padding: 0.5rem; border-radius: 8px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📧</a>
-        <a href="https://www.linkedin.com/in/sahel-azzam-0a0670223" style="background: linear-gradient(135deg, #0077b5, #005885); color: white; padding: 0.5rem; border-radius: 8px; text-decoration: none; font-size: 0.8rem; font-weight: 600;" target="_blank">💼</a>
-        <a href="https://github.com/sahelmain" style="background: linear-gradient(135deg, #24292f, #1c2128); color: white; padding: 0.5rem; border-radius: 8px; text-decoration: none; font-size: 0.8rem; font-weight: 600;" target="_blank">🐙</a>
-    </div>
-</div>
-""", unsafe_allow_html=True)
-
-# Main content based on navigation
-if page == "🏠 Home" or page == "🌟 All Sections":
-    # Hero Section
-    st.markdown("""
+if show_section("🏠 Home"):
+    st.markdown(f"""
     <div class="hero-section">
         <div class="hero-content">
-            <h1 class="hero-title">Sahel Azzam</h1>
-            <p class="hero-subtitle">Master's CS Student @ Texas Tech University</p>
-            <p style="font-size: 1.2rem; opacity: 0.9;">Exploring ML, Deep Learning, Neural Networks, and Stochastic Modeling</p>
+            <h1 class="hero-title">{html.escape(PROFILE['name'])}</h1>
+            <p class="hero-subtitle">{html.escape(PROFILE['role'])}</p>
+            <p>{html.escape(PROFILE['qualification'])}</p>
+            <p>Software engineering, applied AI, and industrial automation</p>
             <div class="contact-badges">
-                <a href="mailto:saazzam@ttu.edu" class="contact-badge">
-                    📧 Email
-                </a>
-                <a href="https://www.linkedin.com/in/sahel-azzam-0a0670223" class="contact-badge" target="_blank">
-                    🔗 LinkedIn
-                </a>
-                <a href="https://github.com/sahelmain" class="contact-badge" target="_blank">
-                    🐙 GitHub
-                </a>
-                <span class="contact-badge">
-                    📍 Lubbock, Texas
-                </span>
+                <a href="{PROFILE['github']}" class="contact-badge" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="{PROFILE['linkedin']}" class="contact-badge" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <span class="contact-badge">📍 {html.escape(PROFILE['location'])}</span>
             </div>
         </div>
     </div>
     """, unsafe_allow_html=True)
-
-if page == "👨‍💻 About Me" or page == "🌟 All Sections":
-    # About Me Section
-    st.markdown('<h2 class="section-title">👨‍💻 About Me</h2>', unsafe_allow_html=True)
-
-    st.markdown("""
-    <div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 3rem; align-items: start;">
-            <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(102, 126, 234, 0.2); position: relative; overflow: hidden;">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(102, 126, 234, 0.1), transparent); animation: rotate 20s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <h3 style="color: #1e293b; font-weight: 800; font-size: 1.8rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🎓 Academic Journey</h3>
-                    <div style="margin-bottom: 1.5rem;">
-                        <h4 style="color: #374151; font-weight: 700; margin-bottom: 0.5rem;">Master's in Computer Science</h4>
-                        <p style="color: #6b7280; margin-bottom: 0.5rem;">Texas Tech University | Lubbock, Texas</p>
-                        <p style="color: #475569; line-height: 1.6;">Specializing in Machine Learning, Deep Learning, Neural Networks, and Stochastic Modeling. Currently advancing the frontiers of AI through research in pattern matching optimization, text classification, and neural network architectures.</p>
-                    </div>
-                    <div style="margin-bottom: 1.5rem;">
-                        <h4 style="color: #374151; font-weight: 700; margin-bottom: 0.5rem;">Jordanian Heritage</h4>
-                        <p style="color: #475569; line-height: 1.6;">Originally from Jordan, bringing a global perspective to computational research and cross-cultural collaboration in the tech industry. Fluent in multiple languages and experienced in international academic environments.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.2); position: relative; overflow: hidden;">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(34, 197, 94, 0.1), transparent); animation: rotate 25s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <h3 style="color: #1e293b; font-weight: 800; font-size: 1.8rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #22c55e, #16a34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🔬 Research Expertise</h3>
-                    <div style="margin-bottom: 1rem;">
-                        <span style="background: rgba(34, 197, 94, 0.2); color: #065f46; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block;">Machine Learning</span>
-                        <span style="background: rgba(59, 130, 246, 0.2); color: #1e3a8a; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block;">Deep Learning</span>
-                        <span style="background: rgba(168, 85, 247, 0.2); color: #581c87; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block;">Neural Networks</span>
-                        <span style="background: rgba(239, 68, 68, 0.2); color: #7f1d1d; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block;">Stochastic Modeling</span>
-                        <span style="background: rgba(245, 158, 11, 0.2); color: #92400e; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block;">Algorithm Optimization</span>
-                        <span style="background: rgba(20, 184, 166, 0.2); color: #134e4a; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block;">Text Classification</span>
-                    </div>
-                    <p style="color: #475569; line-height: 1.7; margin-top: 1.5rem;">Focused on developing production-ready AI solutions that bridge theoretical research with real-world applications. Experienced in advanced statistical methods, probabilistic models, and cutting-edge deep learning architectures.</p>
-                </div>
-            </div>
-        </div>
-        
-        <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 127, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(239, 68, 68, 0.2); margin-top: 3rem; position: relative; overflow: hidden;">
-            <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(239, 68, 68, 0.1), transparent); animation: rotate 15s linear infinite; z-index: 1;"></div>
-            <div style="position: relative; z-index: 2;">
-                <h3 style="color: #1e293b; font-weight: 800; font-size: 1.8rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #ef4444, #dc2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🚀 Professional Vision</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                    <div>
-                        <h4 style="color: #374151; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🎯</span> Current Focus</h4>
-                        <p style="color: #475569; line-height: 1.6;">Advancing AI research through innovative approaches to pattern matching, neural network optimization, and human-AI text classification. Committed to developing ethical AI solutions that enhance human capabilities.</p>
-                    </div>
-                    <div>
-                        <h4 style="color: #374151; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">💡</span> Innovation Drive</h4>
-                        <p style="color: #475569; line-height: 1.6;">Passionate about creating AI systems that solve real-world problems. From achieving 97.8% accuracy in text classification to optimizing streaming algorithms, I focus on practical impact and measurable results.</p>
-                    </div>
-                    <div>
-                        <h4 style="color: #374151; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🌍</span> Global Impact</h4>
-                        <p style="color: #475569; line-height: 1.6;">Leveraging diverse cultural perspectives and international experience to build inclusive AI solutions. Committed to democratizing AI technology and making it accessible across different communities and industries.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(168, 85, 247, 0.2); margin-top: 3rem; text-align: center; position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%); animation: shimmer 4s ease-in-out infinite;"></div>
-            <div style="position: relative; z-index: 2;">
-                <h3 style="color: #1e293b; font-weight: 800; font-size: 2rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #a855f7, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🤝 Let's Collaborate</h3>
-                <p style="color: #475569; font-size: 1.2rem; line-height: 1.7; max-width: 700px; margin: 0 auto 2rem;">Always eager to connect with fellow researchers, industry professionals, and innovators. Whether it's discussing the latest in AI research, exploring collaboration opportunities, or sharing insights on machine learning applications, I'm excited to engage with the global tech community.</p>
-                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                    <span style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);">
-                        🔬 Research Collaboration
-                    </span>
-                    <span style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);">
-                        💼 Industry Projects
-                    </span>
-                    <span style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);">
-                        �� Academic Exchange
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-if page == "💼 Why Hire Me" or page == "🌟 All Sections":
-    # Why Hire Me Section
-    st.markdown('<h2 class="section-title">💼 Why Hire Me</h2>', unsafe_allow_html=True)
-
-    st.markdown("""
-    <div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);">
-        <div style="text-align: center; margin-bottom: 3rem;">
-            <h3 style="color: #1e293b; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #059669, #0d9488); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Your Next AI Engineer</h3>
-            <p style="color: #475569; font-size: 1.3rem; line-height: 1.6; max-width: 800px; margin: 0 auto;">Proven track record of delivering production-ready AI solutions that drive business value and solve real-world problems.</p>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; margin-bottom: 3rem;">
-            <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(34, 197, 94, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(34, 197, 94, 0.1), transparent); animation: rotate 15s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="font-size: 3.5rem; margin-bottom: 1.5rem; text-align: center;">🎯</div>
-                    <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Proven Results</h4>
-                    <div style="margin-bottom: 1.5rem;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                            <span style="color: #374151; font-weight: 600;">AI Text Detection</span>
-                            <span style="background: #dcfce7; color: #15803d; padding: 0.25rem 0.75rem; border-radius: 12px; font-weight: 700;">97.8%</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                            <span style="color: #374151; font-weight: 600;">ML Pipeline Accuracy</span>
-                            <span style="background: #dcfce7; color: #15803d; padding: 0.25rem 0.75rem; border-radius: 12px; font-weight: 700;">96.25%</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                            <span style="color: #374151; font-weight: 600;">Pattern Matching Optimization</span>
-                            <span style="background: #dbeafe; color: #1d4ed8; padding: 0.25rem 0.75rem; border-radius: 12px; font-weight: 700;">3x Faster</span>
-                        </div>
-                    </div>
-                    <p style="color: #374151; line-height: 1.7; font-size: 1rem;">Delivered production-ready solutions with measurable business impact. My models consistently achieve industry-leading accuracy rates while maintaining optimal performance.</p>
-                </div>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(59, 130, 246, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(59, 130, 246, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(59, 130, 246, 0.1), transparent); animation: rotate 20s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="font-size: 3.5rem; margin-bottom: 1.5rem; text-align: center;">⚡</div>
-                    <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Rapid Deployment</h4>
-                    <div style="margin-bottom: 1.5rem;">
-                        <span style="background: rgba(59, 130, 246, 0.2); color: #1e40af; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block; font-size: 0.9rem;">Streamlit</span>
-                        <span style="background: rgba(168, 85, 247, 0.2); color: #7c2d12; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block; font-size: 0.9rem;">Docker</span>
-                        <span style="background: rgba(34, 197, 94, 0.2); color: #14532d; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block; font-size: 0.9rem;">CI/CD</span>
-                        <span style="background: rgba(245, 158, 11, 0.2); color: #92400e; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; display: inline-block; font-size: 0.9rem;">Cloud Platforms</span>
-                    </div>
-                    <p style="color: #374151; line-height: 1.7; font-size: 1rem;">Expert in modern deployment pipelines and DevOps practices. I build scalable applications that go from prototype to production quickly, ensuring your AI solutions reach users fast.</p>
-                </div>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(168, 85, 247, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(168, 85, 247, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(168, 85, 247, 0.1), transparent); animation: rotate 12s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="font-size: 3.5rem; margin-bottom: 1.5rem; text-align: center;">🧠</div>
-                    <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Full-Stack AI</h4>
-                    <div style="margin-bottom: 1.5rem;">
-                        <div style="display: flex; align-items: center; margin-bottom: 0.75rem;">
-                            <div style="width: 8px; height: 8px; background: #a855f7; border-radius: 50%; margin-right: 0.75rem;"></div>
-                            <span style="color: #374151; font-weight: 600;">Deep Learning (CNN, LSTM, RNN)</span>
-                        </div>
-                        <div style="display: flex; align-items: center; margin-bottom: 0.75rem;">
-                            <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; margin-right: 0.75rem;"></div>
-                            <span style="color: #374151; font-weight: 600;">ML Pipelines & AutoML</span>
-                        </div>
-                        <div style="display: flex; align-items: center; margin-bottom: 0.75rem;">
-                            <div style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 0.75rem;"></div>
-                            <span style="color: #374151; font-weight: 600;">Web Applications & APIs</span>
-                        </div>
-                        <div style="display: flex; align-items: center; margin-bottom: 0.75rem;">
-                            <div style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; margin-right: 0.75rem;"></div>
-                            <span style="color: #374151; font-weight: 600;">Data Visualization & Analytics</span>
-                        </div>
-                    </div>
-                    <p style="color: #374151; line-height: 1.7; font-size: 1rem;">Complete AI solution development from data preprocessing to user interfaces. I handle the entire pipeline, ensuring seamless integration across all components.</p>
-                </div>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 127, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(239, 68, 68, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(239, 68, 68, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(239, 68, 68, 0.1), transparent); animation: rotate 18s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="font-size: 3.5rem; margin-bottom: 1.5rem; text-align: center;">🌍</div>
-                    <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Global Perspective</h4>
-                    <div style="margin-bottom: 1.5rem;">
-                        <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: 12px; border: 1px solid rgba(34, 197, 94, 0.2); margin-bottom: 1rem;">
-                            <div style="font-weight: 700; color: #065f46; margin-bottom: 0.5rem;">🇯🇴 Jordanian Heritage</div>
-                            <div style="color: #374151; font-size: 0.95rem;">Cross-cultural communication and international market understanding</div>
-                        </div>
-                        <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 12px; border: 1px solid rgba(59, 130, 246, 0.2);">
-                            <div style="font-weight: 700; color: #1e40af; margin-bottom: 0.5rem;">🇺🇸 US Education</div>
-                            <div style="color: #374151; font-size: 0.95rem;">Advanced technical training and research methodology</div>
-                        </div>
-                    </div>
-                    <p style="color: #374151; line-height: 1.7; font-size: 1rem;">Unique blend of international experience and American technical excellence. I bring diverse perspectives to problem-solving and can work effectively with global teams.</p>
-                </div>
-            </div>
-        </div>
-        
-        <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)); padding: 3rem; border-radius: 20px; border: 1px solid rgba(102, 126, 234, 0.2); margin-bottom: 2rem; position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%); animation: shimmer 4s ease-in-out infinite;"></div>
-            <div style="position: relative; z-index: 2;">
-                <h4 style="color: #1e293b; font-weight: 800; font-size: 2rem; margin-bottom: 2rem; text-align: center; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🚀 What I Bring to Your Team</h4>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px);">
-                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">💡</span>Innovation Mindset</h5>
-                        <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">Constantly exploring cutting-edge AI techniques and implementing novel solutions. I stay ahead of industry trends and bring fresh perspectives to challenging problems.</p>
-                        <div style="font-size: 0.9rem; color: #6b7280; font-style: italic;">Recent: Achieved 97.8% accuracy in AI vs Human text detection</div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px);">
-                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">⚡</span>Rapid Prototyping</h5>
-                        <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">From concept to working prototype in days, not weeks. I excel at quickly validating ideas and building MVPs that demonstrate business value immediately.</p>
-                        <div style="font-size: 0.9rem; color: #6b7280; font-style: italic;">Recent: Built AI detection app with Streamlit interface in under a week</div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px);">
-                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🔧</span>Production Focus</h5>
-                        <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">Building robust, scalable solutions ready for production deployment. Experience with model optimization, monitoring, and maintenance in live environments.</p>
-                        <div style="font-size: 0.9rem; color: #6b7280; font-style: italic;">Expertise: GridSearchCV, ensemble methods, statistical validation</div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px);">
-                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">📈</span>Business Impact</h5>
-                        <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">Understanding that great AI serves business goals. I translate technical capabilities into measurable business outcomes and ROI.</p>
-                        <div style="font-size: 0.9rem; color: #6b7280; font-style: italic;">Focus: Real-world applications with clear value propositions</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(245, 158, 11, 0.2); text-align: center; position: relative; overflow: hidden;">
-            <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(245, 158, 11, 0.1), transparent); animation: rotate 25s linear infinite; z-index: 1;"></div>
-            <div style="position: relative; z-index: 2;">
-                <h4 style="color: #1e293b; font-weight: 800; font-size: 1.8rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #f59e0b, #d97706); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Ready to Start Contributing</h4>
-                <p style="color: #374151; font-size: 1.2rem; line-height: 1.7; max-width: 700px; margin: 0 auto 2rem;">Available for full-time opportunities, internships, or contract work. Passionate about joining teams that are building the future with AI technology.</p>
-                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                    <span style="background: linear-gradient(135deg, #059669, #047857); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(5, 150, 105, 0.3);">
-                        ✅ Available Now
-                    </span>
-                    <span style="background: linear-gradient(135deg, #dc2626, #b91c1c); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(220, 38, 38, 0.3);">
-                        🔥 Immediate Impact
-                    </span>
-                    <span style="background: linear-gradient(135deg, #7c3aed, #6d28d9); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);">
-                        🎯 Results Driven
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    # Professional Testimonials Section
-    st.markdown('<h2 class="section-title">💬 Professional Testimonials</h2>', unsafe_allow_html=True)
-    
-    st.markdown("""
-    <div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);">
-        <div style="text-align: center; margin-bottom: 3rem;">
-            <h3 style="color: #1e293b; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">What Colleagues & Peers Say</h3>
-            <p style="color: #475569; font-size: 1.3rem; line-height: 1.6; max-width: 800px; margin: 0 auto;">Professional feedback highlighting technical expertise, collaboration skills, and innovative problem-solving approaches.</p>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
-            <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(99, 102, 241, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(99, 102, 241, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(99, 102, 241, 0.1), transparent); animation: rotate 20s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="display: flex; margin-bottom: 2rem;">
-                        <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; margin-right: 1.5rem; box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);">👨‍🏫</div>
-                        <div>
-                            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.4rem; margin-bottom: 0.5rem;">Dr. Research Supervisor</h4>
-                            <p style="color: #6366f1; font-weight: 600; font-size: 1rem;">Computer Science Faculty</p>
-                            <p style="color: #6b7280; font-size: 0.9rem;">Texas Tech University</p>
-                        </div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(99, 102, 241, 0.2); margin-bottom: 1.5rem;">
-                        <p style="color: #374151; font-style: italic; line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">"Sahel demonstrates exceptional proficiency in machine learning and neural network architectures. His implementation of the AI text detection system achieving 97.8% accuracy showcases both theoretical understanding and practical application skills that are rare in graduate students."</p>
-                        <div style="display: flex; color: #f59e0b; font-size: 1.2rem; margin-bottom: 0.5rem;">⭐⭐⭐⭐⭐</div>
-                    </div>
-                    <div style="background: rgba(99, 102, 241, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(99, 102, 241, 0.3);">
-                        <div style="font-weight: 700; color: #3730a3; margin-bottom: 0.5rem;">🎯 Key Strengths</div>
-                        <div style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Research Excellence • Algorithm Optimization • Technical Leadership</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(34, 197, 94, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(34, 197, 94, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(34, 197, 94, 0.1), transparent); animation: rotate 15s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="display: flex; margin-bottom: 2rem;">
-                        <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #22c55e, #16a34a); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; margin-right: 1.5rem; box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);">👩‍💻</div>
-                        <div>
-                            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.4rem; margin-bottom: 0.5rem;">Sarah Chen</h4>
-                            <p style="color: #22c55e; font-weight: 600; font-size: 1rem;">Senior ML Engineer</p>
-                            <p style="color: #6b7280; font-size: 0.9rem;">Tech Industry Partner</p>
-                        </div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(34, 197, 94, 0.2); margin-bottom: 1.5rem;">
-                        <p style="color: #374151; font-style: italic; line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">"Working with Sahel on the pattern matching optimization project was inspiring. His ability to achieve 3x performance improvements while maintaining code clarity demonstrates both technical depth and engineering best practices. A future industry leader."</p>
-                        <div style="display: flex; color: #f59e0b; font-size: 1.2rem; margin-bottom: 0.5rem;">⭐⭐⭐⭐⭐</div>
-                    </div>
-                    <div style="background: rgba(34, 197, 94, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(34, 197, 94, 0.3);">
-                        <div style="font-weight: 700; color: #065f46; margin-bottom: 0.5rem;">💡 Collaboration Highlights</div>
-                        <div style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Code Quality • Performance Focus • Knowledge Sharing</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(168, 85, 247, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(168, 85, 247, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(168, 85, 247, 0.1), transparent); animation: rotate 25s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="display: flex; margin-bottom: 2rem;">
-                        <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #a855f7, #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; margin-right: 1.5rem; box-shadow: 0 8px 24px rgba(168, 85, 247, 0.3);">👨‍💼</div>
-                        <div>
-                            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.4rem; margin-bottom: 0.5rem;">Alex Rodriguez</h4>
-                            <p style="color: #a855f7; font-weight: 600; font-size: 1rem;">Technical Lead</p>
-                            <p style="color: #6b7280; font-size: 0.9rem;">AI Startup Consultant</p>
-                        </div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(168, 85, 247, 0.2); margin-bottom: 1.5rem;">
-                        <p style="color: #374151; font-style: italic; line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">"Sahel's production-ready mindset sets him apart. His ML pipelines with 96.25% accuracy are not just academically sound but built for real-world deployment. He understands both the technical and business aspects of AI solutions."</p>
-                        <div style="display: flex; color: #f59e0b; font-size: 1.2rem; margin-bottom: 0.5rem;">⭐⭐⭐⭐⭐</div>
-                    </div>
-                    <div style="background: rgba(168, 85, 247, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(168, 85, 247, 0.3);">
-                        <div style="font-weight: 700; color: #7c3aed; margin-bottom: 0.5rem;">🚀 Business Value</div>
-                        <div style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Production Ready • Scalable Solutions • ROI Focus</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(245, 158, 11, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(245, 158, 11, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(245, 158, 11, 0.1), transparent); animation: rotate 18s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="display: flex; margin-bottom: 2rem;">
-                        <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; margin-right: 1.5rem; box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);">👥</div>
-                        <div>
-                            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.4rem; margin-bottom: 0.5rem;">Study Group Peers</h4>
-                            <p style="color: #f59e0b; font-weight: 600; font-size: 1rem;">Graduate Students</p>
-                            <p style="color: #6b7280; font-size: 0.9rem;">Texas Tech University</p>
-                        </div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(245, 158, 11, 0.2); margin-bottom: 1.5rem;">
-                        <p style="color: #374151; font-style: italic; line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">"Sahel consistently brings innovative approaches to our study sessions. His deep understanding of stochastic modeling and neural networks, combined with his ability to explain complex concepts clearly, makes him an invaluable collaborator and mentor."</p>
-                        <div style="display: flex; color: #f59e0b; font-size: 1.2rem; margin-bottom: 0.5rem;">⭐⭐⭐⭐⭐</div>
-                    </div>
-                    <div style="background: rgba(245, 158, 11, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(245, 158, 11, 0.3);">
-                        <div style="font-weight: 700; color: #92400e; margin-bottom: 0.5rem;">📚 Academic Impact</div>
-                        <div style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Knowledge Sharing • Mentoring • Innovation</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div style="background: linear-gradient(135deg, rgba(15, 118, 110, 0.1), rgba(20, 184, 166, 0.1)); padding: 3rem; border-radius: 20px; border: 1px solid rgba(15, 118, 110, 0.2); text-align: center; position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%); animation: shimmer 4s ease-in-out infinite;"></div>
-            <div style="position: relative; z-index: 2;">
-                <h4 style="color: #1e293b; font-weight: 800; font-size: 2rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #0f766e, #14b8a6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Ready to Join Your Success Story</h4>
-                <p style="color: #374151; font-size: 1.2rem; line-height: 1.7; max-width: 700px; margin: 0 auto 2rem;">These testimonials reflect a consistent pattern of technical excellence, collaborative spirit, and results-driven approach. Ready to bring this proven track record to your next project.</p>
-                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                    <span style="background: linear-gradient(135deg, #0f766e, #14b8a6); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(15, 118, 110, 0.3);">
-                        🤝 Team Player
-                    </span>
-                    <span style="background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);">
-                        🎯 Results Focused
-                    </span>
-                    <span style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);">
-                        💡 Innovation Driven
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-if page == "🤖 AI & Agents" or page == "🌟 All Sections":
-    # AI Foundation and AI Agents Section
-    st.markdown('<h2 class="section-title">🔬 My AI Foundation & The Rise of AI Agents</h2>', unsafe_allow_html=True)
-
-    st.markdown("""
-    <div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);">
-        <div style="text-align: center; margin-bottom: 3rem;">
-            <h3 style="color: #1e293b; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #10b981, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Deep AI Expertise Meets Autonomous Intelligence</h3>
-            <p style="color: #475569; font-size: 1.3rem; line-height: 1.6; max-width: 800px; margin: 0 auto;">Built on a rock-solid foundation of AI theory and practice, specialized in the cutting-edge field of autonomous AI agents that are revolutionizing industries.</p>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
-            <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(16, 185, 129, 0.2); position: relative; overflow: hidden;">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(16, 185, 129, 0.1), transparent); animation: rotate 20s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="text-align: center; margin-bottom: 2rem;">
-                        <div style="font-size: 4rem; margin-bottom: 1rem;">🧠</div>
-                        <h4 style="color: #1e293b; font-weight: 800; font-size: 2rem; background: linear-gradient(135deg, #10b981, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Solid AI Foundation</h4>
-                    </div>
-                    
-                    <div style="margin-bottom: 2rem;">
-                        <h5 style="color: #374151; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🎓</span>Academic Excellence</h5>
-                        <div style="background: rgba(255, 255, 255, 0.6); padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; border: 1px solid rgba(16, 185, 129, 0.2);">
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                                <div>
-                                    <span style="background: rgba(59, 130, 246, 0.2); color: #1e40af; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem; display: inline-block; margin-bottom: 0.5rem;">Deep Learning</span>
-                                    <div style="color: #374151; font-size: 0.95rem;">CNNs, RNNs, LSTMs, Transformers</div>
-                                </div>
-                                <div>
-                                    <span style="background: rgba(168, 85, 247, 0.2); color: #7c2d12; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem; display: inline-block; margin-bottom: 0.5rem;">Machine Learning</span>
-                                    <div style="color: #374151; font-size: 0.95rem;">Supervised, Unsupervised, Reinforcement</div>
-                                </div>
-                                <div>
-                                    <span style="background: rgba(239, 68, 68, 0.2); color: #7f1d1d; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem; display: inline-block; margin-bottom: 0.5rem;">Neural Networks</span>
-                                    <div style="color: #374151; font-size: 0.95rem;">Architecture Design & Optimization</div>
-                                </div>
-                                <div>
-                                    <span style="background: rgba(245, 158, 11, 0.2); color: #92400e; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem; display: inline-block; margin-bottom: 0.5rem;">Stochastic Modeling</span>
-                                    <div style="color: #374151; font-size: 0.95rem;">Probabilistic Systems & Analysis</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div style="margin-bottom: 2rem;">
-                        <h5 style="color: #374151; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🛠️</span>Practical Implementation</h5>
-                        <div style="background: rgba(255, 255, 255, 0.6); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.2);">
-                            <div style="display: flex; align-items: center; margin-bottom: 0.75rem;">
-                                <div style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 0.75rem;"></div>
-                                <span style="color: #374151; font-weight: 600;">97.8% accuracy in AI vs Human text detection</span>
-                            </div>
-                            <div style="display: flex; align-items: center; margin-bottom: 0.75rem;">
-                                <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; margin-right: 0.75rem;"></div>
-                                <span style="color: #374151; font-weight: 600;">Production-ready ML pipelines with 96.25% accuracy</span>
-                            </div>
-                            <div style="display: flex; align-items: center; margin-bottom: 0.75rem;">
-                                <div style="width: 8px; height: 8px; background: #a855f7; border-radius: 50%; margin-right: 0.75rem;"></div>
-                                <span style="color: #374151; font-weight: 600;">Real-time pattern matching optimization (3x faster)</span>
-                            </div>
-                            <div style="display: flex; align-items: center;">
-                                <div style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; margin-right: 0.75rem;"></div>
-                                <span style="color: #374151; font-weight: 600;">End-to-end deployment with modern frameworks</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div style="background: rgba(16, 185, 129, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(16, 185, 129, 0.3);">
-                        <div style="font-weight: 700; color: #065f46; margin-bottom: 0.5rem;">🎯 Research Focus</div>
-                        <div style="color: #374151; line-height: 1.6;">Advanced pattern recognition, neural network optimization, and autonomous system development at Texas Tech University</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(59, 130, 246, 0.2); position: relative; overflow: hidden;">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(59, 130, 246, 0.1), transparent); animation: rotate 25s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="text-align: center; margin-bottom: 2rem;">
-                        <div style="font-size: 4rem; margin-bottom: 1rem;">🤖</div>
-                        <h4 style="color: #1e293b; font-weight: 800; font-size: 2rem; background: linear-gradient(135deg, #3b82f6, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Why AI Agents Dominate</h4>
-                    </div>
-                    
-                    <div style="margin-bottom: 2rem;">
-                        <div style="background: rgba(255, 255, 255, 0.6); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid rgba(59, 130, 246, 0.2);">
-                            <h5 style="color: #1e40af; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">⚡</span>Autonomous Decision Making</h5>
-                            <p style="color: #374151; line-height: 1.6; margin-bottom: 1rem;">AI agents can process information, make decisions, and take actions without human intervention. This enables 24/7 operations, instant responses, and scalable automation across industries.</p>
-                            <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
-                                <div style="color: #1e40af; font-weight: 600; font-size: 0.9rem;">Real Impact: Customer service agents handle 80% of inquiries autonomously</div>
-                            </div>
-                        </div>
-                        
-                        <div style="background: rgba(255, 255, 255, 0.6); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid rgba(59, 130, 246, 0.2);">
-                            <h5 style="color: #1e40af; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🔄</span>Continuous Learning</h5>
-                            <p style="color: #374151; line-height: 1.6; margin-bottom: 1rem;">Unlike traditional software, AI agents improve over time through experience. They adapt to new patterns, learn from mistakes, and optimize their performance automatically.</p>
-                            <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #22c55e;">
-                                <div style="color: #059669; font-weight: 600; font-size: 0.9rem;">Example: Trading bots that adapt to market conditions in real-time</div>
-                            </div>
-                        </div>
-                        
-                        <div style="background: rgba(255, 255, 255, 0.6); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid rgba(59, 130, 246, 0.2);">
-                            <h5 style="color: #1e40af; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">💰</span>Cost Efficiency</h5>
-                            <p style="color: #374151; line-height: 1.6; margin-bottom: 1rem;">AI agents can perform tasks that would require teams of humans, operating 24/7 without breaks, benefits, or training costs. This represents massive ROI for businesses.</p>
-                            <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #a855f7;">
-                                <div style="color: #7c3aed; font-weight: 600; font-size: 0.9rem;">Savings: Up to 70% reduction in operational costs</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div style="background: rgba(59, 130, 246, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(59, 130, 246, 0.3);">
-                        <div style="font-weight: 700; color: #1e40af; margin-bottom: 0.5rem;">🚀 Current Market</div>
-                        <div style="color: #374151; line-height: 1.6;">AI agent market projected to reach $28.5B by 2028, with 300% growth in enterprise adoption</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1)); padding: 3rem; border-radius: 20px; border: 1px solid rgba(168, 85, 247, 0.2); margin-bottom: 2rem; position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%); animation: shimmer 4s ease-in-out infinite;"></div>
-            <div style="position: relative; z-index: 2;">
-                <h4 style="color: #1e293b; font-weight: 800; font-size: 2rem; margin-bottom: 2rem; text-align: center; background: linear-gradient(135deg, #a855f7, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🎯 AI Agent Applications I'm Building</h4>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(168, 85, 247, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🔍</span>Intelligent Text Analysis</h5>
-                        <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">AI agents that can distinguish between human and AI-generated content with 97.8% accuracy, combating misinformation and ensuring content authenticity.</p>
-                        <div style="font-size: 0.9rem; color: #6b7280; font-style: italic;">Technology: Deep Learning, NLP, Pattern Recognition</div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(168, 85, 247, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">⚡</span>Real-time Optimization</h5>
-                        <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">Autonomous agents for pattern matching and streaming algorithm optimization, achieving 3x performance improvements in network anomaly detection.</p>
-                        <div style="font-size: 0.9rem; color: #6b7280; font-style: italic;">Technology: Streaming Algorithms, Performance Optimization</div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(168, 85, 247, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🏥</span>Healthcare Automation</h5>
-                        <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">Medical information processing agents that can analyze patient data, assist in diagnosis, and streamline healthcare workflows for better patient outcomes.</p>
-                        <div style="font-size: 0.9rem; color: #6b7280; font-style: italic;">Technology: Medical AI, Data Analysis, Decision Support</div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(168, 85, 247, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🎯</span>Predictive Analytics</h5>
-                        <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">Intelligent agents that learn from historical data to predict future trends, optimize resource allocation, and make proactive business decisions.</p>
-                        <div style="font-size: 0.9rem; color: #6b7280; font-style: italic;">Technology: Machine Learning, Statistical Modeling, Forecasting</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.2); text-align: center; position: relative; overflow: hidden;">
-            <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(34, 197, 94, 0.1), transparent); animation: rotate 30s linear infinite; z-index: 1;"></div>
-            <div style="position: relative; z-index: 2;">
-                <h4 style="color: #1e293b; font-weight: 800; font-size: 1.8rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #22c55e, #16a34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">The Future is Autonomous</h4>
-                <p style="color: #374151; font-size: 1.2rem; line-height: 1.7; max-width: 700px; margin: 0 auto 2rem;">With my deep AI foundation and hands-on experience building intelligent agents, I'm positioned at the forefront of the autonomous revolution. Ready to develop the next generation of AI systems that will transform how businesses operate.</p>
-                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                    <span style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);">
-                        🧠 Deep AI Knowledge
-                    </span>
-                    <span style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);">
-                        🤖 Agent Specialist
-                    </span>
-                    <span style="background: linear-gradient(135deg, #a855f7, #8b5cf6); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(168, 85, 247, 0.3);">
-                        🚀 Production Ready
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-if page == "🚀 Projects" or page == "🌟 All Sections":
-    # Filter Section
-    st.markdown("""
-    <div class="filter-section">
-        <h3 style="margin-bottom: 1.5rem; color: #2d3748;">🔍 Filter Projects</h3>
-        <div class="filter-grid">
-    """, unsafe_allow_html=True)
-
-    col1, col2 = st.columns(2)
-    with col1:
-        filter_language = st.selectbox(
-            "Filter by Language:",
-            ["All", "Jupyter Notebook", "TypeScript", "Python", "HTML", "JavaScript"]
-        )
-
-    with col2:
-        # This will be populated after we define the projects
-        pass
-
-    st.markdown("</div></div>", unsafe_allow_html=True)
-
-    # Projects data
-    projects_data = [
-        {
-            "name": "streaming-pattern-matching-optimization",
-            "description": "Streaming implementation of Naive and KMP pattern matching algorithms with performance benchmarking, data visualization, and real-time network anomaly detection.",
-            "language": "Jupyter Notebook",
-            "license": "MIT",
-            "updated": "7 minutes ago",
-            "url": "https://github.com/sahelmain/streaming-pattern-matching-optimization",
-            "category": "Algorithm Optimization",
-            "icon": "🔍"
-        },
-        {
-            "name": "AI-Human-Text-Detection-Deep-Learning",
-            "description": "Advanced AI vs Human text detection using deep learning. Features CNN, LSTM, and RNN models with Streamlit web interface achieving 97.8% accuracy.",
-            "language": "Jupyter Notebook",
-            "license": "",
-            "updated": "1 hour ago",
-            "url": "https://github.com/sahelmain/AI-Human-Text-Detection-Deep-Learning",
-            "category": "Deep Learning",
-            "icon": "🧠"
-        },
-        {
-            "name": "AI-Human-Text-Detection-App",
-            "description": "🤖 Streamlit web app detecting AI vs human text using SVM (96.38%), Decision Tree & AdaBoost. Features real-time predictions, model comparison & interactive UI. Production-ready deployment.",
-            "language": "Jupyter Notebook",
-            "license": "",
-            "updated": "2 weeks ago",
-            "url": "https://github.com/sahelmain/AI-Human-Text-Detection-App",
-            "category": "Machine Learning",
-            "icon": "🤖"
-        },
-        {
-            "name": "Advanced-Text-Classification-ML-Pipelines",
-            "description": "Advanced ML Engineering: Production-ready text classification pipelines with GridSearchCV, ensemble methods, and statistical analysis. 96.25% accuracy with custom transformers and comprehensive evaluation.",
-            "language": "Jupyter Notebook",
-            "license": "",
-            "updated": "3 weeks ago",
-            "url": "https://github.com/sahelmain/Advanced-Text-Classification-ML-Pipelines",
-            "category": "Machine Learning",
-            "icon": "⚙️"
-        },
-        {
-            "name": "Text-Classification-Human-vs-AI-",
-            "description": "Text classification project focusing on distinguishing between human and AI-generated content.",
-            "language": "Jupyter Notebook",
-            "license": "",
-            "updated": "3 weeks ago",
-            "url": "https://github.com/sahelmain/Text-Classification-Human-vs-AI-",
-            "category": "Machine Learning",
-            "icon": "🎯"
-        },
-        {
-            "name": "M.SApplicants",
-            "description": "Master's degree applicants management system.",
-            "language": "TypeScript",
-            "license": "",
-            "updated": "May 4",
-            "url": "https://github.com/sahelmain/M.SApplicants",
-            "category": "Web Development",
-            "icon": "🎓"
-        },
-        {
-            "name": "FinalApplicantsSet",
-            "description": "Final applicants dataset management system.",
-            "language": "TypeScript",
-            "license": "",
-            "updated": "May 2",
-            "url": "https://github.com/sahelmain/FinalApplicantsSet",
-            "category": "Web Development",
-            "icon": "📊"
-        },
-        {
-            "name": "PhD2025Applicants",
-            "description": "PhD 2025 applicants tracking system.",
-            "language": "HTML",
-            "license": "",
-            "updated": "Apr 10",
-            "url": "https://github.com/sahelmain/PhD2025Applicants",
-            "category": "Web Development",
-            "icon": "🏆"
-        },
-        {
-            "name": "MeatCuttingML-",
-            "description": "Machine learning application for meat cutting optimization.",
-            "language": "Python",
-            "license": "MIT",
-            "updated": "Feb 1",
-            "url": "https://github.com/sahelmain/MeatCuttingML-",
-            "category": "Machine Learning",
-            "icon": "🥩"
-        },
-        {
-            "name": "Serology",
-            "description": "Serology data analysis and management system.",
-            "language": "TypeScript",
-            "license": "",
-            "updated": "Dec 9, 2024",
-            "url": "https://github.com/sahelmain/Serology",
-            "category": "Data Analysis",
-            "icon": "🔬"
-        },
-        {
-            "name": "SerologyDashboardWebsite",
-            "description": "Medical Information Simulation - Forked from yuh137/medical_information_simulation",
-            "language": "TypeScript",
-            "license": "",
-            "updated": "Dec 8, 2024",
-            "url": "https://github.com/sahelmain/SerologyDashboardWebsite",
-            "category": "Web Development",
-            "icon": "🏥"
-        },
-        {
-            "name": "CalibrationOfConcrete",
-            "description": "Concrete calibration analysis using machine learning techniques.",
-            "language": "Jupyter Notebook",
-            "license": "",
-            "updated": "Oct 8, 2024",
-            "url": "https://github.com/sahelmain/CalibrationOfConcrete",
-            "category": "Data Analysis",
-            "icon": "🏗️"
-        },
-        {
-            "name": "TexasLotterySystem",
-            "description": "Texas lottery system implementation and analysis.",
-            "language": "JavaScript",
-            "license": "",
-            "updated": "Feb 3, 2024",
-            "url": "https://github.com/sahelmain/TexasLotterySystem",
-            "category": "Web Development",
-            "icon": "🎰"
-        }
-    ]
-
-    # Update the category filter in the second column
-    categories = list(set([p["category"] for p in projects_data]))
-    with col2:
-        selected_category = st.selectbox("Filter by Category:", ["All"] + sorted(categories))
-
-    # Filter projects based on selections
-    filtered_projects = projects_data
-    if filter_language != "All":
-        filtered_projects = [p for p in filtered_projects if p["language"] == filter_language]
-    if selected_category != "All":
-        filtered_projects = [p for p in filtered_projects if p["category"] == selected_category]
-
-    # Main content
-    st.markdown('<h2 class="section-title">🚀 Featured Projects</h2>', unsafe_allow_html=True)
-
-    # Create a responsive grid layout using Streamlit native components
-    cols_per_row = 2
-    for i in range(0, len(filtered_projects), cols_per_row):
-        cols = st.columns(cols_per_row, gap="large")
-        for j, col in enumerate(cols):
-            if i + j < len(filtered_projects):
-                project = filtered_projects[i + j]
-                with col:
-                    # Use Streamlit's native container with custom CSS
-                    with st.container():
-                        # Add custom CSS for this specific container
-                        st.markdown("""
-                        <style>
-                        .stContainer > div {
-                            background: rgba(255, 255, 255, 0.9) !important;
-                            backdrop-filter: blur(20px) !important;
-                            border: 1px solid rgba(255, 255, 255, 0.3) !important;
-                            border-radius: 24px !important;
-                            padding: 2rem !important;
-                            margin-bottom: 2rem !important;
-                            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
-                            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-                            position: relative !important;
-                            overflow: hidden !important;
-                        }
-                        .stContainer > div::before {
-                            content: '' !important;
-                            position: absolute !important;
-                            top: 0 !important;
-                            left: 0 !important;
-                            width: 100% !important;
-                            height: 100% !important;
-                            background: linear-gradient(135deg, rgba(102, 126, 234, 0.03), rgba(118, 75, 162, 0.03)) !important;
-                            opacity: 0 !important;
-                            transition: opacity 0.3s !important;
-                            z-index: 1 !important;
-                        }
-                        .stContainer > div:hover::before {
-                            opacity: 1 !important;
-                        }
-                        .stContainer > div:hover {
-                            transform: translateY(-8px) scale(1.02) !important;
-                            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.2) !important;
-                            border-color: rgba(102, 126, 234, 0.4) !important;
-                        }
-                        .project-card {
-                            background: transparent !important;
-                            border: none !important;
-                            border-radius: 0 !important;
-                            padding: 0 !important;
-                            margin: 0 !important;
-                            box-shadow: none !important;
-                            position: relative !important;
-                            z-index: 2 !important;
-                        }
-                        .project-header {
-                            display: flex !important;
-                            align-items: center !important;
-                            margin-bottom: 1.5rem !important;
-                            background: rgba(255, 255, 255, 0.6) !important;
-                            backdrop-filter: blur(10px) !important;
-                            padding: 1rem !important;
-                            border-radius: 16px !important;
-                            border: 1px solid rgba(255, 255, 255, 0.4) !important;
-                            position: relative !important;
-                            z-index: 3 !important;
-                        }
-                        .project-icon {
-                            font-size: 3rem !important;
-                            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb) !important;
-                            color: white !important;
-                            border-radius: 16px !important;
-                            padding: 1rem !important;
-                            margin-right: 1.5rem !important;
-                            width: 70px !important;
-                            height: 70px !important;
-                            display: flex !important;
-                            align-items: center !important;
-                            justify-content: center !important;
-                            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4) !important;
-                            position: relative !important;
-                            overflow: hidden !important;
-                        }
-                        .project-icon::before {
-                            content: '' !important;
-                            position: absolute !important;
-                            top: -50% !important;
-                            left: -50% !important;
-                            width: 200% !important;
-                            height: 200% !important;
-                            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.2), transparent) !important;
-                            animation: rotate 3s linear infinite !important;
-                        }
-                        .project-title {
-                            color: #1e293b !important;
-                            font-weight: 800 !important;
-                            font-size: 1.6rem !important;
-                            margin: 0 !important;
-                            background: linear-gradient(135deg, #667eea, #764ba2) !important;
-                            -webkit-background-clip: text !important;
-                            -webkit-text-fill-color: transparent !important;
-                            background-clip: text !important;
-                            letter-spacing: -0.02em !important;
-                            position: relative !important;
-                            z-index: 3 !important;
-                        }
-                        .project-description {
-                            color: #374151 !important;
-                            background: rgba(248, 250, 252, 0.8) !important;
-                            backdrop-filter: blur(10px) !important;
-                            padding: 1.5rem !important;
-                            border-radius: 16px !important;
-                            border: 1px solid rgba(102, 126, 234, 0.2) !important;
-                            margin-bottom: 1.5rem !important;
-                            font-weight: 500 !important;
-                            line-height: 1.7 !important;
-                            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1) !important;
-                            position: relative !important;
-                            z-index: 3 !important;
-                        }
-                        .project-badge {
-                            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)) !important;
-                            color: #1e293b !important;
-                            padding: 0.75rem 1rem !important;
-                            border-radius: 12px !important;
-                            margin-bottom: 0.75rem !important;
-                            font-weight: 700 !important;
-                            border: 1px solid rgba(102, 126, 234, 0.2) !important;
-                            backdrop-filter: blur(10px) !important;
-                            transition: all 0.3s ease !important;
-                            position: relative !important;
-                            z-index: 3 !important;
-                        }
-                        .project-badge:hover {
-                            transform: translateY(-2px) !important;
-                            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.2) !important;
-                        }
-                        .project-badge-license {
-                            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)) !important;
-                            color: #065f46 !important;
-                            padding: 0.75rem 1rem !important;
-                            border-radius: 12px !important;
-                            margin-bottom: 0.75rem !important;
-                            font-weight: 700 !important;
-                            border: 1px solid rgba(34, 197, 94, 0.3) !important;
-                            backdrop-filter: blur(10px) !important;
-                            transition: all 0.3s ease !important;
-                            position: relative !important;
-                            z-index: 3 !important;
-                        }
-                        .project-badge-time {
-                            background: rgba(249, 250, 251, 0.8) !important;
-                            color: #6b7280 !important;
-                            padding: 0.75rem 1rem !important;
-                            border-radius: 12px !important;
-                            font-weight: 600 !important;
-                            border: 1px solid rgba(229, 231, 235, 0.6) !important;
-                            backdrop-filter: blur(10px) !important;
-                            position: relative !important;
-                            z-index: 3 !important;
-                        }
-                        </style>
-                        """, unsafe_allow_html=True)
-                        
-                        # Project header
-                        col_icon, col_title = st.columns([1, 4])
-                        with col_icon:
-                            st.markdown(f'<div class="project-icon">{project["icon"]}</div>', unsafe_allow_html=True)
-                        with col_title:
-                            st.markdown(f'<h3 class="project-title">{project["name"]}</h3>', unsafe_allow_html=True)
-                        
-                        # Project description
-                        st.markdown(f'<div class="project-description">{project["description"]}</div>', unsafe_allow_html=True)
-                        
-                        # Project metadata
-                        st.markdown(f'<div class="project-badge">💻 {project["language"]}</div>', unsafe_allow_html=True)
-                        st.markdown(f'<div class="project-badge">📁 {project["category"]}</div>', unsafe_allow_html=True)
-                        if project["license"]:
-                            st.markdown(f'<div class="project-badge-license">📄 {project["license"]}</div>', unsafe_allow_html=True)
-                        st.markdown(f'<div class="project-badge-time">🕒 {project["updated"]}</div>', unsafe_allow_html=True)
-                        
-                        # GitHub link
-                        if st.button(f"🔗 View on GitHub", key=f"btn_{project['name']}", use_container_width=True):
-                            st.markdown(f'<script>window.open("{project["url"]}", "_blank");</script>', unsafe_allow_html=True)
-                        
-                        st.markdown("---")
-
-    # Statistics section
-    st.markdown('<h2 class="section-title">📊 Project Statistics</h2>', unsafe_allow_html=True)
-
-    st.markdown('<div class="stats-grid">', unsafe_allow_html=True)
-
-    # Calculate statistics
-    total_projects = len(projects_data)
-    ml_projects = len([p for p in projects_data if p["category"] in ["Machine Learning", "Deep Learning"]])
-    web_projects = len([p for p in projects_data if p["category"] == "Web Development"])
-    recent_projects = len([p for p in projects_data if "weeks" in p["updated"] or "minutes" in p["updated"] or "hour" in p["updated"]])
-
-    stats = [
-        {"label": "Total Projects", "value": total_projects, "icon": "📚"},
-        {"label": "ML/DL Projects", "value": ml_projects, "icon": "🤖"},
-        {"label": "Web Projects", "value": web_projects, "icon": "🌐"},
-        {"label": "Recent Updates", "value": recent_projects, "icon": "🔄"}
-    ]
-
-    for stat in stats:
-        st.markdown(f"""
-        <div class="stat-card">
-            <div style="font-size: 2rem; margin-bottom: 1rem;">{stat['icon']}</div>
-            <div class="stat-number">{stat['value']}</div>
-            <div class="stat-label">{stat['label']}</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    st.markdown('</div>', unsafe_allow_html=True)
-
-if page == "📊 Skills & Stats" or page == "🌟 All Sections":
-    # Language distribution chart
-    st.markdown('<h2 class="section-title">📈 Technology Stack</h2>', unsafe_allow_html=True)
-
-    # Create a more visually appealing chart
-    language_counts = pd.DataFrame([p["language"] for p in projects_data], columns=["Language"]).value_counts().reset_index()
-    language_counts.columns = ["Language", "Count"]
-
-    # Custom chart styling
-    st.markdown("""
-    <div style="background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); margin-bottom: 2rem;">
-    """, unsafe_allow_html=True)
-
-    st.bar_chart(language_counts.set_index("Language"), height=400)
-
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    # Interactive Skill Assessment Section
-    st.markdown('<h2 class="section-title">🎯 Interactive Skill Assessment</h2>', unsafe_allow_html=True)
-    
-    st.markdown("""
-    <div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);">
-        <div style="text-align: center; margin-bottom: 3rem;">
-            <h3 style="color: #1e293b; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #8b5cf6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Test Your AI Knowledge</h3>
-            <p style="color: #475569; font-size: 1.3rem; line-height: 1.6; max-width: 800px; margin: 0 auto;">Interactive demonstrations of AI concepts and real-world problem-solving scenarios. Explore the same challenges Sahel has mastered in his projects.</p>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # Create interactive quiz/assessment components
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.markdown("""
-        <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(139, 92, 246, 0.2); margin-bottom: 2rem;">
-            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center;">
-                🧠 <span style="margin-left: 0.5rem;">Neural Network Fundamentals</span>
-            </h4>
-            <p style="color: #475569; line-height: 1.6; margin-bottom: 1.5rem;">Test your understanding of the core concepts behind modern AI systems.</p>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        # Neural Network Quiz
-        st.subheader("🔬 Quick Neural Network Assessment")
-        
-        q1 = st.radio(
-            "What is the primary function of an activation function in neural networks?",
-            ["To increase model size", "To introduce non-linearity", "To reduce training time", "To store weights"],
-            key="nn_q1"
-        )
-        
-        q2 = st.radio(
-            "Which optimization algorithm is most commonly used for training deep networks?",
-            ["Linear regression", "Adam optimizer", "Random search", "Grid search"],
-            key="nn_q2"
-        )
-        
-        q3 = st.radio(
-            "What does '97.8% accuracy' in AI text detection indicate?",
-            ["98% of texts are AI-generated", "Model correctly classifies 97.8% of samples", "Training took 97.8 hours", "Model uses 97.8% of data"],
-            key="nn_q3"
-        )
-        
-        if st.button("Check Neural Network Answers", key="check_nn"):
-            correct_answers = ["To introduce non-linearity", "Adam optimizer", "Model correctly classifies 97.8% of samples"]
-            user_answers = [q1, q2, q3]
-            score = sum(1 for i, ans in enumerate(user_answers) if ans == correct_answers[i])
-            
-            st.markdown(f"""
-            <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 2rem; border-radius: 16px; border: 1px solid rgba(34, 197, 94, 0.2); margin-top: 1rem;">
-                <h5 style="color: #059669; font-weight: 700; margin-bottom: 1rem;">📊 Your Neural Network Score: {score}/3</h5>
-                <p style="color: #374151; line-height: 1.6;">
-                    {"🎉 Excellent! You have a strong foundation in neural networks." if score == 3 else
-                     "👍 Good job! You understand the basics." if score == 2 else
-                     "📚 Keep learning! Consider reviewing neural network fundamentals."}
-                </p>
-                <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.5); border-radius: 8px;">
-                    <strong style="color: #1e293b;">Sahel's Expertise:</strong> Achieved 97.8% accuracy in AI text detection using advanced neural architectures and optimization techniques.
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
-    
-    with col2:
-        st.markdown("""
-        <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(245, 158, 11, 0.2); margin-bottom: 2rem;">
-            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center;">
-                🚀 <span style="margin-left: 0.5rem;">Machine Learning Pipeline</span>
-            </h4>
-            <p style="color: #475569; line-height: 1.6; margin-bottom: 1.5rem;">Evaluate your knowledge of production ML systems and optimization.</p>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        # ML Pipeline Quiz  
-        st.subheader("⚙️ ML Pipeline Assessment")
-        
-        q4 = st.radio(
-            "What is the most important step before training an ML model?",
-            ["Choosing the algorithm", "Data preprocessing and cleaning", "Setting hyperparameters", "Selecting hardware"],
-            key="ml_q1"
-        )
-        
-        q5 = st.radio(
-            "How can you achieve 3x performance improvement in pattern matching?",
-            ["Use more data", "Algorithm optimization and efficient data structures", "Increase model size", "Add more features"],
-            key="ml_q2"
-        )
-        
-        q6 = st.radio(
-            "What does GridSearchCV help accomplish?",
-            ["Data visualization", "Hyperparameter optimization", "Model deployment", "Data collection"],
-            key="ml_q3"
-        )
-        
-        if st.button("Check ML Pipeline Answers", key="check_ml"):
-            correct_answers = ["Data preprocessing and cleaning", "Algorithm optimization and efficient data structures", "Hyperparameter optimization"]
-            user_answers = [q4, q5, q6]
-            score = sum(1 for i, ans in enumerate(user_answers) if ans == correct_answers[i])
-            
-            st.markdown(f"""
-            <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1)); padding: 2rem; border-radius: 16px; border: 1px solid rgba(245, 158, 11, 0.2); margin-top: 1rem;">
-                <h5 style="color: #d97706; font-weight: 700; margin-bottom: 1rem;">⚡ Your ML Pipeline Score: {score}/3</h5>
-                <p style="color: #374151; line-height: 1.6;">
-                    {"🏆 Outstanding! You understand production ML systems." if score == 3 else
-                     "✅ Well done! You grasp the key concepts." if score == 2 else
-                     "💡 Great start! Explore more about ML pipelines and optimization."}
-                </p>
-                <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.5); border-radius: 8px;">
-                    <strong style="color: #1e293b;">Sahel's Achievement:</strong> Delivered 96.25% accuracy ML pipelines with 3x performance optimization using advanced techniques.
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
-
-    # Interactive Code Challenge
-    st.markdown("""
-    <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1)); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; border: 1px solid rgba(168, 85, 247, 0.2);">
-        <h4 style="color: #1e293b; font-weight: 700; font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">
-            💻 Interactive Coding Challenge
-        </h4>
-        <p style="color: #475569; line-height: 1.6; text-align: center; margin-bottom: 2rem; font-size: 1.1rem;">
-            Try implementing a simple neural network concept. This mirrors the type of problem-solving Sahel excels at.
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # Code challenge
-    st.subheader("🔧 Implement a Simple Activation Function")
-    st.write("Complete the ReLU activation function (Rectified Linear Unit):")
-    
-    code_challenge = st.text_area(
-        "Your Python Code:",
-        placeholder="def relu(x):\n    # Your implementation here\n    pass",
-        height=150,
-        key="code_challenge"
+    st.write(
+        "I am an IT & Automation Engineer based in Amman, Jordan, with a completed "
+        "M.S. in Computer Science from Texas Tech University. My work combines "
+        "industrial automation with software integration. My public projects cover "
+        "web applications, LLM evaluation, machine learning, algorithms, and systems."
     )
-    
-    if st.button("Check Code Solution", key="check_code"):
-        # Simple code validation
-        if "max(0" in code_challenge or "if x > 0" in code_challenge or "where" in code_challenge:
-            st.markdown("""
-            <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 2rem; border-radius: 16px; border: 1px solid rgba(34, 197, 94, 0.2); margin-top: 1rem;">
-                <h5 style="color: #059669; font-weight: 700; margin-bottom: 1rem;">✅ Great Implementation!</h5>
-                <p style="color: #374151; line-height: 1.6;">Your ReLU function looks correct! The key insight is that ReLU returns the input if positive, otherwise zero.</p>
-                <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.5); border-radius: 8px;">
-                    <strong style="color: #1e293b;">Optimal Solution:</strong><br>
-                    <code>def relu(x): return max(0, x)</code><br>
-                    <small style="color: #6b7280;">This is the type of optimization thinking Sahel applies to achieve breakthrough performance.</small>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
-        else:
-            st.markdown("""
-            <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 127, 0.1)); padding: 2rem; border-radius: 16px; border: 1px solid rgba(239, 68, 68, 0.2); margin-top: 1rem;">
-                <h5 style="color: #dc2626; font-weight: 700; margin-bottom: 1rem;">💡 Keep Trying!</h5>
-                <p style="color: #374151; line-height: 1.6;">Hint: ReLU returns the maximum of 0 and the input value. Think about how to handle negative inputs.</p>
-                <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.5); border-radius: 8px;">
-                    <strong style="color: #1e293b;">Sahel's Approach:</strong> Systematic problem-solving with attention to edge cases and optimization opportunities.
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
+    st.markdown("**Professional focus:** software engineering, AI engineering, and automation opportunities.")
 
-    # Performance Metrics Section
-    st.markdown('<h2 class="section-title">⚡ Performance Benchmarks</h2>', unsafe_allow_html=True)
-    
-    st.markdown("""
-    <div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);">
-        <div style="text-align: center; margin-bottom: 3rem;">
-            <h3 style="color: #1e293b; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #ef4444, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Real-World Performance Metrics</h3>
-            <p style="color: #475569; font-size: 1.3rem; line-height: 1.6; max-width: 800px; margin: 0 auto;">Demonstrating technical excellence through measurable results and production-ready implementations.</p>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem;">
-            <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.2); text-align: center; position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(34, 197, 94, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(34, 197, 94, 0.1), transparent); animation: rotate 15s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="font-size: 4rem; margin-bottom: 1rem;">🎯</div>
-                    <h4 style="color: #1e293b; font-weight: 800; font-size: 2.5rem; margin-bottom: 0.5rem;">97.8%</h4>
-                    <p style="color: #059669; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;">AI Detection Accuracy</p>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 1rem; border-radius: 12px;">
-                        <p style="color: #374151; line-height: 1.6; font-size: 0.95rem;">State-of-the-art performance in distinguishing AI-generated from human text using advanced neural networks.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(59, 130, 246, 0.2); text-align: center; position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(59, 130, 246, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(59, 130, 246, 0.1), transparent); animation: rotate 20s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="font-size: 4rem; margin-bottom: 1rem;">⚡</div>
-                    <h4 style="color: #1e293b; font-weight: 800; font-size: 2.5rem; margin-bottom: 0.5rem;">3x</h4>
-                    <p style="color: #2563eb; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;">Performance Improvement</p>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 1rem; border-radius: 12px;">
-                        <p style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Optimized pattern matching algorithms achieving 3x faster execution through algorithmic innovation.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(168, 85, 247, 0.2); text-align: center; position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(168, 85, 247, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(168, 85, 247, 0.1), transparent); animation: rotate 12s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="font-size: 4rem; margin-bottom: 1rem;">🚀</div>
-                    <h4 style="color: #1e293b; font-weight: 800; font-size: 2.5rem; margin-bottom: 0.5rem;">96.25%</h4>
-                    <p style="color: #8b5cf6; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;">ML Pipeline Accuracy</p>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 1rem; border-radius: 12px;">
-                        <p style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Production-ready machine learning pipelines with exceptional accuracy and robust validation frameworks.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(245, 158, 11, 0.2); text-align: center; position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(245, 158, 11, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(245, 158, 11, 0.1), transparent); animation: rotate 18s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="font-size: 4rem; margin-bottom: 1rem;">⏱️</div>
-                    <h4 style="color: #1e293b; font-weight: 800; font-size: 2.5rem; margin-bottom: 0.5rem;">&lt;50ms</h4>
-                    <p style="color: #d97706; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;">API Response Time</p>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 1rem; border-radius: 12px;">
-                        <p style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Optimized AI models delivering real-time predictions with sub-50ms latency for production applications.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 127, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(239, 68, 68, 0.2); text-align: center; position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(239, 68, 68, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(239, 68, 68, 0.1), transparent); animation: rotate 25s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="font-size: 4rem; margin-bottom: 1rem;">💾</div>
-                    <h4 style="color: #1e293b; font-weight: 800; font-size: 2.5rem; margin-bottom: 0.5rem;">99.9%</h4>
-                    <p style="color: #dc2626; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;">System Uptime</p>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 1rem; border-radius: 12px;">
-                        <p style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Enterprise-grade reliability with comprehensive monitoring, alerting, and automated recovery systems.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, rgba(20, 184, 166, 0.1), rgba(13, 148, 136, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(20, 184, 166, 0.2); text-align: center; position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(20, 184, 166, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(20, 184, 166, 0.1), transparent); animation: rotate 22s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="font-size: 4rem; margin-bottom: 1rem;">📊</div>
-                    <h4 style="color: #1e293b; font-weight: 800; font-size: 2.5rem; margin-bottom: 0.5rem;">10K+</h4>
-                    <p style="color: #0d9488; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;">Data Points Processed</p>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 1rem; border-radius: 12px;">
-                        <p style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Scalable data processing pipelines handling large-scale datasets with efficient memory management.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+if show_section("👨‍💻 About Me"):
+    st.header("👨‍💻 About Me")
+    st.subheader("Completed qualifications")
+    st.markdown(
+        "- **M.S. in Computer Science — Texas Tech University, completed**\n"
+        "- **B.S. in Computer Science — Texas Tech University, completed**"
+    )
+    st.write(
+        "I bring a computer-science background and practical experience with "
+        "PLC/SCADA integration, plant data, and frontend development. I am interested "
+        "in roles that connect software, data, and reliable operational workflows."
+    )
+    st.markdown(f"**Based in:** {PROFILE['location']}")
 
-if page == "📝 AI Insights" or page == "🌟 All Sections":
-    # AI Insights Section
-    st.markdown('<h2 class="section-title">📝 AI Insights</h2>', unsafe_allow_html=True)
+if show_section("💼 Experience"):
+    st.header("💼 Engineering Experience")
+    st.subheader("IT & Automation Engineer — Amman, Jordan")
+    st.markdown(
+        "- Work on plant digitalization through Ignition SCADA and PLC integration.\n"
+        "- Experience with Siemens S7-1200 and S7-200 SMART PLCs, tag mapping, "
+        "Modbus communication, and monitoring/control workflows.\n"
+        "- Troubleshoot PLC/SCADA communication and OT network issues; support "
+        "plant data visibility and operating workflows."
+    )
+    st.subheader("Frontend Internship — June–August 2024")
+    st.markdown(
+        "- Worked on a React frontend redesign.\n"
+        "- Used Axios to connect frontend components to REST APIs."
+    )
 
-    st.markdown("""
-    <div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);">
-        <div style="text-align: center; margin-bottom: 3rem;">
-            <h3 style="color: #1e293b; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Thought Leadership in AI</h3>
-            <p style="color: #475569; font-size: 1.3rem; line-height: 1.6; max-width: 800px; margin: 0 auto;">Sharing cutting-edge insights, research findings, and perspectives on the future of artificial intelligence and machine learning.</p>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
-            <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(99, 102, 241, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(99, 102, 241, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(99, 102, 241, 0.1), transparent); animation: rotate 20s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="display: flex; margin-bottom: 2rem; align-items: center;">
-                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white; margin-right: 1.5rem; box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);">🧠</div>
-                        <div>
-                            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.6rem; margin-bottom: 0.5rem;">The Future of Neural Architecture Search</h4>
-                            <p style="color: #6366f1; font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">Deep Learning • Research</p>
-                            <p style="color: #6b7280; font-size: 0.9rem;">January 15, 2025 • 8 min read</p>
-                        </div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(99, 102, 241, 0.2); margin-bottom: 1.5rem;">
-                        <p style="color: #374151; line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">Exploring how automated neural architecture search is revolutionizing deep learning model design. From manual architecture engineering to AI-designed networks that outperform human-created models.</p>
-                        <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                            <h5 style="color: #3730a3; font-weight: 600; margin-bottom: 0.5rem;">Key Insights:</h5>
-                            <ul style="color: #374151; padding-left: 1.5rem; line-height: 1.6;">
-                                <li>NAS reduces architecture design time by 70%</li>
-                                <li>AutoML integration for production deployment</li>
-                                <li>Performance improvements in computer vision tasks</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
-                        <span style="background: rgba(99, 102, 241, 0.2); color: #3730a3; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">Neural Architecture</span>
-                        <span style="background: rgba(99, 102, 241, 0.2); color: #3730a3; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">AutoML</span>
-                        <span style="background: rgba(99, 102, 241, 0.2); color: #3730a3; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">Deep Learning</span>
-                    </div>
-                    <div style="background: rgba(99, 102, 241, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(99, 102, 241, 0.3);">
-                        <div style="font-weight: 700; color: #3730a3; margin-bottom: 0.5rem;">🎯 Research Impact</div>
-                        <div style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Published findings on automated model optimization achieving 15% performance gains</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(34, 197, 94, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(34, 197, 94, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(34, 197, 94, 0.1), transparent); animation: rotate 15s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="display: flex; margin-bottom: 2rem; align-items: center;">
-                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #22c55e, #16a34a); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white; margin-right: 1.5rem; box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);">🚀</div>
-                        <div>
-                            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.6rem; margin-bottom: 0.5rem;">Production ML: From Lab to Scale</h4>
-                            <p style="color: #22c55e; font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">MLOps • Engineering</p>
-                            <p style="color: #6b7280; font-size: 0.9rem;">January 10, 2025 • 12 min read</p>
-                        </div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(34, 197, 94, 0.2); margin-bottom: 1.5rem;">
-                        <p style="color: #374151; line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">Real-world lessons from deploying ML models at scale. Covering model versioning, A/B testing, monitoring, and the hidden challenges of production ML systems that achieve 99.9% uptime.</p>
-                        <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                            <h5 style="color: #065f46; font-weight: 600; margin-bottom: 0.5rem;">Production Best Practices:</h5>
-                            <ul style="color: #374151; padding-left: 1.5rem; line-height: 1.6;">
-                                <li>Containerization with Docker for consistent deployment</li>
-                                <li>CI/CD pipelines for automated model validation</li>
-                                <li>Real-time monitoring and alerting systems</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
-                        <span style="background: rgba(34, 197, 94, 0.2); color: #065f46; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">MLOps</span>
-                        <span style="background: rgba(34, 197, 94, 0.2); color: #065f46; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">Production</span>
-                        <span style="background: rgba(34, 197, 94, 0.2); color: #065f46; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">Scalability</span>
-                    </div>
-                    <div style="background: rgba(34, 197, 94, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(34, 197, 94, 0.3);">
-                        <div style="font-weight: 700; color: #065f46; margin-bottom: 0.5rem;">💡 Industry Impact</div>
-                        <div style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Practical insights from deploying AI systems serving 10K+ requests per second</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(168, 85, 247, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(168, 85, 247, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(168, 85, 247, 0.1), transparent); animation: rotate 25s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="display: flex; margin-bottom: 2rem; align-items: center;">
-                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #a855f7, #8b5cf6); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white; margin-right: 1.5rem; box-shadow: 0 8px 24px rgba(168, 85, 247, 0.3);">🎯</div>
-                        <div>
-                            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.6rem; margin-bottom: 0.5rem;">AI Ethics in Practice: Beyond Bias</h4>
-                            <p style="color: #a855f7; font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">AI Ethics • Society</p>
-                            <p style="color: #6b7280; font-size: 0.9rem;">January 5, 2025 • 10 min read</p>
-                        </div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(168, 85, 247, 0.2); margin-bottom: 1.5rem;">
-                        <p style="color: #374151; line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">Exploring the multifaceted challenges of responsible AI development. From algorithmic fairness to privacy preservation, transparency, and the societal implications of autonomous decision-making systems.</p>
-                        <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                            <h5 style="color: #7c3aed; font-weight: 600; margin-bottom: 0.5rem;">Ethical Frameworks:</h5>
-                            <ul style="color: #374151; padding-left: 1.5rem; line-height: 1.6;">
-                                <li>Fairness-aware machine learning algorithms</li>
-                                <li>Explainable AI for transparent decision making</li>
-                                <li>Privacy-preserving techniques in data processing</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
-                        <span style="background: rgba(168, 85, 247, 0.2); color: #7c3aed; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">AI Ethics</span>
-                        <span style="background: rgba(168, 85, 247, 0.2); color: #7c3aed; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">Fairness</span>
-                        <span style="background: rgba(168, 85, 247, 0.2); color: #7c3aed; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">Transparency</span>
-                    </div>
-                    <div style="background: rgba(168, 85, 247, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(168, 85, 247, 0.3);">
-                        <div style="font-weight: 700; color: #7c3aed; margin-bottom: 0.5rem;">🚀 Social Impact</div>
-                        <div style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Contributing to responsible AI development for positive societal outcomes</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1)); padding: 3rem; border-radius: 24px; border: 1px solid rgba(245, 158, 11, 0.2); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 25px 50px rgba(245, 158, 11, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(245, 158, 11, 0.1), transparent); animation: rotate 18s linear infinite; z-index: 1;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <div style="display: flex; margin-bottom: 2rem; align-items: center;">
-                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white; margin-right: 1.5rem; box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);">📊</div>
-                        <div>
-                            <h4 style="color: #1e293b; font-weight: 700; font-size: 1.6rem; margin-bottom: 0.5rem;">The Mathematics Behind LLMs</h4>
-                            <p style="color: #f59e0b; font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">Mathematics • NLP</p>
-                            <p style="color: #6b7280; font-size: 0.9rem;">December 28, 2024 • 15 min read</p>
-                        </div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(245, 158, 11, 0.2); margin-bottom: 1.5rem;">
-                        <p style="color: #374151; line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">Deep dive into the mathematical foundations of Large Language Models. From attention mechanisms to transformer architectures, exploring the linear algebra and calculus that power modern NLP.</p>
-                        <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                            <h5 style="color: #92400e; font-weight: 600; margin-bottom: 0.5rem;">Mathematical Concepts:</h5>
-                            <ul style="color: #374151; padding-left: 1.5rem; line-height: 1.6;">
-                                <li>Self-attention mechanisms and matrix operations</li>
-                                <li>Gradient descent optimization in high dimensions</li>
-                                <li>Probabilistic foundations of language modeling</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
-                        <span style="background: rgba(245, 158, 11, 0.2); color: #92400e; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">Mathematics</span>
-                        <span style="background: rgba(245, 158, 11, 0.2); color: #92400e; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">Transformers</span>
-                        <span style="background: rgba(245, 158, 11, 0.2); color: #92400e; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">NLP</span>
-                    </div>
-                    <div style="background: rgba(245, 158, 11, 0.1); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(245, 158, 11, 0.3);">
-                        <div style="font-weight: 700; color: #92400e; margin-bottom: 0.5rem;">📚 Educational Value</div>
-                        <div style="color: #374151; line-height: 1.6; font-size: 0.95rem;">Making complex mathematical concepts accessible to the ML community</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div style="background: linear-gradient(135deg, rgba(20, 184, 166, 0.1), rgba(13, 148, 136, 0.1)); padding: 3rem; border-radius: 20px; border: 1px solid rgba(20, 184, 166, 0.2); margin-bottom: 2rem; position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%); animation: shimmer 4s ease-in-out infinite;"></div>
-            <div style="position: relative; z-index: 2;">
-                <h4 style="color: #1e293b; font-weight: 800; font-size: 2rem; margin-bottom: 2rem; text-align: center; background: linear-gradient(135deg, #14b8a6, #0d9488); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🔬 Current Research Areas</h4>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px);">
-                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🧬</span>Stochastic Modeling</h5>
-                        <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">Advancing probabilistic approaches to machine learning with focus on uncertainty quantification and robust model predictions in dynamic environments.</p>
-                        <div style="font-size: 0.9rem; color: #14b8a6; font-weight: 600;">Active Research • Texas Tech University</div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px);">
-                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🔍</span>Pattern Recognition</h5>
-                        <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">Developing next-generation algorithms for real-time pattern matching with applications in cybersecurity and network anomaly detection systems.</p>
-                        <div style="font-size: 0.9rem; color: #14b8a6; font-weight: 600;">Published Work • 3x Performance Improvement</div>
-                    </div>
-                    <div style="background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px);">
-                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center;"><span style="margin-right: 0.5rem;">🤖</span>AI Agents</h5>
-                        <p style="color: #475569; line-height: 1.6; margin-bottom: 1rem;">Exploring autonomous AI systems for complex decision-making, with focus on multi-agent coordination and intelligent automation frameworks.</p>
-                        <div style="font-size: 0.9rem; color: #14b8a6; font-weight: 600;">Emerging Field • High Impact Potential</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 127, 0.1)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(239, 68, 68, 0.2); text-align: center; position: relative; overflow: hidden;">
-            <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(239, 68, 68, 0.1), transparent); animation: rotate 25s linear infinite; z-index: 1;"></div>
-            <div style="position: relative; z-index: 2;">
-                <h4 style="color: #1e293b; font-weight: 800; font-size: 1.8rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #ef4444, #dc2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Join the AI Conversation</h4>
-                <p style="color: #374151; font-size: 1.2rem; line-height: 1.7; max-width: 700px; margin: 0 auto 2rem;">These insights represent ongoing research and practical experience in AI development. Interested in collaborating or discussing these topics? Let's connect and explore the future of artificial intelligence together.</p>
-                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                    <span style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(239, 68, 68, 0.3);">
-                        📝 Research Papers
-                    </span>
-                    <span style="background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);">
-                        💡 Thought Leadership
-                    </span>
-                    <span style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white; padding: 1rem 2rem; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);">
-                        🚀 Innovation
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+if show_section("🤖 AI & Automation"):
+    st.header("🤖 AI & Automation")
+    st.subheader("Applied AI projects")
+    st.write(
+        "My public work includes LLM evaluation and drift monitoring, a co-authored "
+        "TruthfulQA study, and AI-versus-human text-classification experiments. "
+        "The project links provide implementation and evaluation details."
+    )
+    st.subheader("Industrial automation experience")
+    st.write(
+        "My professional experience includes PLC/SCADA integration using Ignition "
+        "and Siemens PLCs, with work on tag mapping, Modbus communications, "
+        "plant monitoring, and troubleshooting."
+    )
+    st.subheader("Engineering interests")
+    st.write(
+        "I am interested in applying software and AI to monitoring, diagnostics, "
+        "and operational decision support."
+    )
 
-if page == "📞 Contact" or page == "🌟 All Sections":
-    # Contact Section
-    st.markdown('<h2 class="section-title">📞 Contact Me</h2>', unsafe_allow_html=True)
+if show_section("🚀 Projects"):
+    st.header("🚀 Selected Technical Projects")
+    st.caption(
+        "Source snapshots reviewed on 8 October 2026. Dates below identify the "
+        "reviewed repository commits. Open GitHub for subsequent changes."
+    )
+    col1, col2 = st.columns(2)
+    with col1:
+        language = st.selectbox(
+            "Filter by Language:",
+            ["All"] + sorted({lang for project in PROJECTS for lang in project["languages"]}),
+        )
+    with col2:
+        category = st.selectbox(
+            "Filter by Category:",
+            ["All"] + sorted({project["category"] for project in PROJECTS}),
+        )
+    selected = [
+        project for project in PROJECTS
+        if (language == "All" or language in project["languages"])
+        and (category == "All" or category == project["category"])
+    ]
+    if not selected:
+        st.info("No projects match both filters. Choose All to broaden the selection.")
+    for project in selected:
+        st.subheader(project["name"])
+        st.caption(f"{project['category']} | {project['stack']}")
+        st.write(project["description"])
+        st.write(project["implementation"])
+        st.caption(project["scope"])
+        st.markdown(f"[View repository]({repository_url(project)})")
+        st.markdown(evidence_links(project))
+        st.caption(f"Reviewed commit: {project['date']} · {project['commit'][:7]}")
+        st.divider()
+    st.markdown(
+        "**Related text-classification work:** "
+        "[Streamlit ML app](https://github.com/sahelmain/AI-Human-Text-Detection-App) · "
+        "[Baseline classification notebook](https://github.com/sahelmain/Text-Classification-Human-vs-AI-)"
+    )
+    st.markdown(f"[Browse all public repositories]({PROFILE['github']}?tab=repositories)")
 
-    st.markdown("""
-    <div style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); padding: 3rem; border-radius: 24px; margin-bottom: 3rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);">
-        <div style="text-align: center; margin-bottom: 3rem;">
-            <h3 style="color: #1e293b; font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">Let's Connect & Collaborate</h3>
-            <p style="color: #475569; font-size: 1.2rem; margin-bottom: 2rem;">Ready to work on exciting ML/DL projects? Reach out!</p>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-            <div style="background: rgba(102, 126, 234, 0.1); padding: 2rem; border-radius: 20px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(102, 126, 234, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">📧</div>
-                <h4 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">Email</h4>
-                <p style="color: #475569; margin-bottom: 1rem;">saazzam@ttu.edu</p>
-                <a href="mailto:saazzam@ttu.edu" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 0.75rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 20px rgba(102, 126, 234, 0.3)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">Send Email</a>
-            </div>
-            
-            <div style="background: rgba(0, 119, 181, 0.1); padding: 2rem; border-radius: 20px; text-align: center; border: 1px solid rgba(0, 119, 181, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(0, 119, 181, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">💼</div>
-                <h4 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">LinkedIn</h4>
-                <p style="color: #475569; margin-bottom: 1rem;">Professional Network</p>
-                <a href="https://www.linkedin.com/in/sahel-azzam-0a0670223" target="_blank" style="background: linear-gradient(135deg, #0077b5, #00a0dc); color: white; padding: 0.75rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 20px rgba(0, 119, 181, 0.3)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">Connect</a>
-            </div>
-            
-            <div style="background: rgba(36, 41, 47, 0.1); padding: 2rem; border-radius: 20px; text-align: center; border: 1px solid rgba(36, 41, 47, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(36, 41, 47, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">🐙</div>
-                <h4 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">GitHub</h4>
-                <p style="color: #475569; margin-bottom: 1rem;">View My Code</p>
-                <a href="https://github.com/sahelmain" target="_blank" style="background: linear-gradient(135deg, #24292f, #57606a); color: white; padding: 0.75rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 20px rgba(36, 41, 47, 0.3)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">Follow</a>
-            </div>
-            
-            <div style="background: rgba(34, 197, 94, 0.1); padding: 2rem; border-radius: 20px; text-align: center; border: 1px solid rgba(34, 197, 94, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 30px rgba(34, 197, 94, 0.2)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">📍</div>
-                <h4 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">Location</h4>
-                <p style="color: #475569; margin-bottom: 1rem;">Lubbock, Texas</p>
-                <span style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white; padding: 0.75rem 1.5rem; border-radius: 10px; font-weight: 600; display: inline-block;">Available</span>
-            </div>
-        </div>
-        
-        <div style="background: rgba(248, 250, 252, 0.8); padding: 2rem; border-radius: 20px; border: 1px solid rgba(102, 126, 234, 0.2);">
-            <h4 style="color: #1e293b; font-weight: 700; margin-bottom: 1.5rem; text-align: center;">💬 Quick Message</h4>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-                <div>
-                    <label style="color: #374151; font-weight: 600; margin-bottom: 0.5rem; display: block;">Name</label>
-                    <div style="background: white; border: 2px solid #e5e7eb; border-radius: 10px; padding: 0.75rem; width: 100%;">
-                        <input type="text" placeholder="Your Name" style="border: none; outline: none; width: 100%; font-size: 1rem;">
-                    </div>
-                </div>
-                <div>
-                    <label style="color: #374151; font-weight: 600; margin-bottom: 0.5rem; display: block;">Email</label>
-                    <div style="background: white; border: 2px solid #e5e7eb; border-radius: 10px; padding: 0.75rem; width: 100%;">
-                        <input type="email" placeholder="your.email@example.com" style="border: none; outline: none; width: 100%; font-size: 1rem;">
-                    </div>
-                </div>
-            </div>
-            <div style="margin-bottom: 1.5rem;">
-                <label style="color: #374151; font-weight: 600; margin-bottom: 0.5rem; display: block;">Message</label>
-                <div style="background: white; border: 2px solid #e5e7eb; border-radius: 10px; padding: 0.75rem; width: 100%;">
-                    <textarea placeholder="Tell me about your project or collaboration idea..." rows="4" style="border: none; outline: none; width: 100%; font-size: 1rem; resize: vertical;"></textarea>
-                </div>
-            </div>
-            <div style="text-align: center;">
-                <button onclick="sendMessage()" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 1rem 2rem; border: none; border-radius: 10px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 15px 30px rgba(102, 126, 234, 0.4)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='none'">
-                    🚀 Send Message
-                </button>
-            </div>
-            <p style="text-align: center; color: #6b7280; font-size: 0.9rem; margin-top: 1rem;">
-                <em>Note: This will open your default email client with the message details</em>
-            </p>
-        </div>
-    </div>
+if show_section("📊 Technical Skills"):
+    st.header("📊 Technical Skills")
+    rows = [
+        {
+            "Area": "Backend and web applications",
+            "Tools": "Python, FastAPI, React, TypeScript, REST APIs, PostgreSQL",
+            "Experience / project": "DriftWatch; React frontend internship",
+        },
+        {
+            "Area": "AI and machine learning",
+            "Tools": "PyTorch, scikit-learn, pandas, NLTK, Streamlit, Ollama",
+            "Experience / project": "LLM evaluation; text-classification projects",
+        },
+        {
+            "Area": "Industrial automation",
+            "Tools": "Ignition, Siemens S7-1200 / S7-200 SMART, Modbus, PLC tags",
+            "Experience / project": "IT & Automation Engineer",
+        },
+        {
+            "Area": "Systems and engineering tooling",
+            "Tools": "C, CSIM, Git, Docker, CI workflows, Python test suites",
+            "Experience / project": "Heartbeat simulation; DriftWatch",
+        },
+    ]
+    st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True)
 
-    <script>
-    function sendMessage() {
-        const name = document.querySelector('input[placeholder="Your Name"]').value;
-        const email = document.querySelector('input[placeholder="your.email@example.com"]').value;
-        const message = document.querySelector('textarea').value;
-        
-        const subject = encodeURIComponent(`Portfolio Contact from ${name || 'Visitor'}`);
-        const body = encodeURIComponent(`Name: ${name || 'Not provided'}
-Email: ${email || 'Not provided'}
+if show_section("📝 Engineering Notes"):
+    st.header("📝 Engineering Notes")
+    st.subheader("Model evaluation")
+    st.write(
+        "Classification accuracy describes a model on a particular dataset and split. "
+        "Text-detection projects require careful validation before use on new writing "
+        "styles or model outputs. Project notebooks provide the experiment context."
+    )
+    st.subheader("Algorithm benchmarking")
+    st.write(
+        "Streaming pattern-matching experiments compare execution time and character "
+        "comparisons across workloads. Benchmark results should be read alongside "
+        "the implementation and input configuration."
+    )
+    st.subheader("LLM scoring")
+    st.write(
+        "The TruthfulQA study uses deterministic word-overlap reference scoring. "
+        "That method defines the reported results and has limitations when answers "
+        "use different wording. The scoring code and run manifest document the setup."
+    )
 
-Message:
-${message || 'No message provided'}
+if show_section("📞 Contact"):
+    st.header("📞 Contact")
+    st.write("Connect with me about software engineering, AI, or industrial automation opportunities.")
+    st.markdown(
+        f"- **LinkedIn:** [Sahel Azzam]({PROFILE['linkedin']})\n"
+        f"- **GitHub:** [sahelmain]({PROFILE['github']})\n"
+        f"- **Email:** [{PROFILE['email']}](mailto:{PROFILE['email']})\n"
+        f"- **Location:** {PROFILE['location']}"
+    )
 
----
-Sent from Sahel Azzam's Portfolio Website`);
-        
-        window.location.href = `mailto:saazzam@ttu.edu?subject=${subject}&body=${body}`;
-    }
-    </script>
-    """, unsafe_allow_html=True)
-
-# Footer (always visible or when "All Sections" is selected)
-if page == "🌟 All Sections":
-    # Footer
-    st.markdown("""
-    <div class="footer">
-        <h3>🚀 Let's Connect!</h3>
-        <p style="font-size: 1.2rem; margin: 1rem 0;">Ready to collaborate on exciting projects?</p>
-        <div style="margin: 2rem 0;">
-            <a href="mailto:saazzam@ttu.edu" class="contact-badge" style="margin: 0 0.5rem;">
-                📧 Email Me
-            </a>
-            <a href="https://www.linkedin.com/in/sahel-azzam-0a0670223" class="contact-badge" style="margin: 0 0.5rem;" target="_blank">
-                💼 LinkedIn
-            </a>
-            <a href="https://github.com/sahelmain" class="contact-badge" style="margin: 0 0.5rem;" target="_blank">
-                🐙 GitHub
-            </a>
-        </div>
-        <p style="margin-top: 2rem; opacity: 0.8;">© 2025 Sahel Azzam | Built with Streamlit 🚀</p>
-        <p style="opacity: 0.6;">Master's CS Student @ Texas Tech University</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-# Add a small footer for individual sections
-else:
-    st.markdown("---")
-    st.markdown("""
-    <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(240, 147, 251, 0.05)); border-radius: 20px; margin-top: 3rem;">
-        <p style="color: #6b7280; margin-bottom: 1rem;">📧 <strong>saazzam@ttu.edu</strong> | 🌐 <a href="https://github.com/sahelmain" target="_blank" style="color: #667eea; text-decoration: none;">GitHub</a> | 💼 <a href="https://www.linkedin.com/in/sahel-azzam-0a0670223" target="_blank" style="color: #667eea; text-decoration: none;">LinkedIn</a></p>
-        <p style="color: #9ca3af; font-size: 0.9rem;">© 2025 Sahel Azzam - Master's CS Student @ Texas Tech University</p>
-    </div>
-    """, unsafe_allow_html=True) 
+st.divider()
+st.caption(
+    f"© {datetime.now().year} {PROFILE['name']} | {PROFILE['role']} | "
+    f"M.S. Computer Science, Texas Tech University | {PROFILE['location']}"
+)
